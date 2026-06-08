@@ -8,7 +8,15 @@ export interface Track {
 
 const TRACKS: Track[] = [
   { title: 'GLOW', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/GLOW.mp3` },
-  { title: 'TILT', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/TILT.mp3` }
+  { title: 'TILT', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/TILT.mp3` },
+  { title: 'AIRY', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/AIRY.mp3` },
+  { title: 'EASE', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/EASE.mp3` },
+  { title: 'ECHO', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/ECHO.mp3` },
+  { title: 'FLOW', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/FLOW.mp3` },
+  { title: 'LOOP', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/LOOP.mp3` },
+  { title: 'NUMB', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/NUMB.mp3` },
+  { title: 'VEIL', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/VEIL.mp3` },
+  { title: 'WAVE', artist: 'Cinematic Score', url: `${import.meta.env.BASE_URL}msc/WAVE.mp3` }
 ];
 
 interface MusicContextType {
@@ -21,6 +29,7 @@ interface MusicContextType {
   duration: number; // in seconds
   currentTime: number; // in seconds
   togglePlay: () => void;
+  playTrack: (index: number) => void;
   nextTrack: () => void;
   prevTrack: () => void;
   setVolume: (val: number) => void;
@@ -297,6 +306,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
       duration,
       currentTime,
       togglePlay,
+      playTrack,
       nextTrack,
       prevTrack,
       setVolume,
