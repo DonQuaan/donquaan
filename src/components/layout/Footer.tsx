@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Facebook, Twitch, Twitter, Youtube, Music, Gamepad2, Box } from 'lucide-react';
+import { Github, Mail, Facebook, Twitch, Twitter, Youtube, Music, Gamepad2, Box } from 'lucide-react';
 
 export function Footer() {
   return (
