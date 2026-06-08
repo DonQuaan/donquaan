@@ -1,5 +1,5 @@
-import { Github, Mail, Facebook, Twitch, Youtube, Music } from 'lucide-react';
-import { XIcon, RobloxIcon, CurseforgeIcon } from '../ui/icons';
+import { Mail, Twitch, Music } from 'lucide-react';
+import { RobloxIcon, CurseforgeIcon } from '../ui/icons';
 import { Link } from 'react-router-dom';
 
 import facebookIcon from '../../assets/social-icons/facebook.svg?url';
