@@ -1,0 +1,13 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="star-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A855F7" /> <!-- Purple -->
+      <stop offset="50%" stop-color="#EC4899" /> <!-- Pink -->
+      <stop offset="100%" stop-color="#F97316" /> <!-- Orange -->
+    </linearGradient>
+  </defs>
+  <path 
+    d="M 50 0 C 50 40, 60 50, 100 50 C 60 50, 50 60, 50 100 C 50 60, 40 50, 0 50 C 40 50, 50 40, 50 0 Z" 
+    fill="url(#star-gradient)" 
+  />
+</svg>
