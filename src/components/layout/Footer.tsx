@@ -29,7 +29,7 @@ export function Footer() {
             {/* Zalo Contact Block */}
             <div className="flex items-center gap-4 mt-2 p-4 rounded-2xl bg-white/5 border border-white/10 w-fit mx-auto lg:mx-0 hover:bg-white/10 transition-colors">
               <div className="bg-white p-1.5 rounded-xl shrink-0">
-                <img src={`${import.meta.env.BASE_URL}zalo-qr.jpg`} alt="Zalo QR Code" className="w-16 h-16 object-contain rounded-lg" />
+                <img src="https://i.postimg.cc/tgtGbH6t/qr-zalo.jpg" alt="Zalo QR Code" className="w-16 h-16 object-contain rounded-lg" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xs uppercase tracking-widest text-primary mb-1 font-bold">Zalo Contact</span>
