@@ -94,7 +94,7 @@ export function AboutSection() {
                   <a href="https://edu.google.accredible.com/529911e4-a7fb-42b6-9c9f-50d29e633430#acc.Fovqh654" target="_blank" rel="noreferrer" className="text-xl text-white hover:text-primary transition-colors font-display block leading-snug">Gemini Certified Faculty</a>
                   <p className="text-white/80 text-sm mb-2">Google AI Specialist Certification</p>
                   <p className="text-white/50 text-xs leading-relaxed">
-                    "A Google Certified Gemini Faculty member can articulate and demonstrate foundational knowledge of generative AI concepts and the core features and capabilities of Gemini within the educational context."
+                    A Google Certified Gemini Faculty member can articulate and demonstrate foundational knowledge of generative AI concepts and the core features and capabilities of Gemini within the educational context.
                   </p>
                 </div>
               </div>

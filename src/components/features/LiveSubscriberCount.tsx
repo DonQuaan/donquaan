@@ -2,37 +2,27 @@ import { useState, useEffect } from 'react';
 import { Youtube } from 'lucide-react';
 
 export function LiveSubscriberCount() {
-  const [subs, setSubs] = useState<string>("Loading...");
+  // Start with a highly specific baseline number (745,420)
+  const [subs, setSubs] = useState<number>(745420);
 
   useEffect(() => {
-    async function fetchSubs() {
-      try {
-        const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://youtube.com/@sangtraan')}`);
-        const data = await res.json();
-        const html = data.contents;
-        
-        // Try to match subscriber count from YouTube's initialData JSON embedded in HTML
-        const match = html.match(/"subscriberCountText":\{"accessibility":\{"accessibilityData":\{"label":"([^"]+)"\}\}/) 
-                      || html.match(/"subscriberCountText":\{"simpleText":"([^"]+)"\}/);
-                      
-        if (match && match[1]) {
-          // Extracted text might be "1.23M subscribers" or Vietnamese "1,23 Tr người đăng ký"
-          const fullText = match[1];
-          const numberPart = fullText.split(' ')[0]; 
-          setSubs(numberPart);
-        } else {
-          setSubs("100K+"); // Fallback if YouTube DOM changes
-        }
-      } catch (e) {
-        setSubs("100K+");
-      }
-    }
+    // Simulate real-time subscriber growth
+    // Adds a random number of subs (0 to 3) every 2 to 8 seconds
+    const simulateGrowth = () => {
+      setSubs(prev => prev + Math.floor(Math.random() * 3));
+      
+      const nextUpdateIn = Math.floor(Math.random() * 6000) + 2000;
+      setTimeout(simulateGrowth, nextUpdateIn);
+    };
     
-    fetchSubs();
-    
-    const interval = setInterval(fetchSubs, 60000); // refresh every minute
-    return () => clearInterval(interval);
+    const timer = setTimeout(simulateGrowth, 3000);
+    return () => clearTimeout(timer);
   }, []);
+
+  const formatSubs = (num: number) => {
+    // Format as 745,420
+    return new Intl.NumberFormat('en-US').format(num);
+  };
 
   return (
     <a 
@@ -48,7 +38,7 @@ export function LiveSubscriberCount() {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
         </span>
         <span className="font-mono text-sm font-bold text-white tracking-wider">
-          {subs}
+          {formatSubs(subs)}
         </span>
         <span className="text-white/40 text-[10px] uppercase tracking-widest ml-1 hidden sm:inline-block">Subscribers</span>
       </div>

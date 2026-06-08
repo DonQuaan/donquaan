@@ -16,7 +16,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="self-start relative"
         >
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[9rem] font-sans font-black uppercase text-white tracking-tighter leading-none md:leading-[0.85] drop-shadow-2xl">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[9rem] font-sans font-black uppercase text-white tracking-tighter leading-[1.1] md:leading-[0.95] drop-shadow-2xl">
             Phá vỡ lối mòn<br />rập khuôn.
           </h1>
         </motion.div>
@@ -71,10 +71,13 @@ export function Hero() {
           transition={{ duration: 1.2, delay: 1.6 }}
           className="hidden md:flex gap-4 items-center pointer-events-auto"
         >
-          <a href="#projects" className="font-mono text-[10px] md:text-xs text-white/50 hover:text-white transition-all border border-white/10 px-5 py-2.5 rounded-none hover:bg-white/10 tracking-widest uppercase relative group overflow-hidden">
+          <button 
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            className="font-mono text-[10px] md:text-xs text-white/50 hover:text-white transition-all border border-white/10 px-5 py-2.5 rounded-none hover:bg-white/10 tracking-widest uppercase relative group overflow-hidden"
+          >
             <div className="absolute inset-0 w-full h-full bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
             <span className="relative z-10">[ Execute_Projects ]</span>
-          </a>
+          </button>
         </motion.div>
 
       </div>
