@@ -1,4 +1,4 @@
-import { motion, useInView, useScroll } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { LiveSubscriberCount } from '../features/LiveSubscriberCount';
 
