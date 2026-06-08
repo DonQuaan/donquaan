@@ -1,6 +1,6 @@
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 const projects = [
   {
@@ -31,58 +31,17 @@ export function Projects() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
   
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  
-  const springConfig = { damping: 20, stiffness: 150, mass: 0.5 };
-  const cursorX = useSpring(mouseX, springConfig);
-  const cursorY = useSpring(mouseY, springConfig);
-  
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (sectionRef.current) {
-      const rect = sectionRef.current.getBoundingClientRect();
-      mouseX.set(e.clientX - rect.left);
-      mouseY.set(e.clientY - rect.top);
-    }
-  };
 
   return (
     <section 
       id="projects" 
       ref={sectionRef}
-      onMouseMove={handleMouseMove}
       className="relative py-32 px-6 bg-background z-20 border-t border-white/5 overflow-hidden"
     >
       <motion.div style={{ y }} className="absolute inset-0 opacity-20 pointer-events-none" />
       
-      {/* Floating Reveal Image Container */}
-      <motion.div
-        className="pointer-events-none absolute left-0 top-0 z-0 w-[300px] h-[400px] rounded-2xl overflow-hidden shadow-2xl hidden md:block"
-        style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-        animate={{
-          scale: hoveredProject !== null ? 1 : 0.5,
-          opacity: hoveredProject !== null ? 0.3 : 0, // Lower opacity to blend with dark mode
-        }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
-      >
-        {projects.map((p, i) => (
-          <img 
-            key={i}
-            src={p.image}
-            alt={p.title}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 mix-blend-luminosity"
-            style={{ opacity: hoveredProject === i ? 1 : 0 }}
-          />
-        ))}
-      </motion.div>
+      {/* Floating Image removed as per user request */}
       
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -110,8 +69,6 @@ export function Projects() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="group relative flex flex-col md:flex-row items-start"
-              onMouseEnter={() => setHoveredProject(index)}
-              onMouseLeave={() => setHoveredProject(null)}
             >
               {/* Timeline Node */}
               <div className="hidden md:block absolute left-[33.333333%] top-12 -translate-x-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10 shadow-[0_0_15px_rgba(236,72,153,0.5)] group-hover:scale-150 group-hover:bg-primary transition-all duration-500" />

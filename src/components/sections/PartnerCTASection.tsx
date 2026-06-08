@@ -24,7 +24,7 @@ export function PartnerCTASection() {
 
     const handleMouseMove = (e: MouseEvent) => {
       const now = performance.now();
-      if (now - lastSpawnTime.current < 80) return; // spawn every 80ms max
+      if (now - lastSpawnTime.current < 50) return; // spawn every 50ms for smoother trail
       lastSpawnTime.current = now;
 
       const rect = container.getBoundingClientRect();
@@ -33,35 +33,40 @@ export function PartnerCTASection() {
 
       const img = document.createElement('img');
       img.src = gifs[Math.floor(Math.random() * gifs.length)];
-      img.className = "absolute pointer-events-none rounded-xl object-cover shadow-2xl transition-all duration-1000 ease-out z-0";
       
-      // Initial state
-      const size = 120; // 120px size
-      const randomRotation = (Math.random() - 0.5) * 20; // -10 to +10
+      // Setup initial state for smoother transitions
+      img.className = "absolute pointer-events-none rounded-2xl object-cover shadow-2xl z-0";
+      
+      const size = 140; // slightly larger
+      const randomRotation = (Math.random() - 0.5) * 30; // more rotation variance
       
       img.style.width = `${size}px`;
       img.style.height = `${size}px`;
       img.style.left = `${x - size / 2}px`;
       img.style.top = `${y - size / 2}px`;
-      img.style.transform = `scale(1) rotate(${randomRotation}deg)`;
-      img.style.opacity = '0.8';
+      
+      // Set initial transform and opacity
+      img.style.transform = `scale(0.6) rotate(${randomRotation}deg)`;
+      img.style.opacity = '0.9';
+      // Use CSS transition for butter-smooth fading
+      img.style.transition = 'transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
 
       container.appendChild(img);
       activeTrails.add(img);
 
-      // Trigger animation next frame
+      // Trigger animation on next frame to allow transition to run
       animationFrameId = requestAnimationFrame(() => {
-        img.style.transform = `scale(0.5) rotate(${randomRotation * 2}deg) translateY(20px)`;
+        img.style.transform = `scale(1.2) rotate(${randomRotation * 1.5}deg) translateY(40px)`;
         img.style.opacity = '0';
       });
 
-      // Cleanup after 1 second
+      // Cleanup when transition finishes
       setTimeout(() => {
         if (container.contains(img)) {
           container.removeChild(img);
           activeTrails.delete(img);
         }
-      }, 1000);
+      }, 1200);
     };
 
     container.addEventListener('mousemove', handleMouseMove);
