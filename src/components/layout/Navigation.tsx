@@ -5,9 +5,26 @@ import { Volume2, VolumeX } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { soundManager } from '../../utils/sound';
 import { Magnetic } from '../ui/Magnetic';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export function Navigation() {
   const [isMuted, setIsMuted] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    soundManager.playHover();
+    
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     setIsMuted(soundManager.getMutedState());
@@ -25,7 +42,16 @@ export function Navigation() {
     <div className="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-6 w-full pointer-events-none grid grid-cols-2 lg:grid-cols-3 items-center gap-4">
       {/* Left side: Logo */}
       <motion.a 
-        href="#" 
+        onClick={(e) => {
+          e.preventDefault();
+          if (location.pathname !== '/') {
+            navigate('/');
+            setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }}
+        href="#"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -43,9 +69,9 @@ export function Navigation() {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center gap-8 liquid-glass rounded-full px-8 py-3 pointer-events-auto border border-white/10"
         >
-          <a href="#about" onMouseEnter={() => soundManager.playHover()} className="text-sm font-medium text-white/70 hover:text-white transition-colors">About</a>
-          <a href="#services" onMouseEnter={() => soundManager.playHover()} className="text-sm font-medium text-white/70 hover:text-white transition-colors">Services</a>
-          <a href="#projects" onMouseEnter={() => soundManager.playHover()} className="text-sm font-medium text-white/70 hover:text-white transition-colors">Projects</a>
+          <a href="#about" onClick={(e) => handleNavClick(e, 'about')} onMouseEnter={() => soundManager.playHover()} className="text-sm font-medium text-white/70 hover:text-white transition-colors">About</a>
+          <a href="#services" onClick={(e) => handleNavClick(e, 'services')} onMouseEnter={() => soundManager.playHover()} className="text-sm font-medium text-white/70 hover:text-white transition-colors">Services</a>
+          <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} onMouseEnter={() => soundManager.playHover()} className="text-sm font-medium text-white/70 hover:text-white transition-colors">Projects</a>
         </motion.nav>
       </div>
 
