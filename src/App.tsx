@@ -7,7 +7,7 @@ import { TerminalEasterEgg } from './components/features/TerminalEasterEgg';
 import { MusicProvider } from './contexts/MusicContext';
 import { MusicPlayer } from './components/features/MusicPlayer';
 
-const HomePage = lazy(() => import('./components/pages/HomePage').then(module => ({ default: module.HomePage })));
+import { HomePage } from './components/pages/HomePage';
 const LegalLayout = lazy(() => import('./components/pages/LegalLayout').then(module => ({ default: module.LegalLayout })));
 
 const getPrivacyHtml = () => import('../Privacy Policy.html?raw').then(m => m.default);

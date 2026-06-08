@@ -97,6 +97,7 @@ export function PricingSection() {
                 step="10"
                 value={customPrice} 
                 onChange={(e) => setCustomPrice(Number(e.target.value))}
+                aria-label="Ngân sách dự án"
                 className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary"
               />
               <div className="flex justify-between text-xs text-white/30 mt-2">
