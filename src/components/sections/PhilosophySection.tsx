@@ -11,7 +11,7 @@ export function PhilosophySection() {
   });
 
   return (
-    <section ref={container} className="relative h-[300vh] bg-black">
+    <section ref={container} className="relative h-[150vh] bg-black">
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-10">
         
         <p className="text-white/30 text-xs md:text-sm tracking-[0.3em] uppercase mb-12 font-mono text-center">

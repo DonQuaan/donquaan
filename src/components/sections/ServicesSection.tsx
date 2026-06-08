@@ -26,10 +26,10 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
       className={`relative overflow-hidden rounded-3xl border border-white/5 bg-black/40 backdrop-blur-md group ${className}`}
     >
       <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-10"
+        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-10 mix-blend-screen"
         style={{
           opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.06), transparent 40%)`,
+          background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.08) 0%, transparent 60%)`,
         }}
       />
       {/* Subtle hover border effect */}
@@ -37,7 +37,7 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
         className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-20"
         style={{
           opacity,
-          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.4), transparent 40%)`,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.4) 0%, transparent 50%)`,
           WebkitMaskImage: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
           WebkitMaskComposite: `xor`,
           maskComposite: `exclude`,
@@ -54,7 +54,7 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
 
 export function ServicesSection() {
   return (
-    <section id="services" className="bg-black py-28 md:py-40 px-4 md:px-6 overflow-hidden relative">
+    <section id="services" className="bg-black py-16 md:py-24 px-4 md:px-6 overflow-hidden relative">
       {/* Background ambient light */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_70%)]" />
 

@@ -35,11 +35,9 @@ export function HomePage() {
           <FeaturedVideoSection />
           <PhilosophySection />
           
-          <MorphingDivider />
           <ServicesSection />
           <Projects />
           
-          <MorphingDivider />
           <PricingSection />
           <TestimonialCarousel />
           <FAQSection />

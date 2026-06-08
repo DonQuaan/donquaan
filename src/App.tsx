@@ -38,7 +38,7 @@ function App() {
   return (
     <MusicProvider>
       <HashRouter>
-        <div className="relative min-h-screen w-full bg-background overflow-x-hidden flex flex-col font-body text-foreground">
+        <div className="relative min-h-screen w-full bg-background overflow-x-clip flex flex-col font-body text-foreground">
           <CustomCursor />
           <Preloader />
           <TerminalEasterEgg />
