@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 import { LiveSubscriberCount } from '../features/LiveSubscriberCount';
 
@@ -9,7 +9,7 @@ export function AboutSection() {
   return (
     <section 
       id="about" 
-      className="bg-black pt-32 md:pt-44 pb-20 px-6 overflow-hidden relative"
+      className="bg-black pt-32 md:pt-44 pb-20 px-6 overflow-hidden relative content-defer"
       ref={ref}
     >
       {/* Subtle radial gradient overlay */}

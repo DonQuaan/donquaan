@@ -40,7 +40,7 @@ export function Projects() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66.666%"]);
 
   return (
-    <section ref={targetRef} id="projects" className="relative h-[300vh] bg-black">
+    <section ref={targetRef} id="projects" className="relative h-[300vh] bg-black content-defer">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         
         <motion.div style={{ x }} className="flex w-[300vw] h-full items-center">
@@ -78,6 +78,7 @@ export function Projects() {
                   <img 
                     src={project.image} 
                     alt={project.title}
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
                   {/* Overlay gradient */}
@@ -125,10 +126,10 @@ export function Projects() {
                   </div>
 
                   <div className="flex gap-4 mt-8 pt-6 border-t border-white/10">
-                    <a href={project.github} className="p-3 rounded-full border border-white/20 hover:border-white hover:bg-white text-white hover:text-black transition-all duration-300 flex items-center justify-center">
+                    <a href={project.github} aria-label={`Mã nguồn GitHub của ${project.title}`} className="p-3 rounded-full border border-white/20 hover:border-white hover:bg-white text-white hover:text-black transition-all duration-300 flex items-center justify-center">
                       <Github size={18} />
                     </a>
-                    <a href={project.link} className="p-3 rounded-full border border-primary hover:bg-primary text-primary hover:text-white transition-all duration-300 flex items-center justify-center">
+                    <a href={project.link} aria-label={`Xem chi tiết ${project.title}`} className="p-3 rounded-full border border-primary hover:bg-primary text-primary hover:text-white transition-all duration-300 flex items-center justify-center">
                       <ExternalLink size={18} />
                     </a>
                   </div>

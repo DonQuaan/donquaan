@@ -14,7 +14,7 @@ export function PhilosophySection() {
     <section ref={container} className="relative h-[150vh] bg-black">
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-10">
         
-        <p className="text-white/30 text-xs md:text-sm tracking-[0.3em] uppercase mb-12 font-mono text-center">
+        <p className="text-[#767676] text-xs md:text-sm tracking-[0.3em] uppercase mb-12 font-mono text-center">
           The Manifesto
         </p>
 
@@ -23,7 +23,7 @@ export function PhilosophySection() {
             const start = (i / words.length) * 0.8; // finish revealing before the very end
             const end = start + (0.8 / words.length);
             
-            const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1]);
+            const opacity = useTransform(scrollYProgress, [start, end], [0.3, 1]);
             // Optional: slight scale or blur effect
             // We'll keep it simple and elegant with opacity
             
@@ -50,7 +50,7 @@ export function PhilosophySection() {
           style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-[10px] uppercase tracking-widest text-white/30">Scroll to reveal</span>
+          <span className="text-[10px] uppercase tracking-widest text-[#767676]">Cuộn để khám phá</span>
           <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
         </motion.div>
 

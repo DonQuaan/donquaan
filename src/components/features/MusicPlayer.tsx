@@ -56,6 +56,7 @@ export function MusicPlayer() {
               </span>
               <button 
                 onClick={togglePlayer}
+                aria-label="Đóng trình phát nhạc"
                 className="text-white/50 hover:text-white transition-colors"
               >
                 <X size={18} />
@@ -101,6 +102,7 @@ export function MusicPlayer() {
                   step="0.001" 
                   value={progress || 0}
                   onChange={handleProgressChange}
+                  aria-label="Tiến trình bài hát"
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                 />
                 <motion.div 
@@ -122,7 +124,7 @@ export function MusicPlayer() {
             {/* Controls */}
             <div className="flex items-center justify-between mb-8 shrink-0">
               <div className="flex items-center gap-2 group w-1/4">
-                <button onClick={() => setVolume(volume === 0 ? 0.5 : 0)} className="text-white/50 hover:text-white transition-colors">
+                <button aria-label="Tắt/Mở âm lượng" onClick={() => setVolume(volume === 0 ? 0.5 : 0)} className="text-white/50 hover:text-white transition-colors">
                   {volume === 0 ? <VolumeX size={18} /> : <Volume2 size={18} />}
                 </button>
                 <div className="relative w-full h-1 bg-white/10 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
@@ -133,6 +135,7 @@ export function MusicPlayer() {
                     step="0.01" 
                     value={volume}
                     onChange={handleVolumeChange}
+                    aria-label="Âm lượng"
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                   />
                   <div 
@@ -145,18 +148,21 @@ export function MusicPlayer() {
               <div className="flex items-center gap-6">
                 <button 
                   onClick={prevTrack}
+                  aria-label="Bài trước"
                   className="text-white/70 hover:text-white hover:scale-110 transition-all"
                 >
                   <SkipBack size={24} />
                 </button>
                 <button 
                   onClick={togglePlay}
+                  aria-label={isPlaying ? "Tạm dừng" : "Phát nhạc"}
                   className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform shadow-lg"
                 >
                   {isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" className="ml-1" />}
                 </button>
                 <button 
                   onClick={nextTrack}
+                  aria-label="Bài tiếp theo"
                   className="text-white/70 hover:text-white hover:scale-110 transition-all"
                 >
                   <SkipForward size={24} />

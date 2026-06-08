@@ -54,7 +54,7 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
 
 export function ServicesSection() {
   return (
-    <section id="services" className="bg-black py-16 md:py-24 px-4 md:px-6 overflow-hidden relative">
+    <section id="services" className="bg-black py-16 md:py-24 px-4 md:px-6 overflow-hidden relative content-defer">
       {/* Background ambient light */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_70%)]" />
 

@@ -42,7 +42,7 @@ export function TestimonialCarousel() {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="w-full py-20 bg-black overflow-hidden px-6">
+    <section className="w-full py-20 bg-black overflow-hidden px-6 content-defer">
       <div className="max-w-6xl mx-auto">
         
         {/* Header Row */}
@@ -86,7 +86,7 @@ export function TestimonialCarousel() {
                 </p>
 
                 <div className="flex items-center gap-4">
-                  <img src={testimonials[currentIndex].avatar} alt={testimonials[currentIndex].name} className="w-12 h-12 rounded-full object-cover" />
+                  <img src={testimonials[currentIndex].avatar} alt={testimonials[currentIndex].name} loading="lazy" className="w-12 h-12 rounded-full object-cover" />
                   <div>
                     <div className="font-semibold text-white text-sm">{testimonials[currentIndex].name}</div>
                     <div className="text-white/50 text-sm flex items-center gap-1">

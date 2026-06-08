@@ -29,8 +29,8 @@ export function FAQSection() {
   };
 
   return (
-    <section className="w-full py-24 px-6 bg-black border-t border-white/5">
-      <div className="max-w-4xl mx-auto">
+    <section id="faq" className="w-full py-24 md:py-32 bg-black border-t border-white/5 content-defer">
+      <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
