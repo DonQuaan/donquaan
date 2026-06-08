@@ -1,17 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import Lenis from 'lenis';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { CustomCursor } from './components/ui/CustomCursor';
 import { Preloader } from './components/ui/Preloader';
 import { TerminalEasterEgg } from './components/features/TerminalEasterEgg';
 
-import { HomePage } from './components/pages/HomePage';
-import { LegalLayout } from './components/pages/LegalLayout';
+const HomePage = lazy(() => import('./components/pages/HomePage').then(module => ({ default: module.HomePage })));
+const LegalLayout = lazy(() => import('./components/pages/LegalLayout').then(module => ({ default: module.LegalLayout })));
 
-import privacyHtml from '../Privacy Policy.html?raw';
-import termsHtml from '../Terms of Service.html?raw';
-import cookiesHtml from '../Cookies Policy.html?raw';
-import disclaimerHtml from '../Disclaimer.html?raw';
+const getPrivacyHtml = () => import('../Privacy Policy.html?raw').then(m => m.default);
+const getTermsHtml = () => import('../Terms of Service.html?raw').then(m => m.default);
+const getCookiesHtml = () => import('../Cookies Policy.html?raw').then(m => m.default);
+const getDisclaimerHtml = () => import('../Disclaimer.html?raw').then(m => m.default);
 
 function App() {
   useEffect(() => {
@@ -40,13 +40,15 @@ function App() {
         <Preloader />
         <TerminalEasterEgg />
         
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/privacy-policy" element={<LegalLayout htmlContent={privacyHtml} />} />
-          <Route path="/terms-of-service" element={<LegalLayout htmlContent={termsHtml} />} />
-          <Route path="/cookies-policy" element={<LegalLayout htmlContent={cookiesHtml} />} />
-          <Route path="/disclaimer" element={<LegalLayout htmlContent={disclaimerHtml} />} />
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center"><div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/privacy-policy" element={<LegalLayout getHtmlContent={getPrivacyHtml} />} />
+            <Route path="/terms-of-service" element={<LegalLayout getHtmlContent={getTermsHtml} />} />
+            <Route path="/cookies-policy" element={<LegalLayout getHtmlContent={getCookiesHtml} />} />
+            <Route path="/disclaimer" element={<LegalLayout getHtmlContent={getDisclaimerHtml} />} />
+          </Routes>
+        </Suspense>
       </div>
     </HashRouter>
   );
