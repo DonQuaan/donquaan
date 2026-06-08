@@ -2,25 +2,29 @@ import { useState, useEffect } from 'react';
 import { Youtube } from 'lucide-react';
 
 export function LiveSubscriberCount() {
-  // Start with a highly specific baseline number (745,420)
-  const [subs, setSubs] = useState<number>(745420);
+  const [subs, setSubs] = useState<number | null>(null);
 
   useEffect(() => {
-    // Simulate real-time subscriber growth
-    // Adds a random number of subs (0 to 3) every 2 to 8 seconds
-    const simulateGrowth = () => {
-      setSubs(prev => prev + Math.floor(Math.random() * 3));
-      
-      const nextUpdateIn = Math.floor(Math.random() * 6000) + 2000;
-      setTimeout(simulateGrowth, nextUpdateIn);
-    };
+    async function fetchMixerno() {
+      try {
+        const res = await fetch('https://mixerno.space/api/youtube-channel-counter/user/UC3NPuQGUQ8HDPL2LtWPlHeA');
+        const data = await res.json();
+        
+        const subCount = data.counts.find((c: any) => c.value === 'subscribers')?.count;
+        if (subCount) {
+          setSubs(subCount);
+        }
+      } catch (e) {
+        console.error("Mixerno fetch failed:", e);
+      }
+    }
     
-    const timer = setTimeout(simulateGrowth, 3000);
-    return () => clearTimeout(timer);
+    fetchMixerno();
+    const interval = setInterval(fetchMixerno, 10000); // refresh every 10s
+    return () => clearInterval(interval);
   }, []);
 
   const formatSubs = (num: number) => {
-    // Format as 745,420
     return new Intl.NumberFormat('en-US').format(num);
   };
 
@@ -38,7 +42,7 @@ export function LiveSubscriberCount() {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
         </span>
         <span className="font-mono text-sm font-bold text-white tracking-wider">
-          {formatSubs(subs)}
+          {subs ? formatSubs(subs) : 'Loading...'}
         </span>
         <span className="text-white/40 text-[10px] uppercase tracking-widest ml-1 hidden sm:inline-block">Subscribers</span>
       </div>
