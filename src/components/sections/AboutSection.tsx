@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { LiveSubscriberCount } from '../features/LiveSubscriberCount';
 
 export function AboutSection() {
   const ref = useRef(null);
@@ -21,7 +22,7 @@ export function AboutSection() {
           transition={{ duration: 0.6 }}
           className="text-white/40 text-sm tracking-widest uppercase mb-12"
         >
-          About Nguyễn Vũ Đông Quân
+          Về Nguyễn Vũ Đông Quân
         </motion.div>
 
         <motion.h2
@@ -52,7 +53,7 @@ export function AboutSection() {
             <div className="w-full h-[1px] bg-white/5" />
             
             <div>
-              <h4 className="text-xs uppercase tracking-[0.2em] text-white/30 mb-4">Core Competencies</h4>
+              <h4 className="text-xs uppercase tracking-[0.2em] text-white/30 mb-4">Năng Lực Cốt Lõi</h4>
               <ul className="text-white/80 space-y-3 text-sm md:text-base">
                 <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-primary" /> Digital Design & Dev: Roblox and Minecraft</li>
                 <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-white/40" /> Senior Chief Executive Officer</li>
@@ -65,7 +66,7 @@ export function AboutSection() {
           {/* Experience & Ed Column */}
           <div className="lg:col-span-7 flex flex-col gap-8">
             <div className="liquid-glass p-8 md:p-10 rounded-3xl border border-white/5 hover:border-white/10 transition-colors">
-              <h4 className="text-xs uppercase tracking-[0.2em] text-white/30 mb-6">Experience</h4>
+              <h4 className="text-xs uppercase tracking-[0.2em] text-white/30 mb-6">Kinh Nghiệm Thực Chiến</h4>
               <div className="space-y-2">
                 <a href="https://discord.gg/sangtraan" target="_blank" rel="noreferrer" className="text-2xl text-white hover:text-primary transition-colors font-display block">Discord sangtraan</a>
                 <p className="text-white/90 text-base font-medium">Chief Executive Officer</p>
@@ -73,12 +74,13 @@ export function AboutSection() {
                 <p className="text-white/60 text-sm mt-3 leading-relaxed">
                   Network Ambassador, Systems Tester & Developer, Community Administrator.
                 </p>
+                <LiveSubscriberCount />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="liquid-glass p-8 rounded-3xl border border-white/5 hover:border-white/10 transition-colors">
-                <h4 className="text-xs uppercase tracking-[0.2em] text-white/30 mb-5">Education</h4>
+                <h4 className="text-xs uppercase tracking-[0.2em] text-white/30 mb-5">Học Vấn</h4>
                 <div className="space-y-2">
                   <a href="https://arena.fpt.edu.vn/" target="_blank" rel="noreferrer" className="text-xl text-white hover:text-primary transition-colors font-display block leading-snug">FPT Arena</a>
                   <p className="text-white/80 text-sm leading-relaxed">Advanced Diploma In Multimedia, Web Page, Digital/Multimedia and Information Resources Design</p>
@@ -87,10 +89,13 @@ export function AboutSection() {
               </div>
 
               <div className="liquid-glass p-8 rounded-3xl border border-white/5 hover:border-white/10 transition-colors">
-                <h4 className="text-xs uppercase tracking-[0.2em] text-white/30 mb-5">Certifications</h4>
+                <h4 className="text-xs uppercase tracking-[0.2em] text-white/30 mb-5">Chứng Chỉ</h4>
                 <div className="space-y-2">
                   <a href="https://edu.google.accredible.com/529911e4-a7fb-42b6-9c9f-50d29e633430#acc.Fovqh654" target="_blank" rel="noreferrer" className="text-xl text-white hover:text-primary transition-colors font-display block leading-snug">Gemini Certified Faculty</a>
-                  <p className="text-white/80 text-sm">Google AI Specialist Certification</p>
+                  <p className="text-white/80 text-sm mb-2">Google AI Specialist Certification</p>
+                  <p className="text-white/50 text-xs leading-relaxed">
+                    "A Google Certified Gemini Faculty member can articulate and demonstrate foundational knowledge of generative AI concepts and the core features and capabilities of Gemini within the educational context."
+                  </p>
                 </div>
               </div>
             </div>

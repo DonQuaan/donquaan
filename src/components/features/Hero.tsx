@@ -16,7 +16,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="self-start relative"
         >
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[9rem] font-sans font-black uppercase text-white tracking-tighter leading-[0.85] drop-shadow-2xl">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[9rem] font-sans font-black uppercase text-white tracking-tighter leading-none md:leading-[0.85] drop-shadow-2xl">
             Phá vỡ lối mòn<br />rập khuôn.
           </h1>
         </motion.div>
@@ -28,7 +28,7 @@ export function Hero() {
           transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="self-end mt-8 sm:mt-12 md:mt-16 lg:mt-20 text-right relative"
         >
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[8rem] font-display italic text-white/90 leading-[0.95] tracking-tight pr-2">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[8rem] font-display italic text-white/90 leading-tight md:leading-[0.95] tracking-tight pr-2">
             Kiến tạo <span className="text-mask-gradient font-bold pr-2 sm:pr-4">sự khác biệt</span><br />
             bền vững.
           </h2>

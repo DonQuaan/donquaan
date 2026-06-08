@@ -37,9 +37,9 @@ export function Footer() {
                 <img src="https://i.postimg.cc/rsCCQQRn/qr-zalo.jpg" alt="Zalo QR Code" className="w-16 h-16 object-contain rounded-lg" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xs uppercase tracking-widest text-primary mb-1 font-bold">Zalo Contact</span>
+                <span className="text-xs uppercase tracking-widest text-primary mb-1 font-bold">Liên Hệ Zalo</span>
                 <span className="font-medium text-white tracking-wide">(+84) 0931 902 475</span>
-                <span className="text-xs text-white/50 mt-0.5">Scan or search phone number</span>
+                <span className="text-xs text-white/50 mt-0.5">Quét mã hoặc tìm số điện thoại</span>
               </div>
             </div>
           </div>
@@ -76,12 +76,12 @@ export function Footer() {
       
       {/* Bottom Bar: Legal */}
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
-        <p className="text-center lg:text-left">&copy; {new Date().getFullYear()} DonQuaan. All rights reserved.</p>
+        <p className="text-center lg:text-left">&copy; {new Date().getFullYear()} DonQuaan. Bản quyền đã được bảo hộ.</p>
         <div className="flex flex-wrap justify-center lg:justify-end gap-x-6 gap-y-3">
-          <Link to="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
-          <Link to="/terms-of-service" className="hover:text-foreground transition-colors">Terms of Service</Link>
-          <Link to="/cookies-policy" className="hover:text-foreground transition-colors">Cookies Policy</Link>
-          <Link to="/disclaimer" className="hover:text-foreground transition-colors">Disclaimer</Link>
+          <Link to="/privacy-policy" className="hover:text-foreground transition-colors">Chính Sách Bảo Mật</Link>
+          <Link to="/terms-of-service" className="hover:text-foreground transition-colors">Điều Khoản Dịch Vụ</Link>
+          <Link to="/cookies-policy" className="hover:text-foreground transition-colors">Chính Sách Cookie</Link>
+          <Link to="/disclaimer" className="hover:text-foreground transition-colors">Miễn Trừ Trách Nhiệm</Link>
         </div>
       </div>
     </footer>

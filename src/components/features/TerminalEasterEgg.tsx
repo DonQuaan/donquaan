@@ -5,7 +5,7 @@ import { X } from 'lucide-react';
 export function TerminalEasterEgg() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
-  const [history, setHistory] = useState<string[]>(['DonQuaan OS v1.0.0', 'Type "help" to see available commands.']);
+  const [history, setHistory] = useState<string[]>(['DonQuaan OS v1.0.0', 'Gõ "help" để xem danh sách lệnh.']);
   const bottomRef = useRef<HTMLDivElement>(null);
   
   // Secret sequence listener
@@ -47,7 +47,7 @@ export function TerminalEasterEgg() {
     
     switch (trimmedCmd) {
       case 'help':
-        newHistory.push('Available commands: help, whoami, contact, clear, exit, sudo');
+        newHistory.push('Các lệnh có sẵn: help, whoami, contact, clear, exit, sudo');
         break;
       case 'whoami':
         newHistory.push('Nguyễn Vũ Đông Quân');
@@ -66,12 +66,12 @@ export function TerminalEasterEgg() {
         setIsOpen(false);
         break;
       case 'sudo':
-        newHistory.push('Nice try. This incident will be reported.');
+        newHistory.push('Yêu cầu bị từ chối. Báo cáo bảo mật đã được ghi nhận.');
         break;
       case '':
         break;
       default:
-        newHistory.push(`Command not found: ${trimmedCmd}`);
+        newHistory.push(`Không tìm thấy lệnh: ${trimmedCmd}`);
     }
     
     setHistory(newHistory);

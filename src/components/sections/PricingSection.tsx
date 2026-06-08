@@ -15,9 +15,9 @@ export function PricingSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display text-white mb-6">Investment & Value</h2>
+          <h2 className="text-4xl md:text-5xl font-display text-white mb-6">Đầu Tư & Giá Trị</h2>
           <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            Transparent pricing for world-class standards. Choose the partnership model that best fits your immediate or long-term goals.
+            Chi phí minh bạch cho tiêu chuẩn đẳng cấp thế giới. Chọn mô hình hợp tác phù hợp nhất với tầm nhìn của bạn.
           </p>
         </motion.div>
 
@@ -30,65 +30,65 @@ export function PricingSection() {
         >
           {/* Weekly Plan */}
           <div className="rounded-[40px] px-8 py-10 flex flex-col bg-white/5 border border-white/10 shadow-[0_0_30px_rgba(255,255,255,0.02)] transition-colors hover:bg-white/10">
-            <h3 className="text-2xl font-medium text-white mb-2">Weekly Partnership</h3>
+            <h3 className="text-2xl font-medium text-white mb-2">Hợp Tác Hàng Tuần</h3>
             <p className="text-white/60 text-sm leading-relaxed mb-8">
-              Fast execution for urgent tasks. <br />
-              High priority delivery within 7 days.
+              Triển khai thần tốc cho tác vụ khẩn cấp. <br />
+              Ưu tiên bàn giao cao nhất trong vòng 7 ngày.
             </p>
             
             <div className="mt-auto mb-8">
               <span className="text-white/40 text-lg line-through mr-3">$1,500</span>
               <span className="text-4xl text-white font-display tracking-tight">$99</span>
-              <span className="text-white/40 text-sm ml-2">/ Week</span>
+              <span className="text-white/40 text-sm ml-2">/ Tuần</span>
             </div>
 
             <a 
               href={generateMailtoLink("Weekly")}
               className="btn-premium bg-white text-black rounded-full px-7 py-3.5 text-sm font-medium text-center hover:scale-105 transition-transform"
             >
-              Select Weekly Plan
+              Chọn Gói Tuần
             </a>
           </div>
 
           {/* Monthly Plan */}
           <div className="relative transform lg:-translate-y-4">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full z-10 whitespace-nowrap">
-              Most Popular
+              Phổ Biến Nhất
             </div>
             <div className="liquid-glass rounded-[40px] px-8 py-10 flex flex-col border border-primary/50 shadow-[0_0_50px_rgba(236,72,153,0.15)] h-full">
-              <h3 className="text-2xl font-medium text-white mb-2">Monthly Partnership</h3>
+              <h3 className="text-2xl font-medium text-white mb-2">Hợp Tác Hàng Tháng</h3>
               <p className="text-white/90 text-sm leading-relaxed mb-8">
-                A dedicated creative design team. <br />
-                You work directly with DonQuaan.
+                Sở hữu một đội ngũ thiết kế sáng tạo riêng biệt. <br />
+                Làm việc trực tiếp cùng DonQuaan.
               </p>
               
               <div className="mt-auto mb-8">
                 <span className="text-white/40 text-lg line-through mr-3">$5,000</span>
                 <span className="text-5xl text-white font-display tracking-tight">$199</span>
-                <span className="text-white/60 text-sm ml-2">/ Monthly</span>
+                <span className="text-white/60 text-sm ml-2">/ Tháng</span>
               </div>
 
               <a 
                 href={generateMailtoLink("Monthly")}
                 className="bg-primary text-primary-foreground rounded-full px-7 py-3.5 text-sm font-bold text-center hover:bg-primary/90 hover:scale-105 transition-all shadow-[0_0_20px_rgba(236,72,153,0.4)]"
               >
-                Select Monthly Plan
+                Chọn Gói Tháng
               </a>
             </div>
           </div>
 
           {/* Custom Project */}
           <div className="rounded-[40px] px-8 py-10 flex flex-col bg-white/5 border border-white/10 shadow-[0_0_30px_rgba(255,255,255,0.02)] transition-colors hover:bg-white/10">
-            <h3 className="text-2xl font-medium text-white mb-2">Custom Project</h3>
+            <h3 className="text-2xl font-medium text-white mb-2">Dự Án Tùy Chỉnh</h3>
             <p className="text-white/60 text-sm leading-relaxed mb-8">
-              Fixed scope, fixed timeline. <br />
-              Tailored specifically to your vision.
+              Phạm vi cố định, thời gian cố định. <br />
+              Thiết kế đo ni đóng giày cho tầm nhìn của bạn.
             </p>
             
             <div className="mt-auto mb-8">
               <div className="flex items-end mb-4">
                 <span className="text-4xl text-white font-display tracking-tight">${customPrice.toLocaleString()}</span>
-                <span className="text-white/40 text-sm ml-2 mb-1">Budget</span>
+                <span className="text-white/40 text-sm ml-2 mb-1">Ngân sách</span>
               </div>
               <input 
                 type="range" 
@@ -109,7 +109,7 @@ export function PricingSection() {
               href={generateMailtoLink(`Custom ($${customPrice})`)}
               className="btn-premium bg-white text-black rounded-full px-7 py-3.5 text-sm font-medium text-center hover:scale-105 transition-transform"
             >
-              Propose Project
+              Đề Xuất Dự Án
             </a>
           </div>
 

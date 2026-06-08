@@ -38,7 +38,7 @@ export function FAQSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display text-white mb-6">Frequently Asked Questions</h2>
+          <h2 className="text-4xl md:text-5xl font-display text-white mb-6">Câu Hỏi Thường Gặp</h2>
           <p className="text-white/60 text-lg">
             Mọi thắc mắc của bạn về quy trình hợp tác và dịch vụ.
           </p>

@@ -48,7 +48,7 @@ export function TestimonialCarousel() {
         {/* Header Row */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <h2 className="text-4xl md:text-5xl font-display text-white tracking-tight">
-            What <em className="italic text-white/60">builders</em> say
+            Lời <em className="italic text-white/60">khách hàng</em>
           </h2>
           <div className="flex items-center gap-2 text-white">
             <div className="flex">

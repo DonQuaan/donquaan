@@ -200,7 +200,7 @@ export function MusicPlayer() {
                         </div>
                       </div>
                       {isActive && (
-                        <span className="text-[10px] uppercase tracking-widest text-primary/70 mr-2 shrink-0">Playing</span>
+                        <span className="text-[10px] uppercase tracking-widest text-primary/70 mr-2 shrink-0">Đang Phát</span>
                       )}
                     </div>
                   );

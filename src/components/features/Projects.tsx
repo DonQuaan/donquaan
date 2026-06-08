@@ -46,7 +46,7 @@ export function Projects() {
         <motion.div style={{ x }} className="flex w-[300vw] h-full items-center">
           
           {/* Title Block (100vw) */}
-          <div className="w-screen h-full flex items-center justify-center px-6 md:px-20 relative">
+          <div className="w-screen h-full flex items-center justify-center px-6 md:px-20 relative flex-shrink-0">
             <div className="max-w-2xl w-full">
               <span className="text-primary tracking-[0.3em] uppercase text-xs md:text-sm mb-6 block font-semibold">
                 Case Studies
@@ -69,7 +69,7 @@ export function Projects() {
 
           {/* Project Blocks */}
           {projects.map((project, index) => (
-            <div key={index} className="w-screen h-screen flex items-center justify-center p-4 md:p-12 relative group">
+            <div key={index} className="w-screen h-[100svh] flex items-center justify-center p-4 md:p-12 relative group flex-shrink-0">
               <div className="w-full max-w-6xl h-[80vh] md:h-[85vh] relative rounded-3xl overflow-hidden liquid-glass border border-white/10 flex flex-col md:flex-row">
                 
                 {/* Image Section (Morphs and zooms slightly) */}
