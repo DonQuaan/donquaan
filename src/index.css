@@ -141,3 +141,9 @@ input:focus-visible,
 .animate-scroll-line {
   animation: scroll-line-drop 2.5s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
 }
+
+/* ── Performance Optimization ── */
+.content-defer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px;
+}

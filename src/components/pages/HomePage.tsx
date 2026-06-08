@@ -14,6 +14,8 @@ import { MorphingDivider } from '../ui/MorphingDivider';
 import { Navigation } from '../layout/Navigation';
 import { Footer } from '../layout/Footer';
 
+import { DeferredRender } from '../ui/DeferredRender';
+
 export function HomePage() {
   return (
     <>
@@ -22,24 +24,27 @@ export function HomePage() {
       
       <main>
         <Hero />
-        <InfiniteMarquee />
         
-        <MorphingDivider />
-        <AboutSection />
-        
-        <MorphingDivider />
-        <FeaturedVideoSection />
-        <PhilosophySection />
-        
-        <MorphingDivider />
-        <ServicesSection />
-        <Projects />
-        
-        <MorphingDivider />
-        <PricingSection />
-        <TestimonialCarousel />
-        <FAQSection />
-        <PartnerCTASection />
+        <DeferredRender>
+          <InfiniteMarquee />
+          
+          <MorphingDivider />
+          <AboutSection />
+          
+          <MorphingDivider />
+          <FeaturedVideoSection />
+          <PhilosophySection />
+          
+          <MorphingDivider />
+          <ServicesSection />
+          <Projects />
+          
+          <MorphingDivider />
+          <PricingSection />
+          <TestimonialCarousel />
+          <FAQSection />
+          <PartnerCTASection />
+        </DeferredRender>
       </main>
       
       <Footer />
