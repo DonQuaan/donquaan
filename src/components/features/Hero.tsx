@@ -11,10 +11,10 @@ export function Hero() {
         
         {/* Phrase 1: Brutalist Sans-Serif, Left Aligned */}
         <motion.div
-          initial={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)', y: 60 }}
-          animate={{ clipPath: 'polygon(0 0%, 100% 0%, 100% 100%, 0% 100%)', y: 0 }}
+          initial={{ clipPath: 'polygon(0 120%, 100% 120%, 100% 120%, 0% 120%)', y: 60 }}
+          animate={{ clipPath: 'polygon(0 -20%, 100% -20%, 100% 120%, 0% 120%)', y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="self-start relative"
+          className="self-start relative pb-4"
         >
           <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[9rem] font-sans font-black uppercase text-white tracking-tighter leading-[1.1] md:leading-[0.95] drop-shadow-2xl">
             Phá vỡ lối mòn<br />rập khuôn.
@@ -23,10 +23,10 @@ export function Hero() {
 
         {/* Phrase 2: Elegant Serif, Right Aligned */}
         <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 80, clipPath: 'polygon(0 0%, 100% 0%, 100% 100%, 0% 100%)' }}
+          animate={{ opacity: 1, x: 0, clipPath: 'polygon(-20% -20%, 120% -20%, 120% 120%, -20% 120%)' }}
           transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="self-end mt-8 sm:mt-12 md:mt-16 lg:mt-20 text-right relative"
+          className="self-end mt-8 sm:mt-12 md:mt-16 lg:mt-20 text-right relative pb-4"
         >
           <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[8rem] font-display italic text-white/90 leading-tight md:leading-[0.95] tracking-tight pr-2">
             Kiến tạo <span className="text-mask-gradient font-bold pr-2 sm:pr-4">sự khác biệt</span><br />
