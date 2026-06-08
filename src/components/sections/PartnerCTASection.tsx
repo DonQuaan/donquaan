@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { generateMailtoLink } from '../../utils/mail';
+import logoSvg from '/logo.svg?url';
 
 const gifs = [
   "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
@@ -93,9 +94,9 @@ export function PartnerCTASection() {
           className="relative z-10 btn-premium bg-white text-black rounded-full pl-2 pr-6 py-2 flex items-center gap-4 hover:scale-105 transition-transform"
         >
           <img 
-            src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150" 
-            alt="DonQuaan avatar" 
-            className="w-10 h-10 rounded-full object-cover"
+            src={logoSvg}
+            alt="DonQuaan Logo" 
+            className="w-10 h-10 rounded-full object-cover brightness-0"
           />
           <span className="font-medium text-sm">Start a chat with DonQuaan</span>
         </a>

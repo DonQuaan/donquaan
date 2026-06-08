@@ -51,28 +51,30 @@ export function PricingSection() {
           </div>
 
           {/* Monthly Plan */}
-          <div className="liquid-glass rounded-[40px] px-8 py-10 flex flex-col border border-primary/50 relative transform lg:-translate-y-4 shadow-[0_0_50px_rgba(236,72,153,0.15)]">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">
+          <div className="relative transform lg:-translate-y-4">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full z-10 whitespace-nowrap">
               Most Popular
             </div>
-            <h3 className="text-2xl font-medium text-white mb-2">Monthly Partnership</h3>
-            <p className="text-white/90 text-sm leading-relaxed mb-8">
-              A dedicated creative design team. <br />
-              You work directly with DonQuaan.
-            </p>
-            
-            <div className="mt-auto mb-8">
-              <span className="text-white/40 text-lg line-through mr-3">$5,000</span>
-              <span className="text-5xl text-white font-display tracking-tight">$199</span>
-              <span className="text-white/60 text-sm ml-2">/ Monthly</span>
-            </div>
+            <div className="liquid-glass rounded-[40px] px-8 py-10 flex flex-col border border-primary/50 shadow-[0_0_50px_rgba(236,72,153,0.15)] h-full">
+              <h3 className="text-2xl font-medium text-white mb-2">Monthly Partnership</h3>
+              <p className="text-white/90 text-sm leading-relaxed mb-8">
+                A dedicated creative design team. <br />
+                You work directly with DonQuaan.
+              </p>
+              
+              <div className="mt-auto mb-8">
+                <span className="text-white/40 text-lg line-through mr-3">$5,000</span>
+                <span className="text-5xl text-white font-display tracking-tight">$199</span>
+                <span className="text-white/60 text-sm ml-2">/ Monthly</span>
+              </div>
 
-            <a 
-              href={generateMailtoLink("Monthly")}
-              className="bg-primary text-primary-foreground rounded-full px-7 py-3.5 text-sm font-bold text-center hover:bg-primary/90 hover:scale-105 transition-all shadow-[0_0_20px_rgba(236,72,153,0.4)]"
-            >
-              Select Monthly Plan
-            </a>
+              <a 
+                href={generateMailtoLink("Monthly")}
+                className="bg-primary text-primary-foreground rounded-full px-7 py-3.5 text-sm font-bold text-center hover:bg-primary/90 hover:scale-105 transition-all shadow-[0_0_20px_rgba(236,72,153,0.4)]"
+              >
+                Select Monthly Plan
+              </a>
+            </div>
           </div>
 
           {/* Custom Project */}
