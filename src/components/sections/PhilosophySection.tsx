@@ -1,76 +1,59 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+
+const words = "KHÔNG CHỈ LÀ CODE. ĐÓ LÀ NGHỆ THUẬT VÀ KIẾN TRÚC.".split(" ");
 
 export function PhilosophySection() {
+  const container = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"]
+  });
+
   return (
-    <section className="bg-black py-28 md:py-40 px-6 overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+    <section ref={container} className="relative h-[300vh] bg-black">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-10">
         
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl lg:text-8xl text-white tracking-tight mb-16 md:mb-24 font-display"
+        <p className="text-white/30 text-xs md:text-sm tracking-[0.3em] uppercase mb-12 font-mono text-center">
+          The Manifesto
+        </p>
+
+        <h2 className="flex flex-wrap justify-center max-w-6xl gap-x-3 gap-y-2 md:gap-x-8 md:gap-y-6 text-center">
+          {words.map((word, i) => {
+            const start = (i / words.length) * 0.8; // finish revealing before the very end
+            const end = start + (0.8 / words.length);
+            
+            const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1]);
+            // Optional: slight scale or blur effect
+            // We'll keep it simple and elegant with opacity
+            
+            return (
+              <motion.span
+                key={i}
+                style={{ opacity }}
+                className="text-4xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tight leading-[1.1]"
+              >
+                {word}
+              </motion.span>
+            );
+          })}
+        </h2>
+
+        {/* Cinematic gradient overlay that fades in as you scroll */}
+        <motion.div 
+          style={{ opacity: scrollYProgress }}
+          className="absolute inset-0 pointer-events-none z-[-1] bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.05)_0%,_transparent_60%)]"
+        />
+        
+        {/* Scroll indicator that fades out */}
+        <motion.div 
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          Trí tuệ <em className="italic text-white/40">thích nghi &</em> <br className="hidden md:block" />
-          Tối ưu hóa.
-        </motion.h2>
+          <span className="text-[10px] uppercase tracking-widest text-white/30">Scroll to reveal</span>
+          <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
+        </motion.div>
 
-        {/* 2-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
-          
-          {/* Left Column: Video */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="rounded-3xl overflow-hidden aspect-[4/3] border border-white/10"
-          >
-            <video
-              className="w-full h-full object-cover"
-              muted
-              autoPlay
-              loop
-              playsInline
-              preload="auto"
-              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
-            />
-          </motion.div>
-
-          {/* Right Column: Text Blocks */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col h-full justify-center md:pt-12"
-          >
-            {/* Block 1 */}
-            <div className="mb-12">
-              <div className="text-white/40 text-xs tracking-widest uppercase mb-4">
-                Tối ưu hóa nguồn lực
-              </div>
-              <p className="text-white/70 text-base md:text-lg leading-relaxed">
-                Mỗi đột phá ý nghĩa đều bắt nguồn từ sự giao thoa giữa chiến lược kỷ luật và tầm nhìn sáng tạo. Chúng tôi hoạt động tại điểm giao thoa đó, biến tư duy táo bạo thành những kết quả thực tế, giải quyết triệt để rào cản kỹ thuật.
-              </p>
-            </div>
-
-            <div className="w-full h-px bg-white/10 mb-12" />
-
-            {/* Block 2 */}
-            <div>
-              <div className="text-white/40 text-xs tracking-widest uppercase mb-4">
-                AI & Tự động hóa
-              </div>
-              <p className="text-white/70 text-base md:text-lg leading-relaxed">
-                Chúng tôi tin rằng kết quả vượt trội sẽ xuất hiện khi tư duy logic gặp gỡ sự kiên định. Tận dụng AI như một cánh tay đắc lực để khai phá những cơ hội tiềm ẩn và hiện thực hóa chúng thành các hệ thống tự động hoàn hảo.
-              </p>
-            </div>
-          </motion.div>
-
-        </div>
       </div>
     </section>
   );

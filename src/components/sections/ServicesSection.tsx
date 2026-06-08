@@ -1,106 +1,158 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Code, Layout, Zap, Bot } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+
+function SpotlightCard({ children, className = "" }: { children: React.ReactNode, className?: string }) {
+  const divRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!divRef.current) return;
+    const rect = divRef.current.getBoundingClientRect();
+    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.7 }}
+      ref={divRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setOpacity(1)}
+      onMouseLeave={() => setOpacity(0)}
+      className={`relative overflow-hidden rounded-3xl border border-white/5 bg-black/40 backdrop-blur-md group ${className}`}
+    >
+      <div
+        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-10"
+        style={{
+          opacity,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.06), transparent 40%)`,
+        }}
+      />
+      {/* Subtle hover border effect */}
+      <div
+        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-20"
+        style={{
+          opacity,
+          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.4), transparent 40%)`,
+          WebkitMaskImage: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
+          WebkitMaskComposite: `xor`,
+          maskComposite: `exclude`,
+          padding: `1px`,
+          borderRadius: `inherit`
+        }}
+      />
+      <div className="relative z-30 h-full">
+        {children}
+      </div>
+    </motion.div>
+  );
+}
 
 export function ServicesSection() {
   return (
-    <section id="services" className="bg-black py-28 md:py-40 px-6 overflow-hidden relative">
-      {/* Subtle radial gradient */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_60%)]" />
+    <section id="services" className="bg-black py-28 md:py-40 px-4 md:px-6 overflow-hidden relative">
+      {/* Background ambient light */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_70%)]" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         
-        {/* Header Row */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
-          className="flex items-end justify-between mb-16 md:mb-24"
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl text-white tracking-tight font-display">
-            Năng lực cốt lõi
+        <div className="flex items-end justify-between mb-16 md:mb-24">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl text-white tracking-tight font-display leading-tight">
+            Năng lực<br />cốt lõi
           </h2>
-          <div className="hidden md:block text-white/40 text-sm tracking-widest uppercase mb-2">
-            Our Services
+          <div className="hidden md:block text-white/40 text-sm tracking-widest uppercase mb-2 font-mono">
+            Services & Expertise
           </div>
-        </motion.div>
+        </div>
 
-        {/* Two-Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        {/* Asymmetric Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4 md:gap-6 h-auto md:h-[800px]">
           
-          {/* Card 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0 }}
-            className="liquid-glass rounded-3xl overflow-hidden group flex flex-col border border-white/5"
-          >
-            {/* Video Area */}
-            <div className="relative aspect-video overflow-hidden">
+          {/* Card 1: Large Core Architecture */}
+          <SpotlightCard className="md:col-span-2 md:row-span-2 flex flex-col min-h-[400px] p-0">
+            <div className="relative h-1/2 md:h-3/5 overflow-hidden border-b border-white/5">
               <video
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                muted
-                autoPlay
-                loop
-                playsInline
-                preload="auto"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                muted autoPlay loop playsInline
                 src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
             </div>
-
-            {/* Body */}
-            <div className="p-6 md:p-8 flex-1 flex flex-col">
-              <div className="flex items-center justify-between mb-6">
-                <span className="uppercase tracking-widest text-white/40 text-xs font-semibold">Architecture</span>
-                <div className="liquid-glass rounded-full p-2">
-                  <ArrowUpRight className="w-5 h-5 text-white" />
-                </div>
+            <div className="p-8 md:p-10 flex-1 flex flex-col justify-between">
+              <div className="flex items-center justify-between mb-4">
+                <span className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-widest font-mono">
+                  <Code size={14} /> Architecture
+                </span>
+                <ArrowUpRight className="text-white/30 group-hover:text-white transition-colors duration-300" />
               </div>
-              <h3 className="text-white text-2xl md:text-3xl mb-4 font-display tracking-tight">Hệ thống & Mã nguồn</h3>
-              <p className="text-white/50 text-sm md:text-base leading-relaxed mt-auto">
-                Phân tích logic luồng dữ liệu sâu sắc, thiết kế kiến trúc hệ thống có khả năng mở rộng cao, và xử lý triệt để các vấn đề nghẽn cổ chai (bottleneck) về hiệu năng.
+              <div>
+                <h3 className="text-3xl md:text-4xl text-white font-display mb-4">Hệ thống & Mã nguồn</h3>
+                <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-xl">
+                  Thiết kế kiến trúc hệ thống có khả năng mở rộng cao, xử lý triệt để các nút thắt hiệu năng (bottleneck) và đảm bảo luồng dữ liệu an toàn, logic tuyệt đối.
+                </p>
+              </div>
+            </div>
+          </SpotlightCard>
+
+          {/* Card 2: UI/UX Visual Craft */}
+          <SpotlightCard className="md:col-span-1 md:row-span-1 p-8 flex flex-col justify-between min-h-[250px]">
+            <div className="flex items-center justify-between mb-8">
+              <span className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-widest font-mono">
+                <Layout size={14} /> Visual Craft
+              </span>
+              <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors duration-500">
+                <ArrowUpRight size={16} className="text-white/50 group-hover:text-primary transition-colors" />
+              </div>
+            </div>
+            <div>
+              <h3 className="text-2xl text-white font-display mb-3">Thiết kế Trực quan</h3>
+              <p className="text-white/60 text-sm leading-relaxed">
+                Biến khái niệm kỹ thuật khô khan thành giao diện tương tác mượt mà, áp dụng Kinetic Typography và Glassmorphism.
               </p>
             </div>
-          </motion.div>
+          </SpotlightCard>
 
-          {/* Card 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="liquid-glass rounded-3xl overflow-hidden group flex flex-col border border-white/5"
-          >
-            {/* Video Area */}
-            <div className="relative aspect-video overflow-hidden">
-              <video
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                muted
-                autoPlay
-                loop
-                playsInline
-                preload="auto"
-                src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260324_151826_c7218672-6e92-402c-9e45-f1e0f454bdc4.mp4"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+          {/* Card 3: Performance */}
+          <SpotlightCard className="md:col-span-1 md:row-span-1 p-8 flex flex-col justify-between min-h-[250px] bg-gradient-to-br from-black to-white/[0.02]">
+            <div className="flex items-center justify-between mb-8">
+              <span className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-widest font-mono">
+                <Zap size={14} /> Optimization
+              </span>
             </div>
-
-            {/* Body */}
-            <div className="p-6 md:p-8 flex-1 flex flex-col">
-              <div className="flex items-center justify-between mb-6">
-                <span className="uppercase tracking-widest text-white/40 text-xs font-semibold">Visual Craft</span>
-                <div className="liquid-glass rounded-full p-2">
-                  <ArrowUpRight className="w-5 h-5 text-white" />
-                </div>
-              </div>
-              <h3 className="text-white text-2xl md:text-3xl mb-4 font-display tracking-tight">Thiết kế Trực quan & Tương tác</h3>
-              <p className="text-white/50 text-sm md:text-base leading-relaxed mt-auto">
-                Biến các khái niệm kỹ thuật trừu tượng thành những giao diện mượt mà. Ứng dụng hoạt ảnh nâng cao và Typography để mang lại ấn tượng thị giác vượt trội.
+            <div>
+              <h3 className="text-2xl text-white font-display mb-3">Hiệu năng Tối đa</h3>
+              <p className="text-white/60 text-sm leading-relaxed">
+                Chuẩn SEO tuyệt đối, lazy-load thông minh, code-splitting và nén tài nguyên tối đa để đạt 100 điểm Lighthouse.
               </p>
             </div>
-          </motion.div>
+          </SpotlightCard>
+
+          {/* Card 4: AI & Automation - Bottom wide row */}
+          <SpotlightCard className="md:col-span-3 md:row-span-1 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 min-h-[200px]">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-widest font-mono mb-4">
+                <Bot size={14} /> AI Integration
+              </div>
+              <h3 className="text-2xl md:text-3xl text-white font-display mb-3">Tự động hóa & Trí tuệ nhân tạo</h3>
+              <p className="text-white/60 text-sm md:text-base leading-relaxed">
+                Tích hợp LLM, tự động hóa quy trình làm việc (CI/CD workflows), xử lý dữ liệu quy mô lớn mà không cần can thiệp thủ công.
+              </p>
+            </div>
+            
+            <div className="w-full md:w-auto flex-shrink-0 flex items-center justify-start md:justify-end">
+              {/* Decorative AI visual element */}
+              <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full border border-white/10 flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent,rgba(255,255,255,0.2),transparent)] animate-spin" style={{ animationDuration: '4s' }} />
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-black flex items-center justify-center z-10 border border-white/5">
+                  <Bot size={28} className="text-white/30 group-hover:text-primary transition-colors duration-500" />
+                </div>
+              </div>
+            </div>
+          </SpotlightCard>
 
         </div>
       </div>
