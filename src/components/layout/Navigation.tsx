@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import logoSvg from '/logo.svg?url';
+import { generateMailtoLink } from '../../utils/mail';
 import { Volume2, VolumeX } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { soundManager } from '../../utils/sound';
@@ -36,10 +37,10 @@ export function Navigation() {
 
       {/* Center: Links Pill */}
       <motion.nav
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ y: -50, opacity: 0, x: "-50%" }}
+        animate={{ y: 0, opacity: 1, x: "-50%" }}
         transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="hidden md:flex items-center gap-8 liquid-glass rounded-full px-8 py-3 pointer-events-auto border border-white/10"
+        className="hidden md:flex items-center gap-8 liquid-glass rounded-full px-8 py-3 pointer-events-auto border border-white/10 absolute left-1/2"
       >
         <a href="#about" onMouseEnter={() => soundManager.playHover()} className="text-sm font-medium text-white/70 hover:text-white transition-colors">About</a>
         <a href="#services" onMouseEnter={() => soundManager.playHover()} className="text-sm font-medium text-white/70 hover:text-white transition-colors">Services</a>
@@ -61,7 +62,7 @@ export function Navigation() {
           {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
         </button>
         <a 
-          href="#contact"
+          href={generateMailtoLink()}
           onMouseEnter={() => soundManager.playHover()}
           className="hidden md:block text-sm font-medium text-white/70 hover:text-white transition-colors"
         >
@@ -69,7 +70,7 @@ export function Navigation() {
         </a>
         <Magnetic>
           <a 
-            href="#contact"
+            href={generateMailtoLink()}
             onMouseEnter={() => soundManager.playHover()}
             className="btn-premium bg-white text-black rounded-full px-6 py-2.5 text-sm font-medium hover:scale-105 transition-transform hidden sm:block"
           >

@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { generateMailtoLink } from '../../utils/mail';
 
 const gifs = [
   "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
@@ -88,7 +89,7 @@ export function PartnerCTASection() {
         </h2>
         
         <a 
-          href="#contact"
+          href={generateMailtoLink()}
           className="relative z-10 btn-premium bg-white text-black rounded-full pl-2 pr-6 py-2 flex items-center gap-4 hover:scale-105 transition-transform"
         >
           <img 

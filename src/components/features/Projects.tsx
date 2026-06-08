@@ -71,7 +71,7 @@ export function Projects() {
       
       {/* Floating Reveal Image Container */}
       <motion.div
-        className="pointer-events-none absolute left-0 top-0 z-0 w-[300px] h-[400px] rounded-2xl overflow-hidden shadow-2xl hidden md:block"
+        className="pointer-events-none absolute left-0 top-0 z-[50] w-[300px] h-[400px] rounded-2xl overflow-hidden shadow-2xl hidden md:block"
         style={{
           x: cursorX,
           y: cursorY,

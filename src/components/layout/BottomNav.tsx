@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { generateMailtoLink } from '../../utils/mail';
 
 export function BottomNav() {
   return (
@@ -12,7 +13,7 @@ export function BottomNav() {
         D.
       </span>
       <a 
-        href="#contact"
+        href={generateMailtoLink()}
         className="btn-premium bg-white text-black rounded-full px-6 py-2.5 text-sm font-medium hover:scale-105 transition-transform whitespace-nowrap"
       >
         Start a chat

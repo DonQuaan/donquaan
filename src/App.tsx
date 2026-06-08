@@ -10,6 +10,7 @@ import { ServicesSection } from './components/sections/ServicesSection';
 import { Projects } from './components/features/Projects';
 import { PricingSection } from './components/sections/PricingSection';
 import { TestimonialCarousel } from './components/features/TestimonialCarousel';
+import { FAQSection } from './components/sections/FAQSection';
 import { PartnerCTASection } from './components/sections/PartnerCTASection';
 import { BottomNav } from './components/layout/BottomNav';
 import { Footer } from './components/layout/Footer';
@@ -65,6 +66,7 @@ function App() {
         <MorphingDivider />
         <PricingSection />
         <TestimonialCarousel />
+        <FAQSection />
         <PartnerCTASection />
       </main>
       
