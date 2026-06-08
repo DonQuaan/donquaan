@@ -1,16 +1,18 @@
 import { motion } from 'framer-motion';
 import logoSvg from '/logo.svg?url';
 import { generateMailtoLink } from '../../utils/mail';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX, Disc } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { soundManager } from '../../utils/sound';
 import { Magnetic } from '../ui/Magnetic';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useMusic } from '../../contexts/MusicContext';
 
 export function Navigation() {
   const [isMuted, setIsMuted] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const { isPlaying, togglePlayer } = useMusic();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
@@ -82,6 +84,13 @@ export function Navigation() {
         transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         className="pointer-events-auto flex items-center gap-4 xl:gap-6 justify-self-end"
       >
+        <button 
+          onClick={togglePlayer}
+          className="text-white/70 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 shrink-0"
+          aria-label="Toggle music player"
+        >
+          <Disc size={18} style={{ animation: isPlaying ? 'spin 4s linear infinite' : 'none' }} />
+        </button>
         <button 
           onClick={toggleSound}
           className="text-white/70 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 shrink-0"
