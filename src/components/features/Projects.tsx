@@ -4,17 +4,6 @@ import { useState, useRef } from 'react';
 
 const projects = [
   {
-    title: "Kỷ yếu Kỹ thuật số A12",
-    category: "Digital Time Capsule",
-    challenge: "Lưu trữ kỷ yếu truyền thống tốn kém, khó chia sẻ, và dữ liệu tĩnh dễ bị lãng quên theo thời gian.",
-    solution: "Kiến tạo toàn bộ nội dung thành hệ thống Web SPA. Áp dụng thiết kế tương tác cao để số hóa ký ức.",
-    result: "Triệt tiêu 100% chi phí in ấn vật lý. Xây dựng kho lưu trữ dữ liệu vĩnh cửu, truy xuất tức thì ở mọi nơi.",
-    year: "2024",
-    link: "https://github.com/DonQuaan/A12",
-    github: "https://github.com/DonQuaan/A12",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop"
-  },
-  {
     title: "Promethium Modpack",
     category: "Minecraft Ecosystem",
     challenge: "Hệ thống bị sụp đổ do xung đột logic chéo giữa hàng trăm bản mod, dẫn đến rò rỉ bộ nhớ nghiêm trọng.",

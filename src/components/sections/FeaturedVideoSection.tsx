@@ -33,20 +33,20 @@ export function FeaturedVideoSection() {
               <div className="text-white/50 text-xs tracking-widest uppercase mb-3">
                 Masterpiece Project
               </div>
-              <h3 className="text-white text-xl font-display mb-2">Kỷ yếu Kỹ thuật số A12</h3>
+              <h3 className="text-white text-xl font-display mb-2">Promethium Modpack</h3>
               <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                Số hóa toàn bộ nội dung thành hệ thống Web SPA (Single-Page Application). Tối ưu 100% chi phí in ấn, lưu trữ ký ức ở dạng dữ liệu tương tác cao.
+                Tái cấu trúc toàn bộ tệp config và thiết lập lại điểm cân bằng tài nguyên, đạt mốc 1,000+ lượt tải tự nhiên trên CurseForge.
               </p>
             </div>
 
             {/* Right Action Button */}
             <motion.a
-              href="https://github.com/DonQuaan/A12"
+              href="https://www.curseforge.com/minecraft/modpacks/promethium"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium w-full md:w-auto text-center cursor-pointer hover:bg-white/5 transition-colors"
             >
-              Khám phá mã nguồn
+              Khám phá dự án
             </motion.a>
           </div>
         </motion.div>
