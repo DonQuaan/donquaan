@@ -214,7 +214,7 @@ export function CertificatesMarquee() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 10 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-4xl bg-black border border-white/20 rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-[0_0_100px_rgba(236,72,153,0.15)] flex flex-col max-h-[95vh] sm:max-h-[90vh]"
+              className="relative w-full max-w-4xl bg-black border border-white/20 rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-[0_0_100px_rgba(236,72,153,0.15)] flex flex-col max-h-[95vh] sm:max-h-[85vh]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex gap-2 sm:gap-3">
@@ -239,7 +239,7 @@ export function CertificatesMarquee() {
                 </button>
               </div>
 
-              <div className="w-full bg-[#1e1e1e] flex flex-col overflow-y-auto overflow-x-hidden">
+              <div className="w-full bg-[#1e1e1e] flex-1 flex flex-col overflow-y-auto overflow-x-hidden custom-scrollbar">
                 <div className="w-full flex items-center justify-center p-4 pt-16 sm:p-8 sm:pt-20 relative min-h-[40vh] sm:min-h-[50vh]">
                   <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ background: 'radial-gradient(circle at center, rgba(236,72,153,0.4) 0%, transparent 70%)' }} />
                   <img 
