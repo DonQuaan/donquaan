@@ -214,44 +214,47 @@ export function CertificatesMarquee() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 10 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-4xl bg-black border border-white/20 rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-[0_0_100px_rgba(236,72,153,0.15)] flex flex-col max-h-[90vh]"
+              className="relative w-full max-w-4xl bg-black border border-white/20 rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-[0_0_100px_rgba(236,72,153,0.15)] flex flex-col max-h-[95vh] sm:max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 flex gap-3">
+              <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex gap-2 sm:gap-3">
                 <a 
                   href={selectedCert.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-primary/20 hover:bg-primary/40 text-primary border border-primary/50 backdrop-blur-md rounded-full px-4 py-2 text-sm font-medium flex items-center gap-2 transition-colors shadow-[0_0_15px_rgba(236,72,153,0.3)]"
+                  className="bg-primary/20 hover:bg-primary/40 text-primary border border-primary/50 backdrop-blur-md rounded-full px-3 py-2 sm:px-4 text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2 transition-colors shadow-[0_0_15px_rgba(236,72,153,0.3)]"
                   aria-label="Xác thực chứng chỉ trên Kaggle"
                 >
                   <BadgeCheck size={16} className="text-primary drop-shadow-[0_0_5px_rgba(236,72,153,0.8)]" />
-                  <span>Xác thực Kaggle</span>
-                  <ExternalLink size={14} className="ml-1" />
+                  <span className="hidden sm:inline">Xác thực Kaggle</span>
+                  <span className="sm:hidden">Xác thực</span>
+                  <ExternalLink size={14} />
                 </a>
                 <button 
                   onClick={() => setSelectedCert(null)}
-                  className="w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-colors"
+                  className="w-8 h-8 sm:w-10 sm:h-10 bg-black/50 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-colors"
                   aria-label="Đóng"
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
               </div>
 
-              <div className="w-full bg-[#1e1e1e] flex-1 min-h-0 overflow-hidden flex items-center justify-center p-4 sm:p-8 relative">
-                <div className="absolute inset-0 opacity-20" style={{ background: 'radial-gradient(circle at center, rgba(236,72,153,0.4) 0%, transparent 70%)' }} />
-                <img 
-                  src={selectedCert.image} 
-                  alt={selectedCert.title}
-                  className="w-full h-full object-contain relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-                />
-              </div>
-              
-              <div className="p-6 sm:p-8 bg-black/90 backdrop-blur-xl border-t border-white/10 shrink-0">
-                <div className="flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row">
-                  <div>
-                    <h3 className="text-2xl sm:text-3xl font-display text-white mb-2">{selectedCert.title}</h3>
-                    <p className="text-white/60 text-sm sm:text-base leading-relaxed max-w-2xl">{selectedCert.description}</p>
+              <div className="w-full bg-[#1e1e1e] flex flex-col overflow-y-auto overflow-x-hidden">
+                <div className="w-full flex items-center justify-center p-4 pt-16 sm:p-8 sm:pt-20 relative min-h-[40vh] sm:min-h-[50vh]">
+                  <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ background: 'radial-gradient(circle at center, rgba(236,72,153,0.4) 0%, transparent 70%)' }} />
+                  <img 
+                    src={selectedCert.image} 
+                    alt={selectedCert.title}
+                    className="max-w-full max-h-[50vh] sm:max-h-[60vh] object-contain relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                  />
+                </div>
+                
+                <div className="p-5 sm:p-8 bg-black/90 backdrop-blur-xl border-t border-white/10 shrink-0 relative z-10">
+                  <div className="flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row">
+                    <div>
+                      <h3 className="text-xl sm:text-3xl font-display text-white mb-2 leading-tight">{selectedCert.title}</h3>
+                      <p className="text-white/60 text-sm sm:text-base leading-relaxed max-w-2xl">{selectedCert.description}</p>
+                    </div>
                   </div>
                 </div>
               </div>
