@@ -161,7 +161,7 @@ export function CertificatesMarquee() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-8 text-center sm:text-left">
         <h3 className="text-2xl sm:text-3xl font-display text-white mb-2 flex items-center justify-center sm:justify-start gap-3">
           <BadgeCheck className="text-primary w-6 h-6 sm:w-8 sm:h-8" />
-          Kaggle AI Certifications
+          Kaggle Certifications
         </h3>
         <p className="text-white/60 text-sm sm:text-base max-w-2xl leading-relaxed">
           Được chứng nhận chuyên môn bởi <a href="https://www.kaggle.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium inline-flex items-center gap-1">Kaggle <ExternalLink size={14} /></a> – Nền tảng Khoa học Dữ liệu và Học Máy lớn nhất thế giới thuộc Google, nơi hội tụ của hơn 10 triệu chuyên gia AI toàn cầu.
