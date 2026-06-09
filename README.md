@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/logo.svg" alt="DonQuaan Logo" width="120" />
+  <img src="public/logo.svg" alt="DonQuaan Logo" width="130" />
 
   # DonQuaan | Tech-Driven Innovator
   
