@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { LiveSubscriberCount } from '../features/LiveSubscriberCount';
+import { CertificatesMarquee } from '../features/CertificatesMarquee';
 
 export function AboutSection() {
   const ref = useRef(null);
@@ -101,6 +102,9 @@ export function AboutSection() {
             </div>
           </div>
         </motion.div>
+        
+        {/* Kaggle Certificates Marquee */}
+        <CertificatesMarquee />
       </div>
     </section>
   );
