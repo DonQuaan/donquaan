@@ -92,7 +92,7 @@ const certificates: Certificate[] = [
     id: "time-series",
     title: "Time Series",
     description: "Phân tích và dự báo chuỗi thời gian chuyên sâu.",
-    image: "/donquaan/assets/certificates/Graduate.png",
+    image: "/donquaan/assets/certificates/Nguyen Vu Dong Quan - Time Series.png",
     link: "https://www.kaggle.com/learn/certification/nguyenvudongquan/time-series"
   },
   {
@@ -238,16 +238,16 @@ export function CertificatesMarquee() {
                 </button>
               </div>
 
-              <div className="w-full bg-[#1e1e1e] flex-1 overflow-hidden flex items-center justify-center p-4 sm:p-12 relative min-h-[40vh]">
+              <div className="w-full bg-[#1e1e1e] flex-1 min-h-0 overflow-hidden flex items-center justify-center p-4 sm:p-8 relative">
                 <div className="absolute inset-0 opacity-20" style={{ background: 'radial-gradient(circle at center, rgba(236,72,153,0.4) 0%, transparent 70%)' }} />
                 <img 
                   src={selectedCert.image} 
                   alt={selectedCert.title}
-                  className="w-full max-h-full object-contain relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                  className="w-full h-full object-contain relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                 />
               </div>
               
-              <div className="p-6 sm:p-8 bg-black/90 backdrop-blur-xl border-t border-white/10">
+              <div className="p-6 sm:p-8 bg-black/90 backdrop-blur-xl border-t border-white/10 shrink-0">
                 <div className="flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row">
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-display text-white mb-2">{selectedCert.title}</h3>
