@@ -49,5 +49,19 @@ export default defineConfig({
   base: '/donquaan/',
   define: {
     'import.meta.env.VITE_APP_VERSION': JSON.stringify(packageJson.version)
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('framer-motion')) return 'vendor-framer-motion';
+            if (id.includes('react') || id.includes('react-dom')) return 'vendor-react';
+            if (id.includes('lucide-react')) return 'vendor-icons';
+            return 'vendor';
+          }
+        }
+      }
+    }
   }
 })

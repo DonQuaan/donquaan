@@ -74,13 +74,14 @@ export function StatsSection() {
             >
               {stat.type === 'counter' ? (
                 <div className="text-5xl lg:text-7xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40 mb-4 transition-transform duration-500 group-hover:scale-110">
-                  <AnimatedCounter from={0} to={stat.value as number} duration={2.5} suffix={stat.suffix} />
+                  <AnimatedCounter from={0} to={(stat as any).value ?? 0} duration={2.5} suffix={stat.suffix ?? ""} />
                 </div>
               ) : (
                 <div className="mb-4 w-full flex justify-center h-[120px] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500 rounded-xl">
                   <iframe 
                     src={stat.url} 
-                    className="w-full max-w-[320px] h-full border-none pointer-events-none rounded-xl" 
+                    className="w-full max-w-[320px] h-full border-none pointer-events-none rounded-xl"
+                    style={stat.url?.includes('mixerno') ? { filter: 'invert(1) hue-rotate(180deg)' } : {}}
                     scrolling="no" 
                   />
                 </div>
