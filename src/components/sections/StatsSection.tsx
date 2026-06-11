@@ -39,14 +39,25 @@ export function StatsSection() {
   const { t } = useLanguage();
 
   const [discordMembers, setDiscordMembers] = useState<number>(61704);
-  const fbMembers = 130000;
+  const [fbMembers, setFbMembers] = useState<number>(130000);
 
   useEffect(() => {
+    // Lấy số liệu Discord
     fetch('https://discord.com/api/v9/invites/sangtraan?with_counts=true')
       .then(res => res.json())
       .then(data => {
         if (data && data.approximate_member_count) {
           setDiscordMembers(data.approximate_member_count);
+        }
+      })
+      .catch(console.error);
+
+    // Lấy số liệu Facebook từ Vercel Serverless Function
+    fetch('/api/facebook')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.followers) {
+          setFbMembers(data.followers);
         }
       })
       .catch(console.error);
