@@ -1,12 +1,21 @@
-import { Mail, Twitch, Music } from 'lucide-react';
-import { RobloxIcon, CurseforgeIcon } from '../ui/icons';
+import { Mail } from 'lucide-react';
+import {
+  SiFacebook, SiTwitch, SiX, SiSpotify,
+  SiYoutube, SiRoblox, SiCurseforge, SiGithub
+} from 'react-icons/si';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-import facebookIcon from '../../assets/social-icons/facebook.svg?url';
-import xIcon from '../../assets/social-icons/x.svg?url';
-import youtubeIcon from '../../assets/social-icons/youtube.svg?url';
-import githubIcon from '../../assets/social-icons/github.svg?url';
+const socials = [
+  { label: 'Facebook', href: 'https://www.facebook.com/NguyenDonQuaan', Icon: SiFacebook },
+  { label: 'Twitch', href: 'https://www.twitch.tv/donquaan_tkz', Icon: SiTwitch },
+  { label: 'X (Twitter)', href: 'https://x.com/DonquaanN74404', Icon: SiX },
+  { label: 'Spotify', href: 'https://open.spotify.com/user/31xr7kgwysteud3urdhzrv5ixc2q?si=504e28691ba349ee', Icon: SiSpotify },
+  { label: 'YouTube', href: 'https://www.youtube.com/channel/UCvqlcKf1nm9i2LeH9hFQQYA', Icon: SiYoutube },
+  { label: 'Roblox', href: 'https://roblox.com/users/3947663158/profile', Icon: SiRoblox },
+  { label: 'CurseForge', href: 'https://www.curseforge.com/members/yangdawn', Icon: SiCurseforge },
+  { label: 'GitHub', href: 'https://github.com/DonQuaan', Icon: SiGithub }
+];
 
 export function Footer() {
   const { language } = useLanguage();
@@ -49,32 +58,20 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Right Side: Social Grid */}
+        {/* Right Side: Social Grid — uniform monochrome icons */}
         <div className="grid grid-cols-4 sm:grid-cols-4 gap-4 md:gap-6 lg:max-w-md w-full justify-items-center lg:justify-items-end lg:mt-0 mt-8">
-          <a href="https://www.facebook.com/NguyenDonQuaan" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 transition-all hover:-translate-y-1 flex items-center justify-center">
-            <img src={facebookIcon} alt="Facebook" loading="lazy" decoding="async" className="w-6 h-6 object-contain" />
-          </a>
-          <a href="https://www.twitch.tv/donquaan_tkz" target="_blank" rel="noopener noreferrer" aria-label="Twitch" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-[#9146FF] text-foreground transition-all hover:-translate-y-1 flex items-center justify-center">
-            <Twitch className="w-5 h-5" />
-          </a>
-          <a href="https://x.com/DonquaanN74404" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 transition-all hover:-translate-y-1 flex items-center justify-center">
-            <img src={xIcon} alt="X (Twitter)" loading="lazy" decoding="async" className="w-5 h-5 object-contain" />
-          </a>
-          <a href="https://open.spotify.com/user/31xr7kgwysteud3urdhzrv5ixc2q?si=504e28691ba349ee" target="_blank" rel="noopener noreferrer" aria-label="Spotify" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-[#1DB954] text-foreground transition-all hover:-translate-y-1 flex items-center justify-center">
-            <Music className="w-5 h-5" />
-          </a>
-          <a href="https://www.youtube.com/channel/UCvqlcKf1nm9i2LeH9hFQQYA" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 transition-all hover:-translate-y-1 flex items-center justify-center">
-            <img src={youtubeIcon} alt="YouTube" loading="lazy" decoding="async" className="w-6 h-6 object-contain" />
-          </a>
-          <a href="https://roblox.com/users/3947663158/profile" target="_blank" rel="noopener noreferrer" aria-label="Roblox" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/20 text-foreground transition-all hover:-translate-y-1 flex items-center justify-center">
-            <RobloxIcon className="w-5 h-5" />
-          </a>
-          <a href="https://www.curseforge.com/members/yangdawn" target="_blank" rel="noopener noreferrer" aria-label="CurseForge" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-[#F16436] text-foreground transition-all hover:-translate-y-1 flex items-center justify-center">
-            <CurseforgeIcon className="w-5 h-5" />
-          </a>
-          <a href="https://github.com/DonQuaan" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 transition-all hover:-translate-y-1 flex items-center justify-center">
-            <img src={githubIcon} alt="GitHub" loading="lazy" decoding="async" className="w-6 h-6 object-contain" />
-          </a>
+          {socials.map(({ label, href, Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/15 text-white transition-all hover:-translate-y-1 flex items-center justify-center"
+            >
+              <Icon className="w-5 h-5" />
+            </a>
+          ))}
         </div>
       </div>
       

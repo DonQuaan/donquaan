@@ -11,10 +11,18 @@ import { LanguageProvider } from './contexts/LanguageProvider';
 import { HomePage } from './components/pages/HomePage';
 const LegalLayout = lazy(() => import('./components/pages/LegalLayout').then(module => ({ default: module.LegalLayout })));
 
-const getPrivacyHtml = () => import('./legal/Privacy Policy.html?raw').then(m => m.default);
-const getTermsHtml = () => import('./legal/Terms of Service.html?raw').then(m => m.default);
-const getCookiesHtml = () => import('./legal/Cookies Policy.html?raw').then(m => m.default);
-const getDisclaimerHtml = () => import('./legal/Disclaimer.html?raw').then(m => m.default);
+const getPrivacyHtml = (lang: 'vi' | 'en') => (lang === 'vi'
+  ? import('./legal/vi/Privacy Policy.html?raw')
+  : import('./legal/Privacy Policy.html?raw')).then(m => m.default);
+const getTermsHtml = (lang: 'vi' | 'en') => (lang === 'vi'
+  ? import('./legal/vi/Terms of Service.html?raw')
+  : import('./legal/Terms of Service.html?raw')).then(m => m.default);
+const getCookiesHtml = (lang: 'vi' | 'en') => (lang === 'vi'
+  ? import('./legal/vi/Cookies Policy.html?raw')
+  : import('./legal/Cookies Policy.html?raw')).then(m => m.default);
+const getDisclaimerHtml = (lang: 'vi' | 'en') => (lang === 'vi'
+  ? import('./legal/vi/Disclaimer.html?raw')
+  : import('./legal/Disclaimer.html?raw')).then(m => m.default);
 
 function App() {
   useEffect(() => {
