@@ -23,7 +23,7 @@ export function PhilosophySection() {
             const start = (i / words.length) * 0.8; // finish revealing before the very end
             const end = start + (0.8 / words.length);
             
-            const opacity = useTransform(scrollYProgress, [start, end], [0.3, 1]);
+            const opacity = useTransform(scrollYProgress, [start, end], [0.6, 1]);
             // Optional: slight scale or blur effect
             // We'll keep it simple and elegant with opacity
             

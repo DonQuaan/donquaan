@@ -29,6 +29,10 @@ const dictionaries: Record<Language, Dictionary> = {
     'insights.subtitle': 'Thought Leadership',
     'insights.desc': 'Những bài viết, phân tích và case-study chuyên sâu về Data Science, AI và xu hướng công nghệ tương lai.',
     
+    'faq.title': 'Câu Hỏi Thường Gặp',
+    'faq.desc': 'Mọi thắc mắc của bạn về quy trình hợp tác và dịch vụ.',
+    'faq.showMore': 'Xem thêm câu hỏi',
+
     'contact.title': 'Đặt Lịch Tư Vấn VIP',
     'contact.subtitle': 'Premium Booking',
     'contact.desc': 'Bắt đầu dự án đột phá tiếp theo của bạn cùng tôi. Vui lòng để lại thông tin để thiết lập cuộc hẹn tư vấn chuyên sâu 1-1.',
@@ -36,6 +40,8 @@ const dictionaries: Record<Language, Dictionary> = {
     'contact.form.email': 'Email làm việc',
     'contact.form.message': 'Dự án hoặc vấn đề bạn đang gặp phải...',
     'contact.form.submit': 'Gửi Yêu Cầu Chuyên Gia',
+    'contact.location.label': 'Địa chỉ',
+    'contact.location.value': 'Đà Nẵng, Việt Nam',
     
     'recognitions.title': 'Đối Tác & Vinh Danh',
     'recognitions.subtitle': 'As Seen On'
@@ -61,6 +67,10 @@ const dictionaries: Record<Language, Dictionary> = {
     'insights.subtitle': 'Thought Leadership',
     'insights.desc': 'In-depth articles, analyses, and case studies on Data Science, AI, and future technology trends.',
     
+    'faq.title': 'Frequently Asked Questions',
+    'faq.desc': 'Everything you need to know about our collaboration and services.',
+    'faq.showMore': 'Show more questions',
+
     'contact.title': 'VIP Consultation',
     'contact.subtitle': 'Premium Booking',
     'contact.desc': 'Start your next breakthrough project with me. Leave your information to set up an in-depth 1-on-1 consultation.',
@@ -68,6 +78,8 @@ const dictionaries: Record<Language, Dictionary> = {
     'contact.form.email': 'Work Email',
     'contact.form.message': 'Your project or challenge...',
     'contact.form.submit': 'Send Expert Request',
+    'contact.location.label': 'Location',
+    'contact.location.value': 'Da Nang, Vietnam',
     
     'recognitions.title': 'Partners & Recognitions',
     'recognitions.subtitle': 'As Seen On'

@@ -1,42 +1,16 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, Clock } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
-
-const articles = [
-  {
-    id: 1,
-    title: "Tương lai của AI tạo sinh trong doanh nghiệp 2026",
-    category: "Artificial Intelligence",
-    date: "10 Jun 2026",
-    readTime: "5 min read",
-    excerpt: "Làm thế nào các mô hình ngôn ngữ lớn (LLMs) đang thay đổi hoàn toàn cách doanh nghiệp SME tiếp cận việc tự động hóa chăm sóc khách hàng và bán hàng.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop"
-  },
-  {
-    id: 2,
-    title: "Tối ưu hóa quy trình Data Pipeline với Modern Stack",
-    category: "Data Engineering",
-    date: "28 May 2026",
-    readTime: "8 min read",
-    excerpt: "Một góc nhìn thực tế về việc chuyển đổi từ legacy data warehouse sang modern data stack, những khó khăn thường gặp và cách khắc phục.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
-  },
-  {
-    id: 3,
-    title: "Giải mã Machine Learning Explainability (XAI)",
-    category: "Machine Learning",
-    date: "15 Apr 2026",
-    readTime: "6 min read",
-    excerpt: "Tại sao các mô hình AI không còn là một hộp đen, và làm thế nào để ứng dụng SHAP và LIME trong các quyết định tài chính rủi ro cao.",
-    image: "https://images.unsplash.com/photo-1620825937374-87fc1d6aaf63?q=80&w=1000&auto=format&fit=crop"
-  }
-];
+import { articles, type Article } from '../../data/articles';
+import { ArticleModal } from '../features/ArticleModal';
 
 export function InsightsSection() {
   const { t } = useLanguage();
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
   return (
-    <section id="insights" className="relative w-full py-32 bg-black overflow-hidden border-t border-white/5">
+    <section id="insights" className="relative w-full py-32 bg-black overflow-hidden border-t border-white/5 content-defer">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-black to-black opacity-60" />
       
@@ -61,31 +35,31 @@ export function InsightsSection() {
           </div>
           
           <div className="hidden md:block pb-2">
-            <a href="#" className="inline-flex items-center gap-2 text-white/70 hover:text-white font-mono uppercase tracking-wider text-sm transition-colors group">
+            <button className="inline-flex items-center gap-2 text-white/70 hover:text-white font-mono uppercase tracking-wider text-sm transition-colors group">
               View All Insights 
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </a>
+            </button>
           </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article, i) => (
-            <motion.a
-              href="#"
+            <motion.button
+              onClick={() => setSelectedArticle(article)}
               key={article.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, delay: i * 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative block rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-white/20 transition-colors"
+              className="group relative text-left block w-full rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-white/20 transition-colors focus:outline-none"
             >
-              {/* Image Container with Hover Blur effect */}
+              {/* Image Container */}
               <div className="aspect-[16/10] overflow-hidden relative">
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
                 <img 
                   src={article.image} 
                   alt={article.title}
-                  className="w-full h-full object-cover transform scale-105 group-hover:scale-100 filter blur-sm group-hover:blur-0 transition-all duration-700 ease-out"
+                  className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-all duration-700 ease-out"
                 />
                 
                 {/* Category Badge */}
@@ -116,17 +90,23 @@ export function InsightsSection() {
                   Read Article <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
                 </div>
               </div>
-            </motion.a>
+            </motion.button>
           ))}
         </div>
         
         <div className="mt-12 text-center md:hidden">
-          <a href="#" className="inline-flex items-center gap-2 text-white/70 hover:text-white font-mono uppercase tracking-wider text-sm transition-colors group">
+          <button className="inline-flex items-center gap-2 text-white/70 hover:text-white font-mono uppercase tracking-wider text-sm transition-colors group">
             View All Insights 
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          </button>
         </div>
       </div>
+
+      <ArticleModal 
+        article={selectedArticle} 
+        isOpen={selectedArticle !== null} 
+        onClose={() => setSelectedArticle(null)} 
+      />
     </section>
   );
 }

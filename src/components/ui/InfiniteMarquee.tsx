@@ -31,7 +31,8 @@ export function InfiniteMarquee() {
               src={src}
               alt="Project preview"
               className="h-[280px] md:h-[400px] lg:h-[500px] w-auto aspect-[4/3] md:aspect-video object-cover mx-3 rounded-2xl shadow-lg border border-white/5"
-              loading="lazy"
+              loading={idx === 1 ? undefined : "lazy"}
+              fetchPriority={idx === 1 ? "high" : "auto"}
             />
           ))}
         </div>

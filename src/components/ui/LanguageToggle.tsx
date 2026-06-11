@@ -12,7 +12,7 @@ export function LanguageToggle() {
     <button
       onClick={toggleLanguage}
       className="relative flex items-center justify-between w-[52px] h-7 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full p-1 transition-colors cursor-pointer shrink-0"
-      aria-label="Toggle Language"
+      aria-label="EN / VI - Toggle Language"
     >
       <div className="absolute inset-0 flex justify-between items-center px-1.5 pointer-events-none">
         <span className={`text-[10px] font-bold ${language === 'vi' ? 'text-white/30' : 'text-white/80'} z-10`}>EN</span>

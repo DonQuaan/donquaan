@@ -51,7 +51,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm font-mono text-white/40 mb-1">Email</p>
-                  <a href="mailto:dquaan.nguyen@gmail.com" className="text-lg font-medium">dquaan.nguyen@gmail.com</a>
+                  <a href="mailto:contact.donquaan@gmail.com" className="text-lg font-medium">contact.donquaan@gmail.com</a>
                 </div>
               </div>
               <div className="flex items-center gap-4 text-white/70 hover:text-white transition-colors">
@@ -59,8 +59,8 @@ export function ContactSection() {
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <p className="text-sm font-mono text-white/40 mb-1">Location</p>
-                  <p className="text-lg font-medium">Ho Chi Minh City, VN (Available Remote)</p>
+                  <p className="text-sm font-mono text-white/40 mb-1">{t('contact.location.label')}</p>
+                  <p className="text-lg font-medium">{t('contact.location.value')}</p>
                 </div>
               </div>
             </div>

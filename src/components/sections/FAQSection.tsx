@@ -1,32 +1,19 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-
-const faqs = [
-  {
-    question: "Timeline cho một dự án thường kéo dài bao lâu?",
-    answer: "Tùy thuộc vào quy mô và độ phức tạp của dự án. Với gói Weekly Partnership, bạn sẽ nhận được kết quả cốt lõi trong vòng 7 ngày. Đối với các Custom Project, timeline sẽ được xác định chi tiết trong bản kế hoạch dự án sau cuộc gọi tư vấn đầu tiên."
-  },
-  {
-    question: "Bạn có hỗ trợ chỉnh sửa sau khi bàn giao không?",
-    answer: "Có. Mọi dự án đều đi kèm với giai đoạn bảo hành và hỗ trợ tinh chỉnh để đảm bảo sản phẩm hoạt động hoàn hảo trong môi trường thực tế."
-  },
-  {
-    question: "Quy trình làm việc (Workflow) của bạn diễn ra như thế nào?",
-    answer: "Quy trình tiêu chuẩn bao gồm 4 bước: 1. Khám phá (Discovery) - Hiểu rõ bài toán. 2. Lập kế hoạch (Strategy) - Đề xuất giải pháp. 3. Thực thi (Execution) - Code và Design. 4. Bàn giao & Tối ưu (Delivery & Optimization)."
-  },
-  {
-    question: "Hình thức thanh toán như thế nào?",
-    answer: "Đối với Custom Project, thanh toán được chia làm 2 đợt: 50% trước khi bắt đầu dự án và 50% sau khi hoàn tất nghiệm thu. Các gói định kỳ (Weekly/Monthly) yêu cầu thanh toán toàn bộ trước mỗi chu kỳ."
-  }
-];
+import { ChevronDown, Plus } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { faqs } from '../../data/faqs';
 
 export function FAQSection() {
+  const { t, language } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  const displayedFaqs = showAll ? faqs : faqs.slice(0, 5);
 
   return (
     <section id="faq" className="w-full py-24 md:py-32 bg-black border-t border-white/5 content-defer">
@@ -38,27 +25,29 @@ export function FAQSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display text-white mb-6">Câu Hỏi Thường Gặp</h2>
-          <p className="text-white/60 text-lg">
-            Mọi thắc mắc của bạn về quy trình hợp tác và dịch vụ.
+          <h2 className="text-4xl md:text-5xl font-display text-white mb-6 uppercase tracking-tight">
+            {t('faq.title')}
+          </h2>
+          <p className="text-[#A3A3A3] text-lg font-light leading-relaxed max-w-2xl mx-auto">
+            {t('faq.desc')}
           </p>
         </motion.div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {displayedFaqs.map((faq, index) => (
             <motion.div
-              key={index}
+              key={faq.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="border border-white/10 rounded-2xl overflow-hidden bg-white/5 transition-colors hover:bg-white/10"
+              transition={{ duration: 0.5, delay: (index % 5) * 0.1 }}
+              className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02] transition-colors hover:bg-white/5"
             >
               <button
                 onClick={() => toggleFAQ(index)}
                 className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
               >
-                <span className="text-lg font-medium text-white pr-8">{faq.question}</span>
+                <span className="text-lg font-medium text-white pr-8 font-display tracking-wide">{faq.question[language]}</span>
                 <ChevronDown 
                   className={`w-5 h-5 text-white/50 transition-transform duration-300 flex-shrink-0 ${openIndex === index ? 'rotate-180' : ''}`} 
                 />
@@ -72,8 +61,8 @@ export function FAQSection() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div className="p-6 pt-0 text-white/60 leading-relaxed">
-                      {faq.answer}
+                    <div className="p-6 pt-0 text-[#A3A3A3] leading-relaxed font-light">
+                      {faq.answer[language]}
                     </div>
                   </motion.div>
                 )}
@@ -81,6 +70,22 @@ export function FAQSection() {
             </motion.div>
           ))}
         </div>
+
+        {!showAll && faqs.length > 5 && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="mt-12 flex justify-center"
+          >
+            <button
+              onClick={() => setShowAll(true)}
+              className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-white/10 bg-white/5 text-white font-mono uppercase tracking-wider text-sm transition-all hover:bg-white/10 hover:border-white/20"
+            >
+              <Plus size={16} className="group-hover:rotate-90 transition-transform duration-300" />
+              {t('faq.showMore')}
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

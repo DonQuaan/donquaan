@@ -104,6 +104,7 @@ export function StatsSection() {
               ) : (
                 <div className="mb-4 w-full flex justify-center h-[120px] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500 rounded-xl">
                   <iframe 
+                    title={stat.label}
                     src={stat.url} 
                     className="w-full max-w-[320px] h-full border-none pointer-events-none rounded-xl"
                     style={stat.url?.includes('mixerno') ? { filter: 'invert(1) hue-rotate(180deg)' } : {}}
