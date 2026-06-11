@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import { useLanguage } from '../../contexts/LanguageContext';
 import type { Article } from '../../data/articles';
 
+import { useEffect } from 'react';
+
 interface ArticleModalProps {
   article: Article | null;
   isOpen: boolean;
@@ -12,6 +14,20 @@ interface ArticleModalProps {
 
 export function ArticleModal({ article, isOpen, onClose }: ArticleModalProps) {
   const { language } = useLanguage();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
 
   if (!article) return null;
 
@@ -51,7 +67,7 @@ export function ArticleModal({ article, isOpen, onClose }: ArticleModalProps) {
               </div>
 
               {/* Content Scroll Area */}
-              <div className="flex-1 overflow-y-auto p-6 md:p-12 custom-scrollbar">
+              <div className="flex-1 overflow-y-auto p-6 md:p-12 custom-scrollbar" data-lenis-prevent="true">
                 <div className="max-w-3xl mx-auto">
                   <div className="flex items-center gap-4 text-xs font-mono text-white/50 mb-6 uppercase tracking-wider">
                     <span className="flex items-center gap-2">

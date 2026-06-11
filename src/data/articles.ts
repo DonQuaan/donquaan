@@ -17,7 +17,7 @@ export const articles: Article[] = [
     date: "10 Jun 2026",
     readTime: "25 min read",
     excerpt: "Làm thế nào các mô hình ngôn ngữ lớn (LLMs) đang thay đổi hoàn toàn cách doanh nghiệp tiếp cận việc tự động hóa, dựa trên báo cáo của McKinsey và Gartner.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
+    image: "./assets/images/courses/course-5.webp",
     content: {
       vi: `
 # Tương lai của AI tạo sinh (Generative AI) trong Doanh nghiệp đến năm 2026
@@ -140,7 +140,7 @@ Generative AI is not a temporary hype. It is the greatest Architectural Shift si
     date: "28 May 2026",
     readTime: "30 min read",
     excerpt: "Nghiên cứu về kiến trúc ELT thế hệ mới sử dụng dbt, Snowflake và Airflow để giảm 60% thời gian xử lý dữ liệu.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+    image: "./assets/images/courses/course-8.webp",
     content: {
       vi: `
 # Tối ưu hóa Data Pipeline với Modern Data Stack: Từ Nút thắt cổ chai đến Tốc độ ánh sáng
@@ -225,7 +225,7 @@ While batch processing remains dominant, the trend is shifting towards real-time
     date: "15 Apr 2026",
     readTime: "40 min read",
     excerpt: "Tại sao các mô hình AI không còn là một hộp đen, và làm thế nào để ứng dụng SHAP và LIME trong các quyết định tài chính rủi ro cao.",
-    image: "https://images.unsplash.com/photo-1620825937374-87fc1d6aaf63?q=80&w=1000&auto=format&fit=crop",
+    image: "./assets/images/courses/course-6.webp",
     content: {
       vi: `
 # Explainable AI (XAI): Chiếc chìa khóa mở "Hộp đen" Machine Learning
