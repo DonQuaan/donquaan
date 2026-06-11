@@ -8,14 +8,16 @@ export function LazyVideo({ src, className }: { src: string; className?: string 
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
+    // Keep observing: browsers suspend offscreen videos without resuming
+    // them, so re-play on every re-entry into the viewport.
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           if (!video.src) {
             video.src = src;
-            video.play().catch(() => {});
           }
-          observer.disconnect();
+          video.muted = true;
+          video.play().catch(() => {});
         }
       },
       { rootMargin: '300px' }

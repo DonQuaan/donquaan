@@ -22,16 +22,31 @@ export function InfiniteMarquee() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   // React doesn't reliably reflect muted/autoPlay to the DOM before the
-  // browser's autoplay check runs — kick playback off explicitly.
+  // browser's autoplay check runs — kick playback off explicitly. Browsers
+  // also suspend offscreen videos without resuming them, so re-play every
+  // time the marquee re-enters the viewport.
   useEffect(() => {
-    const els = trackRef.current?.querySelectorAll('video');
-    if (!els) return;
-    els.forEach((v) => {
-      v.muted = true;
-      const tryPlay = () => { v.play().catch(() => {}); };
-      if (v.readyState >= 2) tryPlay();
-      else v.addEventListener('loadeddata', tryPlay, { once: true });
-    });
+    const track = trackRef.current;
+    if (!track) return;
+    const els = track.querySelectorAll('video');
+
+    const playAll = () => {
+      els.forEach((v) => {
+        v.muted = true;
+        if (v.readyState >= 2) {
+          v.play().catch(() => {});
+        } else {
+          v.addEventListener('loadeddata', () => { v.play().catch(() => {}); }, { once: true });
+        }
+      });
+    };
+
+    playAll();
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) playAll();
+    }, { rootMargin: '100px' });
+    observer.observe(track);
+    return () => observer.disconnect();
   }, []);
 
   return (
