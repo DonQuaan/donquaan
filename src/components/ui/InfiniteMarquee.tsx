@@ -46,7 +46,15 @@ export function InfiniteMarquee() {
       if (entries.some((e) => e.isIntersecting)) playAll();
     }, { rootMargin: '100px' });
     observer.observe(track);
-    return () => observer.disconnect();
+
+    // Browsers also pause videos in hidden tabs; resume on return
+    const onVisible = () => { if (!document.hidden) playAll(); };
+    document.addEventListener('visibilitychange', onVisible);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', onVisible);
+    };
   }, []);
 
   return (

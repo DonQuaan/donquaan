@@ -23,7 +23,17 @@ export function LazyVideo({ src, className }: { src: string; className?: string 
       { rootMargin: '300px' }
     );
     observer.observe(video);
-    return () => observer.disconnect();
+
+    // Browsers also pause videos in hidden tabs; resume on return
+    const onVisible = () => {
+      if (!document.hidden && video.src) video.play().catch(() => {});
+    };
+    document.addEventListener('visibilitychange', onVisible);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', onVisible);
+    };
   }, [src]);
 
   return <video ref={ref} className={className} muted loop playsInline preload="none" />;
