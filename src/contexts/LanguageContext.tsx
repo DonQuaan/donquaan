@@ -15,11 +15,11 @@ const dictionaries: Record<Language, Dictionary> = {
     'nav.insights': 'Góc Nhìn',
     'nav.contact': 'Liên Hệ',
     
-    'hero.role': 'Chuyên gia Dữ liệu & Học máy',
+    'hero.role': 'DonQuaan | Chuyên gia Data Science & Khai Phá Dữ Liệu',
     'hero.cta': 'Khám phá Hành trình',
     
     'about.title': 'Bắt đầu từ Đam mê',
-    'about.desc': 'Tôi là một chuyên gia dữ liệu luôn khao khát biến những con số vô tri thành câu chuyện có ý nghĩa.',
+    'about.desc': 'Tôi là Nguyễn Vũ Đông Quân (DonQuaan) - Chuyên gia dữ liệu luôn khao khát biến những con số vô tri thành đột phá kinh doanh.',
     
     'stats.experience': 'Năm Kinh Nghiệm',
     'stats.clients': 'Khách Hàng',
@@ -47,11 +47,11 @@ const dictionaries: Record<Language, Dictionary> = {
     'nav.insights': 'Insights',
     'nav.contact': 'Contact',
     
-    'hero.role': 'Data Science & ML Expert',
+    'hero.role': 'DonQuaan | Data Science & Machine Learning Expert',
     'hero.cta': 'Explore Journey',
     
     'about.title': 'Driven by Passion',
-    'about.desc': 'I am a data expert passionate about turning meaningless numbers into meaningful stories.',
+    'about.desc': 'I am Nguyen Vu Dong Quan (DonQuaan) - A data expert passionate about turning meaningless numbers into meaningful business breakthroughs.',
     
     'stats.experience': 'Years Experience',
     'stats.clients': 'Clients Worldwide',

@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import Sitemap from 'vite-plugin-sitemap'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 import packageJson from './package.json'
 
@@ -8,6 +10,14 @@ import packageJson from './package.json'
 export default defineConfig({
   plugins: [
     react(),
+    Sitemap({ hostname: 'https://donquaan.github.io/donquaan/' }),
+    ViteImageOptimizer({
+      png: { quality: 80 },
+      jpeg: { quality: 80 },
+      jpg: { quality: 80 },
+      webp: { lossless: true },
+      avif: { lossless: true }
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
