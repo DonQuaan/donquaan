@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState, useCallback } from 'react';
 
 export interface Track {
   title: string;
@@ -67,9 +67,9 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     audioA.current = new Audio();
     audioB.current = new Audio();
     
-    // Pre-load first track
-    audioA.current.src = TRACKS[0].url;
-    audioA.current.load();
+    // Don't preload any track; src is assigned when playback starts (crossfadeTo)
+    audioA.current.preload = 'none';
+    audioB.current.preload = 'none';
     audioA.current.volume = 0;
 
     const handleEnded = () => {
@@ -86,28 +86,38 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // Update progress bar
+  // Update progress bar (only while the player UI is visible, throttled to ~4/s)
   useEffect(() => {
-    const updateProgress = () => {
+    const readProgress = () => {
       const activeElement = activeAudioRef.current === 'A' ? audioA.current : audioB.current;
       if (activeElement && !isNaN(activeElement.duration)) {
         setCurrentTime(activeElement.currentTime);
         setDuration(activeElement.duration);
         setProgress(activeElement.currentTime / activeElement.duration);
       }
-      if (isPlaying) {
-        rAFRef.current = requestAnimationFrame(updateProgress);
-      }
     };
-    
-    if (isPlaying) {
+
+    if (isPlayerOpen) {
+      // Immediate update so the bar is fresh when the player opens
+      readProgress();
+    }
+
+    if (isPlaying && isPlayerOpen) {
+      let lastUpdate = 0;
+      const updateProgress = (now: number) => {
+        if (now - lastUpdate >= 250) {
+          lastUpdate = now;
+          readProgress();
+        }
+        rAFRef.current = requestAnimationFrame(updateProgress);
+      };
       rAFRef.current = requestAnimationFrame(updateProgress);
     } else {
       cancelAnimationFrame(rAFRef.current);
     }
-    
+
     return () => cancelAnimationFrame(rAFRef.current);
-  }, [isPlaying]);
+  }, [isPlaying, isPlayerOpen]);
 
   const crossfadeTo = useCallback((newUrl: string, targetVolume: number, isInitialStart = false) => {
     const prevActive = activeAudioRef.current === 'A' ? audioA.current : audioB.current;
@@ -295,25 +305,27 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     };
   }, [hasStarted, crossfadeTo, volume]);
 
+  const contextValue = useMemo(() => ({
+    tracks: TRACKS,
+    currentTrackIndex,
+    isPlaying,
+    volume,
+    isPlayerOpen,
+    progress,
+    duration,
+    currentTime,
+    togglePlay,
+    playTrack,
+    nextTrack,
+    prevTrack,
+    setVolume,
+    togglePlayer,
+    seek,
+    hasStarted
+  }), [currentTrackIndex, isPlaying, volume, isPlayerOpen, progress, duration, currentTime, togglePlay, playTrack, nextTrack, prevTrack, setVolume, togglePlayer, seek, hasStarted]);
+
   return (
-    <MusicContext.Provider value={{
-      tracks: TRACKS,
-      currentTrackIndex,
-      isPlaying,
-      volume,
-      isPlayerOpen,
-      progress,
-      duration,
-      currentTime,
-      togglePlay,
-      playTrack,
-      nextTrack,
-      prevTrack,
-      setVolume,
-      togglePlayer,
-      seek,
-      hasStarted
-    }}>
+    <MusicContext.Provider value={contextValue}>
       {children}
     </MusicContext.Provider>
   );

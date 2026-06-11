@@ -1,18 +1,18 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Code, Layout, Zap, Bot } from 'lucide-react';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { LazyVideo } from '../ui/LazyVideo';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 function SpotlightCard({ children, className = "" }: { children: React.ReactNode, className?: string }) {
   const divRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current) return;
-    const rect = divRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    const el = divRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty('--spot-x', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
   };
 
   return (
@@ -23,23 +23,23 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
       transition={{ duration: 0.7 }}
       ref={divRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setOpacity(1)}
-      onMouseLeave={() => setOpacity(0)}
+      onMouseEnter={() => divRef.current?.style.setProperty('--spot-o', '1')}
+      onMouseLeave={() => divRef.current?.style.setProperty('--spot-o', '0')}
       className={`relative overflow-hidden rounded-3xl border border-white/5 bg-black/40 backdrop-blur-md group ${className}`}
     >
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-10 mix-blend-screen"
         style={{
-          opacity,
-          background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.08) 0%, transparent 60%)`,
+          opacity: 'var(--spot-o, 0)',
+          background: `radial-gradient(800px circle at var(--spot-x, 0px) var(--spot-y, 0px), rgba(255,255,255,0.08) 0%, transparent 60%)`,
         }}
       />
       {/* Subtle hover border effect */}
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-20"
         style={{
-          opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.4) 0%, transparent 50%)`,
+          opacity: 'var(--spot-o, 0)',
+          background: `radial-gradient(600px circle at var(--spot-x, 0px) var(--spot-y, 0px), rgba(255,255,255,0.4) 0%, transparent 50%)`,
           WebkitMaskImage: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
           WebkitMaskComposite: `xor`,
           maskComposite: `exclude`,
@@ -80,7 +80,7 @@ export function ServicesSection() {
             <div className="relative h-1/2 md:h-3/5 overflow-hidden border-b border-white/5">
               <LazyVideo
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
+                src={`${import.meta.env.BASE_URL}media/services-architecture.mp4`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
             </div>

@@ -59,6 +59,8 @@ export function InsightsSection() {
                 <img
                   src={article.image}
                   alt={article.title[language]}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-all duration-700 ease-out"
                 />
                 

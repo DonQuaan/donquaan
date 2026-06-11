@@ -3,34 +3,35 @@ import { motion, useInView } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const AnimatedCounter = ({ from, to, duration = 2, suffix = "", prefix = "" }: { from: number, to: number, duration?: number, suffix?: string, prefix?: string }) => {
-  const [count, setCount] = useState(from);
   const nodeRef = useRef<HTMLSpanElement>(null);
   const inView = useInView(nodeRef, { once: true, margin: "-50px" });
 
   useEffect(() => {
     if (!inView) return;
-    
+
     let startTime: number | null = null;
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
-      
+
       // Easing function (easeOutExpo)
       const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      
-      setCount(Math.floor(from + (to - from) * easeOut));
-      
+
+      if (nodeRef.current) {
+        nodeRef.current.textContent = prefix + Math.floor(from + (to - from) * easeOut).toLocaleString() + suffix;
+      }
+
       if (progress < 1) {
         requestAnimationFrame(animate);
       }
     };
-    
+
     requestAnimationFrame(animate);
-  }, [inView, from, to, duration]);
+  }, [inView, from, to, duration, prefix, suffix]);
 
   return (
     <span ref={nodeRef} className="tabular-nums">
-      {prefix}{count.toLocaleString()}{suffix}
+      {prefix}{from.toLocaleString()}{suffix}
     </span>
   );
 };

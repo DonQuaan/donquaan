@@ -166,3 +166,7 @@ input:focus-visible,
   content-visibility: auto;
   contain-intrinsic-size: 1px 1000px;
 }
+
+.animate-marquee {
+  will-change: transform;
+}

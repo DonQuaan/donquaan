@@ -56,6 +56,7 @@ export function ArticleModal({ article, isOpen, onClose }: ArticleModalProps) {
                 <img
                   src={article.image}
                   alt={article.title[language]}
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/50 to-transparent" />

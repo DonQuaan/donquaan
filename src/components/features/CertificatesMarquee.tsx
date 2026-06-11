@@ -133,6 +133,8 @@ const certificates: Certificate[] = [
   }
 ];
 
+const marqueeCertificates = [...certificates, ...certificates];
+
 export function CertificatesMarquee() {
   const { language } = useLanguage();
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
@@ -172,7 +174,7 @@ export function CertificatesMarquee() {
 
       <div className="relative w-full overflow-hidden py-4 fade-edges">
         <div className="flex animate-marquee hover:pause w-max gap-4 sm:gap-6 px-4">
-          {[...certificates, ...certificates].map((cert, index) => (
+          {marqueeCertificates.map((cert, index) => (
             <div 
               key={`${cert.id}-${index}`}
               onClick={() => setSelectedCert(cert)}
@@ -184,6 +186,7 @@ export function CertificatesMarquee() {
                   src={cert.image} 
                   alt={cert.title}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
@@ -250,6 +253,8 @@ export function CertificatesMarquee() {
                   <img 
                     src={selectedCert.image} 
                     alt={selectedCert.title}
+                    loading="lazy"
+                    decoding="async"
                     className="max-w-full max-h-full object-contain relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                   />
                 </div>

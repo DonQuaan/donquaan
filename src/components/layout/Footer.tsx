@@ -38,7 +38,7 @@ export function Footer() {
             {/* Zalo Contact Block */}
             <div className="flex items-center gap-4 mt-2 p-4 rounded-2xl bg-white/5 border border-white/10 w-fit mx-auto lg:mx-0 hover:bg-white/10 transition-colors">
               <div className="bg-white p-1.5 rounded-xl shrink-0">
-                <img src="https://i.postimg.cc/rsCCQQRn/qr-zalo.jpg" alt="Zalo QR Code" className="w-16 h-16 object-contain rounded-lg" />
+                <img src="https://i.postimg.cc/rsCCQQRn/qr-zalo.jpg" alt="Zalo QR Code" loading="lazy" decoding="async" className="w-16 h-16 object-contain rounded-lg" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xs uppercase tracking-widest text-primary mb-1 font-bold">{language === 'vi' ? 'Liên Hệ Zalo' : 'Contact via Zalo'}</span>
@@ -52,19 +52,19 @@ export function Footer() {
         {/* Right Side: Social Grid */}
         <div className="grid grid-cols-4 sm:grid-cols-4 gap-4 md:gap-6 lg:max-w-md w-full justify-items-center lg:justify-items-end lg:mt-0 mt-8">
           <a href="https://www.facebook.com/NguyenDonQuaan" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 transition-all hover:-translate-y-1 flex items-center justify-center">
-            <img src={facebookIcon} alt="Facebook" className="w-6 h-6 object-contain" />
+            <img src={facebookIcon} alt="Facebook" loading="lazy" decoding="async" className="w-6 h-6 object-contain" />
           </a>
           <a href="https://www.twitch.tv/donquaan_tkz" target="_blank" rel="noopener noreferrer" aria-label="Twitch" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-[#9146FF] text-foreground transition-all hover:-translate-y-1 flex items-center justify-center">
             <Twitch className="w-5 h-5" />
           </a>
           <a href="https://x.com/DonquaanN74404" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 transition-all hover:-translate-y-1 flex items-center justify-center">
-            <img src={xIcon} alt="X (Twitter)" className="w-5 h-5 object-contain" />
+            <img src={xIcon} alt="X (Twitter)" loading="lazy" decoding="async" className="w-5 h-5 object-contain" />
           </a>
           <a href="https://open.spotify.com/user/31xr7kgwysteud3urdhzrv5ixc2q?si=504e28691ba349ee" target="_blank" rel="noopener noreferrer" aria-label="Spotify" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-[#1DB954] text-foreground transition-all hover:-translate-y-1 flex items-center justify-center">
             <Music className="w-5 h-5" />
           </a>
           <a href="https://www.youtube.com/channel/UCvqlcKf1nm9i2LeH9hFQQYA" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 transition-all hover:-translate-y-1 flex items-center justify-center">
-            <img src={youtubeIcon} alt="YouTube" className="w-6 h-6 object-contain" />
+            <img src={youtubeIcon} alt="YouTube" loading="lazy" decoding="async" className="w-6 h-6 object-contain" />
           </a>
           <a href="https://roblox.com/users/3947663158/profile" target="_blank" rel="noopener noreferrer" aria-label="Roblox" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/20 text-foreground transition-all hover:-translate-y-1 flex items-center justify-center">
             <RobloxIcon className="w-5 h-5" />
@@ -73,7 +73,7 @@ export function Footer() {
             <CurseforgeIcon className="w-5 h-5" />
           </a>
           <a href="https://github.com/DonQuaan" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-3.5 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 transition-all hover:-translate-y-1 flex items-center justify-center">
-            <img src={githubIcon} alt="GitHub" className="w-6 h-6 object-contain" />
+            <img src={githubIcon} alt="GitHub" loading="lazy" decoding="async" className="w-6 h-6 object-contain" />
           </a>
         </div>
       </div>

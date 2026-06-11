@@ -88,6 +88,22 @@ export default defineConfig({
             }
           },
           {
+            // Self-hosted videos (marquee clips, project demos)
+            urlPattern: /\.(?:mp4|webm)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'video-cache',
+              rangeRequests: true,
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 90
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
             // Images & documents (certificates, course covers, og image, pdf)
             urlPattern: /\.(?:png|jpe?g|webp|avif|gif|pdf)$/i,
             handler: 'CacheFirst',

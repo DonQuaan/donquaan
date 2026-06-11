@@ -25,6 +25,8 @@ export function CourseSection() {
         <img 
           src={`${basePath}assets/images/courses/course-3.webp`} 
           alt={language === 'vi' ? 'Đánh Thức Sự Giàu Có Event' : 'Awaken Your Wealth Event'}
+          loading="lazy"
+          decoding="async"
           className="object-cover w-full h-full opacity-30 mix-blend-luminosity"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black" />
@@ -85,7 +87,7 @@ export function CourseSection() {
         >
           {[1, 2, 4, 5, 6, 7, 8, 9].map((num) => (
             <div key={num} className="relative rounded-2xl overflow-hidden border border-white/10 group shadow-2xl break-inside-avoid">
-               <img src={`${basePath}assets/images/courses/course-${num}.webp`} alt={`Event Highlights ${num}`} className="object-cover w-full transition-transform duration-1000 group-hover:scale-110" />
+               <img src={`${basePath}assets/images/courses/course-${num}.webp`} alt={`Event Highlights ${num}`} loading="lazy" decoding="async" className="object-cover w-full transition-transform duration-1000 group-hover:scale-110" />
                <div className="absolute inset-0 bg-black/40 transition-colors duration-700 group-hover:bg-black/10" />
                <div className="absolute inset-0 border border-white/5 rounded-2xl z-10 pointer-events-none" />
             </div>

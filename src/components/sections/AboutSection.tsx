@@ -105,7 +105,7 @@ export function AboutSection() {
                 <h4 className="text-xs uppercase tracking-[0.2em] text-white/30 mb-5">{language === 'vi' ? 'Chứng Chỉ Nổi Bật' : 'Featured Certifications'}</h4>
                 <div className="flex-1 flex flex-col sm:flex-row gap-6 items-start">
                   <div className="w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-xl overflow-hidden border border-white/10 bg-white/5 flex items-center justify-center p-2">
-                    <img src="https://pdf.ms.credential.net/badge/image?env=production&credential=ztofjtke" alt="Gemini Certified Faculty Badge" className="w-full h-full object-contain" />
+                    <img src="https://pdf.ms.credential.net/badge/image?env=production&credential=ztofjtke" alt="Gemini Certified Faculty Badge" loading="lazy" decoding="async" className="w-full h-full object-contain" />
                   </div>
                   <div className="space-y-3">
                     <div>
