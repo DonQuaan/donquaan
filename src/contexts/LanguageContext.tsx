@@ -1,13 +1,12 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
+import { createContext, useContext } from 'react';
 
-type Language = 'vi' | 'en';
+export type Language = 'vi' | 'en';
 
 type Dictionary = {
   [key: string]: string;
 };
 
-const dictionaries: Record<Language, Dictionary> = {
+export const dictionaries: Record<Language, Dictionary> = {
   vi: {
     'nav.about': 'Giới Thiệu',
     'nav.projects': 'Dự Án',
@@ -94,32 +93,7 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => {
-    const saved = localStorage.getItem('donquaan-lang');
-    return (saved === 'en' || saved === 'vi') ? saved : 'vi';
-  });
-
-  useEffect(() => {
-    localStorage.setItem('donquaan-lang', language);
-    document.documentElement.lang = language;
-    document.title = language === 'vi'
-      ? 'DonQuaan | Chuyên gia Data Science & AI'
-      : 'DonQuaan | Data Science & AI Expert';
-  }, [language]);
-
-  const t = (key: string) => {
-    return dictionaries[language][key] || key;
-  };
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
-  );
-}
+export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function useLanguage() {
   const context = useContext(LanguageContext);

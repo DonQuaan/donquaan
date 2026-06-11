@@ -4,9 +4,9 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import { CustomCursor } from './components/ui/CustomCursor';
 import { Preloader } from './components/ui/Preloader';
 import { TerminalEasterEgg } from './components/features/TerminalEasterEgg';
-import { MusicProvider } from './contexts/MusicContext';
+import { MusicProvider } from './contexts/MusicProvider';
 import { MusicPlayer } from './components/features/MusicPlayer';
-import { LanguageProvider } from './contexts/LanguageContext';
+import { LanguageProvider } from './contexts/LanguageProvider';
 
 import { HomePage } from './components/pages/HomePage';
 const LegalLayout = lazy(() => import('./components/pages/LegalLayout').then(module => ({ default: module.LegalLayout })));

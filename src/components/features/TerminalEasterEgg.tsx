@@ -7,17 +7,19 @@ export function TerminalEasterEgg() {
   const { language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
-  const [history, setHistory] = useState<string[]>(['DonQuaan OS v1.0.0', language === 'vi' ? 'Gõ "help" để xem danh sách lệnh.' : 'Type "help" to see the list of commands.']);
+  const bootBanner = language === 'vi' ? 'Gõ "help" để xem danh sách lệnh.' : 'Type "help" to see the list of commands.';
+  const [history, setHistory] = useState<string[]>(['DonQuaan OS v1.0.0', bootBanner]);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // Keep the boot banner in sync with the active language (only while untouched)
-  useEffect(() => {
-    setHistory((prev) =>
-      prev.length === 2 && prev[0] === 'DonQuaan OS v1.0.0'
-        ? ['DonQuaan OS v1.0.0', language === 'vi' ? 'Gõ "help" để xem danh sách lệnh.' : 'Type "help" to see the list of commands.']
-        : prev
-    );
-  }, [language]);
+  // Keep the boot banner in sync with the active language (only while untouched).
+  // State is adjusted during render (per React docs) instead of in an effect.
+  const [prevLanguage, setPrevLanguage] = useState(language);
+  if (prevLanguage !== language) {
+    setPrevLanguage(language);
+    if (history.length === 2 && history[0] === 'DonQuaan OS v1.0.0') {
+      setHistory(['DonQuaan OS v1.0.0', bootBanner]);
+    }
+  }
   
   // Secret sequence listener
   useEffect(() => {

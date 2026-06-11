@@ -10,7 +10,7 @@ import { useMusic } from '../../contexts/MusicContext';
 import { LanguageToggle } from '../ui/LanguageToggle';
 
 export function Navigation() {
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(() => soundManager.getMutedState());
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -36,10 +36,6 @@ export function Navigation() {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  useEffect(() => {
-    setIsMuted(soundManager.getMutedState());
-  }, []);
 
   const toggleSound = () => {
     const muted = soundManager.toggleMute();

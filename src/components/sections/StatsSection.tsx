@@ -36,6 +36,21 @@ const AnimatedCounter = ({ from, to, duration = 2, suffix = "", prefix = "" }: {
   );
 };
 
+interface MixernoCount {
+  value: string;
+  count: number;
+}
+
+interface Stat {
+  label: string;
+  description: string;
+  type: 'counter' | 'text';
+  value?: number;
+  valueText?: string;
+  prefix?: string;
+  suffix?: string;
+}
+
 export function StatsSection() {
   const { t, language } = useLanguage();
 
@@ -57,8 +72,8 @@ export function StatsSection() {
     // Lấy số liệu YouTube
     fetch('https://mixerno.space/api/youtube-channel-counter/user/UC3NPuQGUQ8HDPL2LtWPlHeA')
       .then(res => res.json())
-      .then(data => {
-        const subCount = data?.counts?.find((c: any) => c.value === 'subscribers')?.count;
+      .then((data: { counts?: MixernoCount[] }) => {
+        const subCount = data?.counts?.find((c) => c.value === 'subscribers')?.count;
         if (subCount) {
           setYoutubeSubs(subCount);
         }
@@ -66,7 +81,7 @@ export function StatsSection() {
       .catch(console.error);
   }, []);
 
-  const stats = [
+  const stats: Stat[] = [
     {
       label: "YouTube Subscribers (Live)",
       value: youtubeSubs,
@@ -125,11 +140,11 @@ export function StatsSection() {
             >
               {stat.type === 'counter' ? (
                 <div className="text-5xl lg:text-7xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40 mb-4 transition-transform duration-500 group-hover:scale-110">
-                  <AnimatedCounter from={0} to={(stat as any).value ?? 0} duration={2.5} prefix={(stat as any).prefix ?? ""} suffix={(stat as any).suffix ?? ""} />
+                  <AnimatedCounter from={0} to={stat.value ?? 0} duration={2.5} prefix={stat.prefix ?? ""} suffix={stat.suffix ?? ""} />
                 </div>
               ) : stat.type === 'text' ? (
                 <div className="text-4xl lg:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40 mb-4 transition-transform duration-500 group-hover:scale-110">
-                  {(stat as any).valueText}
+                  {stat.valueText}
                 </div>
               ) : null}
               

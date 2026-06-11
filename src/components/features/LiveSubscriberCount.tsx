@@ -2,6 +2,15 @@ import { useState, useEffect } from 'react';
 import { Youtube } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
+interface MixernoCount {
+  value: string;
+  count: number;
+}
+
+interface MixernoResponse {
+  counts?: MixernoCount[];
+}
+
 export function LiveSubscriberCount() {
   const { language } = useLanguage();
   const [subs, setSubs] = useState<number | null>(null);
@@ -10,9 +19,9 @@ export function LiveSubscriberCount() {
     async function fetchMixerno() {
       try {
         const res = await fetch('https://mixerno.space/api/youtube-channel-counter/user/UC3NPuQGUQ8HDPL2LtWPlHeA');
-        const data = await res.json();
-        
-        const subCount = data.counts.find((c: any) => c.value === 'subscribers')?.count;
+        const data: MixernoResponse = await res.json();
+
+        const subCount = data.counts?.find((c) => c.value === 'subscribers')?.count;
         if (subCount) {
           setSubs(subCount);
         }

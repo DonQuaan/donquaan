@@ -4,7 +4,7 @@ class SoundManager {
 
   public init() {
     if (!this.context && typeof window !== 'undefined') {
-      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       if (AudioContextClass) {
         this.context = new AudioContextClass();
       }
