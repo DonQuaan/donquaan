@@ -40,11 +40,12 @@ const dictionaries: Record<Language, Dictionary> = {
     'contact.form.email': 'Email làm việc',
     'contact.form.message': 'Dự án hoặc vấn đề bạn đang gặp phải...',
     'contact.form.submit': 'Gửi Yêu Cầu Chuyên Gia',
+    'contact.form.opened': 'Đã mở email — bấm Gửi để hoàn tất!',
     'contact.location.label': 'Địa chỉ',
     'contact.location.value': 'Đà Nẵng, Việt Nam',
-    
-    'recognitions.title': 'Đối Tác & Vinh Danh',
-    'recognitions.subtitle': 'As Seen On'
+
+    'recognitions.title': 'Công Nghệ Cốt Lõi',
+    'recognitions.subtitle': 'Tech Stack'
   },
   en: {
     'nav.about': 'About',
@@ -78,11 +79,12 @@ const dictionaries: Record<Language, Dictionary> = {
     'contact.form.email': 'Work Email',
     'contact.form.message': 'Your project or challenge...',
     'contact.form.submit': 'Send Expert Request',
+    'contact.form.opened': 'Email draft opened — hit Send to finish!',
     'contact.location.label': 'Location',
     'contact.location.value': 'Da Nang, Vietnam',
-    
-    'recognitions.title': 'Partners & Recognitions',
-    'recognitions.subtitle': 'As Seen On'
+
+    'recognitions.title': 'Core Technologies',
+    'recognitions.subtitle': 'Tech Stack'
   }
 };
 

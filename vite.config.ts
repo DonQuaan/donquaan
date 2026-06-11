@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
-import Sitemap from 'vite-plugin-sitemap'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 import packageJson from './package.json'
@@ -10,7 +9,6 @@ import packageJson from './package.json'
 export default defineConfig({
   plugins: [
     react(),
-    Sitemap({ hostname: 'https://donquaan.github.io/donquaan/' }),
     ViteImageOptimizer({
       png: { quality: 80 },
       jpeg: { quality: 80 },
@@ -20,9 +18,30 @@ export default defineConfig({
     }),
     VitePWA({
       registerType: 'autoUpdate',
+      manifest: {
+        name: 'DonQuaan | Chuyên gia Data Science & AI',
+        short_name: 'DonQuaan',
+        description: 'Giải mã rào cản kỹ thuật từ gốc rễ (First Principles). Kiến tạo sự khác biệt bền vững bằng AI và công nghệ lõi.',
+        lang: 'vi',
+        start_url: '/donquaan/',
+        scope: '/donquaan/',
+        display: 'standalone',
+        background_color: '#000000',
+        theme_color: '#000000',
+        icons: [
+          { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
+        ]
+      },
       workbox: {
-        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,mp3,jpg,jpeg,gif,pdf}'],
+        // Precache only the lightweight app shell. Music (~50MB), certificates
+        // and PDFs were previously precached, forcing a 53MB background
+        // download on every first visit — they are runtime-cached instead.
+        globPatterns: ['**/*.{js,css,html,ico,svg,woff2}'],
+        globIgnores: ['logo.svg'],
+        // Never serve index.html for direct requests to real files (pdf, images, audio)
+        navigateFallbackDenylist: [/\.(?:pdf|png|jpe?g|webp|avif|gif|svg|mp3|mp4|txt|xml|webmanifest)$/i],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -46,6 +65,37 @@ export default defineConfig({
               expiration: {
                 maxEntries: 10,
                 maxAgeSeconds: 60 * 60 * 24 * 365
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            // Music: cache each track the first time the user actually plays it
+            urlPattern: /\/msc\/.*\.mp3$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'music-cache',
+              rangeRequests: true,
+              expiration: {
+                maxEntries: 12,
+                maxAgeSeconds: 60 * 60 * 24 * 90
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            // Images & documents (certificates, course covers, og image, pdf)
+            urlPattern: /\.(?:png|jpe?g|webp|avif|gif|pdf)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'asset-cache',
+              expiration: {
+                maxEntries: 80,
+                maxAgeSeconds: 60 * 60 * 24 * 30
               },
               cacheableResponse: {
                 statuses: [0, 200]

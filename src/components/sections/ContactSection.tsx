@@ -3,20 +3,29 @@ import { Send, Calendar, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useState } from 'react';
 
+const CONTACT_EMAIL = 'contact.donquaan@gmail.com';
+
 export function ContactSection() {
   const { t } = useLanguage();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setTimeout(() => setIsSuccess(false), 3000);
-    }, 1500);
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim();
+
+    const subject = `[Website] Yêu cầu tư vấn từ ${name}`;
+    const body = `Họ tên: ${name}\nEmail: ${email}\n\n${message}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    const win = window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+    if (!win) {
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+    setIsSuccess(true);
+    setTimeout(() => setIsSuccess(false), 5000);
   };
 
   return (
@@ -83,6 +92,7 @@ export function ContactSection() {
                   <input 
                     type="text" 
                     id="name"
+                    name="name"
                     required
                     className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/5 transition-all"
                     placeholder="John Doe"
@@ -94,6 +104,7 @@ export function ContactSection() {
                   <input 
                     type="email" 
                     id="email"
+                    name="email"
                     required
                     className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/5 transition-all"
                     placeholder="john@company.com"
@@ -104,6 +115,7 @@ export function ContactSection() {
                   <label htmlFor="message" className="text-sm font-mono text-white/60 uppercase tracking-wider">{t('contact.form.message')}</label>
                   <textarea 
                     id="message"
+                    name="message"
                     required
                     rows={4}
                     className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-white/20 focus:outline-none focus:border-primary/50 focus:bg-white/5 transition-all resize-none"
@@ -111,19 +123,17 @@ export function ContactSection() {
                   />
                 </div>
 
-                <button 
+                <button
                   type="submit"
-                  disabled={isSubmitting || isSuccess}
+                  disabled={isSuccess}
                   className={`group relative w-full flex items-center justify-center gap-3 py-4 rounded-xl font-medium text-lg transition-all duration-300 overflow-hidden ${
-                    isSuccess 
-                      ? 'bg-green-500/20 text-green-400 border border-green-500/50' 
+                    isSuccess
+                      ? 'bg-green-500/20 text-green-400 border border-green-500/50'
                       : 'bg-white text-black hover:bg-gray-200 hover:scale-[1.02]'
                   }`}
                 >
-                  {isSubmitting ? (
-                    <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                  ) : isSuccess ? (
-                    "Sent Successfully!"
+                  {isSuccess ? (
+                    t('contact.form.opened')
                   ) : (
                     <>
                       <span>{t('contact.form.submit')}</span>

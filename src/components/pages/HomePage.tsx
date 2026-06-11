@@ -18,7 +18,6 @@ const StatsSection = lazy(() => import('../sections/StatsSection').then(m => ({ 
 const ServicesSection = lazy(() => import('../sections/ServicesSection').then(m => ({ default: m.ServicesSection })));
 const Projects = lazy(() => import('../features/Projects').then(m => ({ default: m.Projects })));
 const PricingSection = lazy(() => import('../sections/PricingSection').then(m => ({ default: m.PricingSection })));
-const TestimonialCarousel = lazy(() => import('../features/TestimonialCarousel').then(m => ({ default: m.TestimonialCarousel })));
 const FAQSection = lazy(() => import('../sections/FAQSection').then(m => ({ default: m.FAQSection })));
 const ContactSection = lazy(() => import('../sections/ContactSection').then(m => ({ default: m.ContactSection })));
 const InsightsSection = lazy(() => import('../sections/InsightsSection').then(m => ({ default: m.InsightsSection })));
@@ -56,8 +55,7 @@ export function HomePage() {
             <Projects />
             
             <PricingSection />
-            <TestimonialCarousel />
-            
+
             <InsightsSection />
             
             <FAQSection />

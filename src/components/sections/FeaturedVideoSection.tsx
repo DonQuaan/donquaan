@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { LazyVideo } from '../ui/LazyVideo';
 
 export function FeaturedVideoSection() {
   return (
@@ -12,13 +13,8 @@ export function FeaturedVideoSection() {
           className="relative w-full rounded-3xl overflow-hidden aspect-video bg-white/5 border border-white/10"
         >
           {/* Main Video */}
-          <video
+          <LazyVideo
             className="w-full h-full object-cover"
-            muted
-            autoPlay
-            loop
-            playsInline
-            preload="auto"
             src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260402_054547_9875cfc5-155a-4229-8ec8-b7ba7125cbf8.mp4"
           />
 

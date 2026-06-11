@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Code, Layout, Zap, Bot } from 'lucide-react';
 import React, { useRef, useState } from 'react';
+import { LazyVideo } from '../ui/LazyVideo';
 
 function SpotlightCard({ children, className = "" }: { children: React.ReactNode, className?: string }) {
   const divRef = useRef<HTMLDivElement>(null);
@@ -75,9 +76,8 @@ export function ServicesSection() {
           {/* Card 1: Large Core Architecture */}
           <SpotlightCard className="md:col-span-2 md:row-span-2 flex flex-col min-h-[400px] p-0">
             <div className="relative h-1/2 md:h-3/5 overflow-hidden border-b border-white/5">
-              <video
+              <LazyVideo
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                muted autoPlay loop playsInline
                 src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />

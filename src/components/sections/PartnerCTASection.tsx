@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { generateMailtoLink } from '../../utils/mail';
-import logoSvg from '/logo.svg?url';
+import logoSvg from '/logo-64.png?url';
 
 const gifs = [
   "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",

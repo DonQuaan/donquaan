@@ -1,16 +1,18 @@
 import { useLanguage } from '../../contexts/LanguageContext';
-import { SiGoogle, SiMeta, SiNetflix, SiApple, SiSpotify, SiTesla } from 'react-icons/si';
-import { FaMicrosoft, FaAmazon } from 'react-icons/fa';
+import {
+  SiPython, SiPandas, SiScikitlearn, SiTensorflow, SiReact,
+  SiTypescript, SiGooglegemini, SiKaggle
+} from 'react-icons/si';
 
 const partners = [
-  { name: "Google", icon: SiGoogle },
-  { name: "Microsoft", icon: FaMicrosoft },
-  { name: "Amazon", icon: FaAmazon },
-  { name: "Meta", icon: SiMeta },
-  { name: "Netflix", icon: SiNetflix },
-  { name: "Apple", icon: SiApple },
-  { name: "Spotify", icon: SiSpotify },
-  { name: "Tesla", icon: SiTesla }
+  { name: "Python", icon: SiPython },
+  { name: "Pandas", icon: SiPandas },
+  { name: "scikit-learn", icon: SiScikitlearn },
+  { name: "TensorFlow", icon: SiTensorflow },
+  { name: "Gemini AI", icon: SiGooglegemini },
+  { name: "Kaggle", icon: SiKaggle },
+  { name: "React", icon: SiReact },
+  { name: "TypeScript", icon: SiTypescript }
 ];
 
 export function RecognitionsMarquee() {

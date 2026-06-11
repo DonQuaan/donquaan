@@ -79,8 +79,9 @@ export function StatsSection() {
       type: "counter"
     },
     {
-      label: "Facebook Followers (Live)",
+      label: "Facebook Followers",
       value: fbMembers,
+      suffix: "+",
       description: "Quản trị Fanpage tích xanh Coach Nguyễn Tú Oanh",
       type: "counter"
     },

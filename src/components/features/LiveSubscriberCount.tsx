@@ -20,7 +20,7 @@ export function LiveSubscriberCount() {
     }
     
     fetchMixerno();
-    const interval = setInterval(fetchMixerno, 10000); // refresh every 10s
+    const interval = setInterval(fetchMixerno, 60000); // refresh every 60s
     return () => clearInterval(interval);
   }, []);
 

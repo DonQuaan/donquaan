@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import logoSvg from '/logo.svg?url';
+import logoSvg from '/logo-64.png?url';
 import { generateMailtoLink } from '../../utils/mail';
 import { Volume2, VolumeX, Disc } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -11,9 +11,17 @@ import { LanguageToggle } from '../ui/LanguageToggle';
 
 export function Navigation() {
   const [isMuted, setIsMuted] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { isPlaying, togglePlayer } = useMusic();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
@@ -42,7 +50,9 @@ export function Navigation() {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-6 w-full pointer-events-none grid grid-cols-2 lg:grid-cols-3 items-center gap-4">
+    <div className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-10 w-full pointer-events-none grid grid-cols-2 lg:grid-cols-3 items-center gap-4 transition-all duration-500 ${
+      scrolled ? 'py-4 bg-black/70 backdrop-blur-md border-b border-white/5' : 'py-6'
+    }`}>
       {/* Left side: Logo */}
       <motion.a 
         onClick={(e) => {
