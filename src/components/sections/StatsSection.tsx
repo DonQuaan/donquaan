@@ -39,7 +39,7 @@ export function StatsSection() {
 
   useEffect(() => {
     // Attempt to fetch live sub count. If CORS or down, it will gracefully fallback to 700,000.
-    fetch('https://mixerno.space/api/youtube-channel-counter/user/Sangtraan')
+    fetch('https://mixerno.space/api/youtube-channel-counter/user/UC3NPuQGUQ8HDPL2LtWPlHeA')
       .then(res => res.json())
       .then(data => {
         if (data && data.counts && data.counts[0] && data.counts[0].count) {
