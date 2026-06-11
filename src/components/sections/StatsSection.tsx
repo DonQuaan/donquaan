@@ -35,34 +35,17 @@ const AnimatedCounter = ({ from, to, duration = 2, suffix = "" }: { from: number
 };
 
 export function StatsSection() {
-  const [ytSubs, setYtSubs] = useState(700000);
-
-  useEffect(() => {
-    // Attempt to fetch live sub count. If CORS or down, it will gracefully fallback to 700,000.
-    fetch('https://mixerno.space/api/youtube-channel-counter/user/UC3NPuQGUQ8HDPL2LtWPlHeA')
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.counts && data.counts[0] && data.counts[0].count) {
-          setYtSubs(data.counts[0].count);
-        }
-      })
-      .catch(() => {
-        // Fallback silently
-      });
-  }, []);
-
   const stats = [
     {
-      label: "YouTube Subscribers",
-      value: ytSubs,
-      suffix: "+",
-      description: "Phát triển kênh YouTube Sangtraan đạt mốc cực lớn",
-      type: "counter"
+      label: "YouTube Subscribers (Live)",
+      url: "https://mixerno.space/embed-count/youtube-channel-counter/UC3NPuQGUQ8HDPL2LtWPlHeA",
+      description: "Cựu CEO Server Discord hỗ trợ trực tiếp cộng đồng của kênh Sangtraan",
+      type: "iframe"
     },
     {
-      label: "Discord Members",
+      label: "Discord Members (Live)",
       url: "https://livecounts.xyz/embed/dark/discord-live-member-count/sangtraan",
-      description: "Số thành viên trực tiếp của Server Discord Sangtraan",
+      description: "Vai trò: Senior Chief Executive Officer, Systems Tester & Developer, Community Administrator",
       type: "iframe"
     },
     {
@@ -94,16 +77,16 @@ export function StatsSection() {
                   <AnimatedCounter from={0} to={stat.value as number} duration={2.5} suffix={stat.suffix} />
                 </div>
               ) : (
-                <div className="mb-4 w-full flex justify-center h-[100px] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500">
+                <div className="mb-4 w-full flex justify-center h-[120px] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500 rounded-xl">
                   <iframe 
                     src={stat.url} 
-                    className="w-[300px] h-full border-none pointer-events-none" 
+                    className="w-full max-w-[320px] h-full border-none pointer-events-none rounded-xl" 
                     scrolling="no" 
                   />
                 </div>
               )}
               
-              <h3 className="text-xl font-medium text-white/90 mb-2 tracking-wide uppercase text-sm lg:text-base">
+              <h3 className="text-xl font-medium text-white/90 mb-2 tracking-wide uppercase text-sm lg:text-base mt-4">
                 {stat.label}
               </h3>
               <p className="text-[#A3A3A3] font-light max-w-xs text-sm lg:text-base">
