@@ -66,27 +66,24 @@ export function CourseSection() {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg md:text-xl lg:text-2xl text-[#A3A3A3] font-light max-w-3xl leading-relaxed mb-20"
         >
-          Hôm nay, tôi đã tham gia chương trình huấn luyện đặc biệt cùng diễn giả <strong className="text-white font-medium">Phạm Thành Long</strong>. Một trải nghiệm bứt phá tư duy, đánh thức tiềm năng vô hạn và kiến tạo nền móng vững chắc cho thành công đột phá.
+          Ngày 11 tháng 06 năm 2026, tôi đã tham gia chương trình huấn luyện đặc biệt cùng diễn giả <strong className="text-white font-medium">Phạm Thành Long</strong>. Một trải nghiệm bứt phá tư duy, đánh thức tiềm năng vô hạn và kiến tạo nền móng vững chắc cho thành công đột phá.
         </motion.p>
 
-        {/* Small Images grid */}
+        {/* Masonry Gallery */}
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl"
+          className="columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6 w-full max-w-7xl mt-4 space-y-4 md:space-y-6"
         >
-          <div className="relative aspect-[16/9] md:aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 group shadow-2xl">
-            <img src={`${basePath}assets/images/courses/course-1.webp`} alt="Event Highlights 1" className="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-black/30 transition-colors duration-700 group-hover:bg-black/10" />
-            <div className="absolute inset-0 border border-white/5 rounded-2xl z-10 pointer-events-none" />
-          </div>
-          <div className="relative aspect-[16/9] md:aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 group shadow-2xl md:translate-y-12">
-            <img src={`${basePath}assets/images/courses/course-2.webp`} alt="Event Highlights 2" className="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-black/30 transition-colors duration-700 group-hover:bg-black/10" />
-            <div className="absolute inset-0 border border-white/5 rounded-2xl z-10 pointer-events-none" />
-          </div>
+          {[1, 2, 4, 5, 6, 7, 8, 9].map((num) => (
+            <div key={num} className="relative rounded-2xl overflow-hidden border border-white/10 group shadow-2xl break-inside-avoid">
+               <img src={`${basePath}assets/images/courses/course-${num}.webp`} alt={`Event Highlights ${num}`} className="object-cover w-full transition-transform duration-1000 group-hover:scale-110" />
+               <div className="absolute inset-0 bg-black/40 transition-colors duration-700 group-hover:bg-black/10" />
+               <div className="absolute inset-0 border border-white/5 rounded-2xl z-10 pointer-events-none" />
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>
