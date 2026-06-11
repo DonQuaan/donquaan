@@ -57,18 +57,20 @@ export function StatsSection() {
       value: ytSubs,
       suffix: "+",
       description: "Phát triển kênh YouTube Sangtraan đạt mốc cực lớn",
+      type: "counter"
+    },
+    {
+      label: "Discord Members",
+      url: "https://livecounts.xyz/embed/dark/discord-live-member-count/sangtraan",
+      description: "Số thành viên trực tiếp của Server Discord Sangtraan",
+      type: "iframe"
     },
     {
       label: "Facebook Followers",
       value: 130000,
       suffix: "+",
       description: "Quản trị Fanpage tích xanh Coach Nguyễn Tú Oanh",
-    },
-    {
-      label: "Tháng Kinh Nghiệm",
-      value: 9,
-      suffix: "",
-      description: "CEO điều hành Server Discord cộng đồng quy mô",
+      type: "counter"
     }
   ];
 
@@ -87,9 +89,20 @@ export function StatsSection() {
               transition={{ duration: 0.8, delay: i * 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center text-center pt-8 md:pt-0 px-4 group"
             >
-              <div className="text-5xl lg:text-7xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40 mb-4 transition-transform duration-500 group-hover:scale-110">
-                <AnimatedCounter from={0} to={stat.value} duration={2.5} suffix={stat.suffix} />
-              </div>
+              {stat.type === 'counter' ? (
+                <div className="text-5xl lg:text-7xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40 mb-4 transition-transform duration-500 group-hover:scale-110">
+                  <AnimatedCounter from={0} to={stat.value as number} duration={2.5} suffix={stat.suffix} />
+                </div>
+              ) : (
+                <div className="mb-4 w-full flex justify-center h-[100px] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500">
+                  <iframe 
+                    src={stat.url} 
+                    className="w-[300px] h-full border-none pointer-events-none" 
+                    scrolling="no" 
+                  />
+                </div>
+              )}
+              
               <h3 className="text-xl font-medium text-white/90 mb-2 tracking-wide uppercase text-sm lg:text-base">
                 {stat.label}
               </h3>
