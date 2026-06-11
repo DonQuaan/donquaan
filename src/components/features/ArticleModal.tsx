@@ -53,9 +53,9 @@ export function ArticleModal({ article, isOpen, onClose }: ArticleModalProps) {
             <div className="bg-[#0a0a0a] border border-white/10 w-full max-w-5xl h-full max-h-[90vh] rounded-2xl md:rounded-3xl overflow-hidden flex flex-col relative shadow-2xl overscroll-contain">
               {/* Header Image */}
               <div className="relative h-64 md:h-80 shrink-0">
-                <img 
-                  src={article.image} 
-                  alt={article.title} 
+                <img
+                  src={article.image}
+                  alt={article.title[language]}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/50 to-transparent" />
@@ -80,7 +80,7 @@ export function ArticleModal({ article, isOpen, onClose }: ArticleModalProps) {
                   </div>
                   
                   <h1 className="text-3xl md:text-5xl font-display font-bold text-white mb-8 leading-tight">
-                    {article.title}
+                    {article.title[language]}
                   </h1>
 
                   <div className="prose prose-invert prose-xl max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-5xl prose-h2:text-3xl prose-h3:text-2xl prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-p:text-[#A3A3A3] prose-p:leading-relaxed prose-li:text-[#A3A3A3] prose-strong:text-white">

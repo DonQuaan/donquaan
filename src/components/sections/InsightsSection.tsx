@@ -6,7 +6,7 @@ import { articles, type Article } from '../../data/articles';
 import { ArticleModal } from '../features/ArticleModal';
 
 export function InsightsSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
   return (
@@ -56,9 +56,9 @@ export function InsightsSection() {
               {/* Image Container */}
               <div className="aspect-[16/10] overflow-hidden relative">
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                <img 
-                  src={article.image} 
-                  alt={article.title}
+                <img
+                  src={article.image}
+                  alt={article.title[language]}
                   className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-all duration-700 ease-out"
                 />
                 
@@ -79,11 +79,11 @@ export function InsightsSection() {
                 </div>
                 
                 <h3 className="text-xl md:text-2xl font-display font-medium text-white mb-4 line-clamp-2 group-hover:text-primary transition-colors">
-                  {article.title}
+                  {article.title[language]}
                 </h3>
-                
+
                 <p className="text-white/60 font-light line-clamp-3 mb-6 text-sm md:text-base">
-                  {article.excerpt}
+                  {article.excerpt[language]}
                 </p>
                 
                 <div className="flex items-center text-sm font-medium text-white/80 group-hover:text-white transition-colors">

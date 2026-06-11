@@ -36,7 +36,7 @@ const AnimatedCounter = ({ from, to, duration = 2, suffix = "", prefix = "" }: {
 };
 
 export function StatsSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const [discordMembers, setDiscordMembers] = useState<number>(61704);
   const [youtubeSubs, setYoutubeSubs] = useState<number>(443000);
@@ -69,40 +69,40 @@ export function StatsSection() {
     {
       label: "YouTube Subscribers (Live)",
       value: youtubeSubs,
-      description: "Cựu CEO Server Discord hỗ trợ trực tiếp cộng đồng của kênh Sangtraan",
+      description: language === 'vi' ? "Cựu CEO Server Discord hỗ trợ trực tiếp cộng đồng của kênh Sangtraan" : "Former CEO of the Discord server directly supporting the Sangtraan channel community",
       type: "counter"
     },
     {
       label: "Discord Members (Live)",
       value: discordMembers,
-      description: "Vai trò: Senior Chief Executive Officer, Systems Tester & Developer, Community Administrator",
+      description: language === 'vi' ? "Vai trò: Senior Chief Executive Officer, Systems Tester & Developer, Community Administrator" : "Role: Senior Chief Executive Officer, Systems Tester & Developer, Community Administrator",
       type: "counter"
     },
     {
       label: "Facebook Followers",
       value: fbMembers,
       suffix: "+",
-      description: "Quản trị Fanpage tích xanh Coach Nguyễn Tú Oanh",
+      description: language === 'vi' ? "Quản trị Fanpage tích xanh Coach Nguyễn Tú Oanh" : "Administrator of Coach Nguyen Tu Oanh's verified fanpage",
       type: "counter"
     },
     {
       label: t('stats.experience'),
       value: 10,
       prefix: "+",
-      description: "Năm kinh nghiệm thực chiến",
+      description: language === 'vi' ? "Năm kinh nghiệm thực chiến" : "Years of hands-on experience",
       type: "counter"
     },
     {
       label: t('stats.clients'),
       value: 500,
       prefix: "+",
-      description: "Khách hàng trên toàn cầu",
+      description: language === 'vi' ? "Khách hàng trên toàn cầu" : "Clients worldwide",
       type: "counter"
     },
     {
-      label: "Doanh Thu",
+      label: language === 'vi' ? "Doanh Thu" : "Revenue",
       valueText: "$999 - $8999",
-      description: "Doanh thu trên 1 đơn hàng cao cấp",
+      description: language === 'vi' ? "Doanh thu trên 1 đơn hàng cao cấp" : "Revenue per premium engagement",
       type: "text"
     }
   ];

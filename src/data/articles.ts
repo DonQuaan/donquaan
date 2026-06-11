@@ -1,10 +1,10 @@
 export type Article = {
   id: number;
-  title: string;
+  title: { vi: string; en: string };
   category: string;
   date: string;
   readTime: string;
-  excerpt: string;
+  excerpt: { vi: string; en: string };
   image: string;
   content: { vi: string; en: string };
 };
@@ -12,11 +12,17 @@ export type Article = {
 export const articles: Article[] = [
   {
     id: 1,
-    title: "Tương lai của AI tạo sinh trong doanh nghiệp 2026",
+    title: {
+      vi: "Tương lai của AI tạo sinh trong doanh nghiệp 2026",
+      en: "The Future of Generative AI in the Enterprise, 2026"
+    },
     category: "Artificial Intelligence",
     date: "10 Jun 2026",
     readTime: "35 min read",
-    excerpt: "Làm thế nào các mô hình ngôn ngữ lớn (LLMs) đang thay đổi hoàn toàn cách doanh nghiệp tiếp cận việc tự động hóa, dựa trên báo cáo của McKinsey và Gartner.",
+    excerpt: {
+      vi: "Làm thế nào các mô hình ngôn ngữ lớn (LLMs) đang thay đổi hoàn toàn cách doanh nghiệp tiếp cận việc tự động hóa, dựa trên báo cáo của McKinsey và Gartner.",
+      en: "How Large Language Models (LLMs) are fundamentally reshaping enterprise automation, drawing on research from McKinsey and Gartner."
+    },
     image: "./assets/images/courses/genai_enterprise.webp",
     content: {
       vi: `
@@ -149,11 +155,17 @@ Organizations that exhibit strategic foresight—audaciously adopting RAG augmen
   },
   {
     id: 2,
-    title: "Tối ưu hóa quy trình Data Pipeline với Modern Stack",
+    title: {
+      vi: "Tối ưu hóa quy trình Data Pipeline với Modern Stack",
+      en: "Optimizing Data Pipelines with the Modern Data Stack"
+    },
     category: "Data Engineering",
     date: "28 May 2026",
     readTime: "30 min read",
-    excerpt: "Nghiên cứu về kiến trúc ELT thế hệ mới sử dụng dbt, Snowflake và Airflow để giảm 60% thời gian xử lý dữ liệu.",
+    excerpt: {
+      vi: "Nghiên cứu về kiến trúc ELT thế hệ mới sử dụng dbt, Snowflake và Airflow để giảm 60% thời gian xử lý dữ liệu.",
+      en: "A deep dive into next-generation ELT architecture with dbt, Snowflake, and Airflow — cutting data processing time by 60%."
+    },
     image: "./assets/images/courses/data-engineering.webp",
     content: {
       vi: `
@@ -234,11 +246,17 @@ While batch processing remains dominant, the trend is shifting towards real-time
   },
   {
     id: 3,
-    title: "Giải mã Machine Learning Explainability (XAI)",
+    title: {
+      vi: "Giải mã Machine Learning Explainability (XAI)",
+      en: "Decoding Machine Learning Explainability (XAI)"
+    },
     category: "Machine Learning",
     date: "15 Apr 2026",
     readTime: "45 min read",
-    excerpt: "Tại sao các mô hình AI không còn là một hộp đen, và làm thế nào để ứng dụng các chuẩn toán học như SHAP và LIME trong các quyết định rủi ro cao.",
+    excerpt: {
+      vi: "Tại sao các mô hình AI không còn là một hộp đen, và làm thế nào để ứng dụng các chuẩn toán học như SHAP và LIME trong các quyết định rủi ro cao.",
+      en: "Why AI models are no longer a black box, and how to apply mathematical standards like SHAP and LIME to high-stakes decisions."
+    },
     image: "./assets/images/courses/xai_machine_learning.webp",
     content: {
       vi: `

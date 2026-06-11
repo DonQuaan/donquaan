@@ -1,12 +1,23 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export function TerminalEasterEgg() {
+  const { language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
-  const [history, setHistory] = useState<string[]>(['DonQuaan OS v1.0.0', 'Gõ "help" để xem danh sách lệnh.']);
+  const [history, setHistory] = useState<string[]>(['DonQuaan OS v1.0.0', language === 'vi' ? 'Gõ "help" để xem danh sách lệnh.' : 'Type "help" to see the list of commands.']);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  // Keep the boot banner in sync with the active language (only while untouched)
+  useEffect(() => {
+    setHistory((prev) =>
+      prev.length === 2 && prev[0] === 'DonQuaan OS v1.0.0'
+        ? ['DonQuaan OS v1.0.0', language === 'vi' ? 'Gõ "help" để xem danh sách lệnh.' : 'Type "help" to see the list of commands.']
+        : prev
+    );
+  }, [language]);
   
   // Secret sequence listener
   useEffect(() => {
@@ -47,10 +58,10 @@ export function TerminalEasterEgg() {
     
     switch (trimmedCmd) {
       case 'help':
-        newHistory.push('Các lệnh có sẵn: help, whoami, contact, clear, exit, sudo');
+        newHistory.push(language === 'vi' ? 'Các lệnh có sẵn: help, whoami, contact, clear, exit, sudo' : 'Available commands: help, whoami, contact, clear, exit, sudo');
         break;
       case 'whoami':
-        newHistory.push('Nguyễn Vũ Đông Quân');
+        newHistory.push(language === 'vi' ? 'Nguyễn Vũ Đông Quân' : 'Nguyen Vu Dong Quan');
         newHistory.push('Gemini Certified Faculty | Google AI Specialist');
         newHistory.push('Senior Chief Executive Officer | Systems Tester & Developer');
         break;
@@ -66,12 +77,12 @@ export function TerminalEasterEgg() {
         setIsOpen(false);
         break;
       case 'sudo':
-        newHistory.push('Yêu cầu bị từ chối. Báo cáo bảo mật đã được ghi nhận.');
+        newHistory.push(language === 'vi' ? 'Yêu cầu bị từ chối. Báo cáo bảo mật đã được ghi nhận.' : 'Permission denied. This incident has been reported.');
         break;
       case '':
         break;
       default:
-        newHistory.push(`Không tìm thấy lệnh: ${trimmedCmd}`);
+        newHistory.push(language === 'vi' ? `Không tìm thấy lệnh: ${trimmedCmd}` : `Command not found: ${trimmedCmd}`);
     }
     
     setHistory(newHistory);

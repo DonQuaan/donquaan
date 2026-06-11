@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { LazyVideo } from '../ui/LazyVideo';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export function FeaturedVideoSection() {
+  const { language } = useLanguage();
   return (
     <section className="bg-black pt-6 md:pt-10 pb-20 md:pb-32 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto relative">
@@ -31,7 +33,9 @@ export function FeaturedVideoSection() {
               </div>
               <h3 className="text-white text-xl font-display mb-2">Promethium Modpack</h3>
               <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                Tái cấu trúc toàn bộ tệp config và thiết lập lại điểm cân bằng tài nguyên, đạt mốc 1,000+ lượt tải tự nhiên trên CurseForge.
+                {language === 'vi'
+                  ? 'Tái cấu trúc toàn bộ tệp config và thiết lập lại điểm cân bằng tài nguyên, đạt mốc 1,000+ lượt tải tự nhiên trên CurseForge.'
+                  : 'Restructured the entire config stack and rebalanced the resource economy, reaching 1,000+ organic downloads on CurseForge.'}
               </p>
             </div>
 
@@ -42,7 +46,7 @@ export function FeaturedVideoSection() {
               whileTap={{ scale: 0.95 }}
               className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium w-full md:w-auto text-center cursor-pointer hover:bg-white/5 transition-colors"
             >
-              Khám phá dự án
+              {language === 'vi' ? 'Khám phá dự án' : 'Explore the project'}
             </motion.a>
           </div>
         </motion.div>

@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export function Hero() {
+  const { language } = useLanguage();
   return (
     <section className="relative min-h-[100svh] w-full bg-black overflow-hidden flex flex-col justify-center px-6 md:px-12 lg:px-20 pt-20 pb-32">
       {/* Ambient Depth Background */}
@@ -17,7 +19,7 @@ export function Hero() {
           className="self-start relative pb-4"
         >
           <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[9rem] font-sans font-black uppercase text-white tracking-tighter leading-[1.1] md:leading-[0.95] drop-shadow-2xl">
-            Phá vỡ lối mòn<br />rập khuôn.
+            {language === 'vi' ? <>Phá vỡ lối mòn<br />rập khuôn.</> : <>Break the<br />mold.</>}
           </h1>
         </motion.div>
 
@@ -29,8 +31,17 @@ export function Hero() {
           className="self-end mt-8 sm:mt-12 md:mt-16 lg:mt-20 text-right relative pb-4"
         >
           <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[8rem] font-display italic text-white/90 leading-tight md:leading-[0.95] tracking-tight pr-2">
-            Kiến tạo <span className="text-mask-gradient font-bold pr-2 sm:pr-4">sự khác biệt</span><br />
-            bền vững.
+            {language === 'vi' ? (
+              <>
+                Kiến tạo <span className="text-mask-gradient font-bold pr-2 sm:pr-4">sự khác biệt</span><br />
+                bền vững.
+              </>
+            ) : (
+              <>
+                Crafting <span className="text-mask-gradient font-bold pr-2 sm:pr-4">distinction</span><br />
+                that endures.
+              </>
+            )}
           </h2>
         </motion.div>
 
@@ -47,7 +58,9 @@ export function Hero() {
           className="max-w-[280px] md:max-w-md pointer-events-auto"
         >
           <p className="font-mono text-[10px] md:text-xs lg:text-sm text-neutral-400 leading-relaxed uppercase tracking-widest border-l border-white/20 pl-4 py-1">
-            Tôi không vận hành dựa trên các quy trình có sẵn. Tôi giải mã vấn đề từ gốc rễ (First Principles), ứng dụng AI và công nghệ lõi để thiết kế hệ thống với hiệu suất tối đa.
+            {language === 'vi'
+              ? 'Tôi không vận hành dựa trên các quy trình có sẵn. Tôi giải mã vấn đề từ gốc rễ (First Principles), ứng dụng AI và công nghệ lõi để thiết kế hệ thống với hiệu suất tối đa.'
+              : 'I don’t run on off-the-shelf playbooks. I break problems down to first principles, applying AI and core technology to engineer systems for maximum performance.'}
           </p>
         </motion.div>
 

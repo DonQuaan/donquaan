@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Code, Layout, Zap, Bot } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 import { LazyVideo } from '../ui/LazyVideo';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 function SpotlightCard({ children, className = "" }: { children: React.ReactNode, className?: string }) {
   const divRef = useRef<HTMLDivElement>(null);
@@ -54,6 +55,7 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
 }
 
 export function ServicesSection() {
+  const { language } = useLanguage();
   return (
     <section id="services" className="bg-black py-16 md:py-24 px-4 md:px-6 overflow-hidden relative content-defer">
       {/* Background ambient light */}
@@ -63,7 +65,7 @@ export function ServicesSection() {
         
         <div className="flex items-end justify-between mb-16 md:mb-24">
           <h2 className="text-4xl md:text-6xl lg:text-7xl text-white tracking-tight font-display leading-tight">
-            Năng lực<br />cốt lõi
+            {language === 'vi' ? <>Năng lực<br />cốt lõi</> : <>Core<br />Capabilities</>}
           </h2>
           <div className="hidden md:block text-white/40 text-sm tracking-widest uppercase mb-2 font-mono">
             Services & Expertise
@@ -90,9 +92,11 @@ export function ServicesSection() {
                 <ArrowUpRight className="text-white/30 group-hover:text-white transition-colors duration-300" />
               </div>
               <div>
-                <h3 className="text-3xl md:text-4xl text-white font-display mb-4">Hệ thống & Mã nguồn</h3>
+                <h3 className="text-3xl md:text-4xl text-white font-display mb-4">{language === 'vi' ? 'Hệ thống & Mã nguồn' : 'Systems & Code'}</h3>
                 <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-xl">
-                  Thiết kế kiến trúc hệ thống có khả năng mở rộng cao, xử lý triệt để các nút thắt hiệu năng (bottleneck) và đảm bảo luồng dữ liệu an toàn, logic tuyệt đối.
+                  {language === 'vi'
+                    ? 'Thiết kế kiến trúc hệ thống có khả năng mở rộng cao, xử lý triệt để các nút thắt hiệu năng (bottleneck) và đảm bảo luồng dữ liệu an toàn, logic tuyệt đối.'
+                    : 'Architecting highly scalable systems, eliminating performance bottlenecks at the root, and guaranteeing data flows that are secure and rigorously logical.'}
                 </p>
               </div>
             </div>
@@ -109,9 +113,11 @@ export function ServicesSection() {
               </div>
             </div>
             <div>
-              <h3 className="text-2xl text-white font-display mb-3">Thiết kế Trực quan</h3>
+              <h3 className="text-2xl text-white font-display mb-3">{language === 'vi' ? 'Thiết kế Trực quan' : 'Visual Design'}</h3>
               <p className="text-white/60 text-sm leading-relaxed">
-                Biến khái niệm kỹ thuật khô khan thành giao diện tương tác mượt mà, áp dụng Kinetic Typography và Glassmorphism.
+                {language === 'vi'
+                  ? 'Biến khái niệm kỹ thuật khô khan thành giao diện tương tác mượt mà, áp dụng Kinetic Typography và Glassmorphism.'
+                  : 'Turning dry technical concepts into fluid, interactive interfaces with Kinetic Typography and Glassmorphism.'}
               </p>
             </div>
           </SpotlightCard>
@@ -124,9 +130,11 @@ export function ServicesSection() {
               </span>
             </div>
             <div>
-              <h3 className="text-2xl text-white font-display mb-3">Hiệu năng Tối đa</h3>
+              <h3 className="text-2xl text-white font-display mb-3">{language === 'vi' ? 'Hiệu năng Tối đa' : 'Peak Performance'}</h3>
               <p className="text-white/60 text-sm leading-relaxed">
-                Chuẩn SEO tuyệt đối, lazy-load thông minh, code-splitting và nén tài nguyên tối đa để đạt 100 điểm Lighthouse.
+                {language === 'vi'
+                  ? 'Chuẩn SEO tuyệt đối, lazy-load thông minh, code-splitting và nén tài nguyên tối đa để đạt 100 điểm Lighthouse.'
+                  : 'Flawless SEO, smart lazy-loading, code-splitting, and aggressive asset compression for a perfect 100 Lighthouse score.'}
               </p>
             </div>
           </SpotlightCard>
@@ -137,9 +145,11 @@ export function ServicesSection() {
               <div className="flex items-center gap-2 text-white/50 text-xs uppercase tracking-widest font-mono mb-4">
                 <Bot size={14} /> AI Integration
               </div>
-              <h3 className="text-2xl md:text-3xl text-white font-display mb-3">Tự động hóa & Trí tuệ nhân tạo</h3>
+              <h3 className="text-2xl md:text-3xl text-white font-display mb-3">{language === 'vi' ? 'Tự động hóa & Trí tuệ nhân tạo' : 'Automation & Artificial Intelligence'}</h3>
               <p className="text-white/60 text-sm md:text-base leading-relaxed">
-                Tích hợp LLM, tự động hóa quy trình làm việc (CI/CD workflows), xử lý dữ liệu quy mô lớn mà không cần can thiệp thủ công.
+                {language === 'vi'
+                  ? 'Tích hợp LLM, tự động hóa quy trình làm việc (CI/CD workflows), xử lý dữ liệu quy mô lớn mà không cần can thiệp thủ công.'
+                  : 'Integrating LLMs, automating CI/CD workflows, and processing data at scale with zero manual intervention.'}
               </p>
             </div>
             

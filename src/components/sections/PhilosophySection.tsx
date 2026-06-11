@@ -1,9 +1,40 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { useRef } from 'react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
-const words = "KHÔNG CHỈ LÀ CODE. ĐÓ LÀ NGHỆ THUẬT VÀ KIẾN TRÚC.".split(" ");
+const manifesto = {
+  vi: "KHÔNG CHỈ LÀ CODE. ĐÓ LÀ NGHỆ THUẬT VÀ KIẾN TRÚC.",
+  en: "NOT JUST CODE. IT'S ART AND ARCHITECTURE.",
+} as const;
+
+function ManifestoWord({
+  word,
+  progress,
+  start,
+  end,
+}: {
+  word: string;
+  progress: MotionValue<number>;
+  start: number;
+  end: number;
+}) {
+  const opacity = useTransform(progress, [start, end], [0.6, 1]);
+  // Optional: slight scale or blur effect
+  // We'll keep it simple and elegant with opacity
+
+  return (
+    <motion.span
+      style={{ opacity }}
+      className="text-4xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tight leading-[1.1]"
+    >
+      {word}
+    </motion.span>
+  );
+}
 
 export function PhilosophySection() {
+  const { language } = useLanguage();
+  const words = manifesto[language].split(" ");
   const container = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -22,19 +53,15 @@ export function PhilosophySection() {
           {words.map((word, i) => {
             const start = (i / words.length) * 0.8; // finish revealing before the very end
             const end = start + (0.8 / words.length);
-            
-            const opacity = useTransform(scrollYProgress, [start, end], [0.6, 1]);
-            // Optional: slight scale or blur effect
-            // We'll keep it simple and elegant with opacity
-            
+
             return (
-              <motion.span
-                key={i}
-                style={{ opacity }}
-                className="text-4xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tight leading-[1.1]"
-              >
-                {word}
-              </motion.span>
+              <ManifestoWord
+                key={`${language}-${i}`}
+                word={word}
+                progress={scrollYProgress}
+                start={start}
+                end={end}
+              />
             );
           })}
         </h2>
@@ -50,7 +77,7 @@ export function PhilosophySection() {
           style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-[10px] uppercase tracking-widest text-[#767676]">Cuộn để khám phá</span>
+          <span className="text-[10px] uppercase tracking-widest text-[#767676]">{language === 'vi' ? 'Cuộn để khám phá' : 'Scroll to explore'}</span>
           <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
         </motion.div>
 

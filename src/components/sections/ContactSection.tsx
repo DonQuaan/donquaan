@@ -6,7 +6,7 @@ import { useState } from 'react';
 const CONTACT_EMAIL = 'contact.donquaan@gmail.com';
 
 export function ContactSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,8 +16,12 @@ export function ContactSection() {
     const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
     const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim();
 
-    const subject = `[Website] Yêu cầu tư vấn từ ${name}`;
-    const body = `Họ tên: ${name}\nEmail: ${email}\n\n${message}`;
+    const subject = language === 'vi'
+      ? `[Website] Yêu cầu tư vấn từ ${name}`
+      : `[Website] Consultation request from ${name}`;
+    const body = language === 'vi'
+      ? `Họ tên: ${name}\nEmail: ${email}\n\n${message}`
+      : `Full name: ${name}\nEmail: ${email}\n\n${message}`;
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     const win = window.open(gmailUrl, '_blank', 'noopener,noreferrer');

@@ -1,6 +1,7 @@
 import { Mail, Twitch, Music } from 'lucide-react';
 import { RobloxIcon, CurseforgeIcon } from '../ui/icons';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 import facebookIcon from '../../assets/social-icons/facebook.svg?url';
 import xIcon from '../../assets/social-icons/x.svg?url';
@@ -8,6 +9,7 @@ import youtubeIcon from '../../assets/social-icons/youtube.svg?url';
 import githubIcon from '../../assets/social-icons/github.svg?url';
 
 export function Footer() {
+  const { language } = useLanguage();
   return (
     <footer id="contact" className="relative py-20 px-6 bg-background z-20 border-t border-white/5">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12">
@@ -18,16 +20,18 @@ export function Footer() {
             DonQuaan<span className="text-primary text-xl">.</span>
           </div>
           <p className="text-muted-foreground text-sm max-w-sm text-center lg:text-left mb-6">
-            Tối ưu hóa nguồn lực. Tự động hóa quy trình. Kiến tạo sự khác biệt.
+            {language === 'vi'
+              ? 'Tối ưu hóa nguồn lực. Tự động hóa quy trình. Kiến tạo sự khác biệt.'
+              : 'Optimize resources. Automate workflows. Make the difference.'}
           </p>
           
           <div className="flex flex-col gap-4 text-sm text-muted-foreground">
             <div className="flex flex-col gap-2">
               <a href="mailto:contact.donquaan@gmail.com" className="hover:text-primary transition-colors flex items-center gap-2 justify-center lg:justify-start">
-                <Mail className="w-4 h-4" /> contact.donquaan@gmail.com (Hợp tác)
+                <Mail className="w-4 h-4" /> contact.donquaan@gmail.com {language === 'vi' ? '(Hợp tác)' : '(Business)'}
               </a>
               <a href="mailto:donquaan.x@gmail.com" className="hover:text-primary transition-colors flex items-center gap-2 justify-center lg:justify-start">
-                <Mail className="w-4 h-4" /> donquaan.x@gmail.com (Phụ)
+                <Mail className="w-4 h-4" /> donquaan.x@gmail.com {language === 'vi' ? '(Phụ)' : '(Secondary)'}
               </a>
             </div>
 
@@ -37,9 +41,9 @@ export function Footer() {
                 <img src="https://i.postimg.cc/rsCCQQRn/qr-zalo.jpg" alt="Zalo QR Code" className="w-16 h-16 object-contain rounded-lg" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xs uppercase tracking-widest text-primary mb-1 font-bold">Liên Hệ Zalo</span>
+                <span className="text-xs uppercase tracking-widest text-primary mb-1 font-bold">{language === 'vi' ? 'Liên Hệ Zalo' : 'Contact via Zalo'}</span>
                 <span className="font-medium text-white tracking-wide">(+84) 0931 902 475</span>
-                <span className="text-xs text-white/50 mt-0.5">Quét mã hoặc tìm số điện thoại</span>
+                <span className="text-xs text-white/50 mt-0.5">{language === 'vi' ? 'Quét mã hoặc tìm số điện thoại' : 'Scan the QR code or look up the phone number'}</span>
               </div>
             </div>
           </div>
@@ -76,12 +80,12 @@ export function Footer() {
       
       {/* Bottom Bar: Legal */}
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
-        <p className="text-center lg:text-left">&copy; {new Date().getFullYear()} DonQuaan. Bản quyền đã được bảo hộ.</p>
+        <p className="text-center lg:text-left">&copy; {new Date().getFullYear()} DonQuaan. {language === 'vi' ? 'Bản quyền đã được bảo hộ.' : 'All rights reserved.'}</p>
         <div className="flex flex-wrap justify-center lg:justify-end gap-x-6 gap-y-3">
-          <Link to="/privacy-policy" className="hover:text-foreground transition-colors">Chính Sách Bảo Mật</Link>
-          <Link to="/terms-of-service" className="hover:text-foreground transition-colors">Điều Khoản Dịch Vụ</Link>
-          <Link to="/cookies-policy" className="hover:text-foreground transition-colors">Chính Sách Cookie</Link>
-          <Link to="/disclaimer" className="hover:text-foreground transition-colors">Miễn Trừ Trách Nhiệm</Link>
+          <Link to="/privacy-policy" className="hover:text-foreground transition-colors">{language === 'vi' ? 'Chính Sách Bảo Mật' : 'Privacy Policy'}</Link>
+          <Link to="/terms-of-service" className="hover:text-foreground transition-colors">{language === 'vi' ? 'Điều Khoản Dịch Vụ' : 'Terms of Service'}</Link>
+          <Link to="/cookies-policy" className="hover:text-foreground transition-colors">{language === 'vi' ? 'Chính Sách Cookie' : 'Cookies Policy'}</Link>
+          <Link to="/disclaimer" className="hover:text-foreground transition-colors">{language === 'vi' ? 'Miễn Trừ Trách Nhiệm' : 'Disclaimer'}</Link>
         </div>
       </div>
     </footer>

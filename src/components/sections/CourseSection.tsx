@@ -1,7 +1,9 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export function CourseSection() {
+  const { language } = useLanguage();
   const container = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -22,7 +24,7 @@ export function CourseSection() {
       >
         <img 
           src={`${basePath}assets/images/courses/course-3.webp`} 
-          alt="Đánh Thức Sự Giàu Có Event" 
+          alt={language === 'vi' ? 'Đánh Thức Sự Giàu Có Event' : 'Awaken Your Wealth Event'}
           className="object-cover w-full h-full opacity-30 mix-blend-luminosity"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black" />
@@ -47,8 +49,8 @@ export function CourseSection() {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-[1.1] tracking-tight uppercase"
         >
-          Đánh Thức<br/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E5E5E5] to-[#737373]">Sự Giàu Có</span>
+          {language === 'vi' ? 'Đánh Thức' : 'Awaken'}<br/>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E5E5E5] to-[#737373]">{language === 'vi' ? 'Sự Giàu Có' : 'Your Wealth'}</span>
         </motion.h2>
 
         <motion.div
@@ -66,7 +68,11 @@ export function CourseSection() {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg md:text-xl lg:text-2xl text-[#A3A3A3] font-light max-w-3xl leading-relaxed mb-20"
         >
-          Ngày 11 tháng 06 năm 2026, tôi đã tham gia chương trình huấn luyện đặc biệt cùng diễn giả <strong className="text-white font-medium">Phạm Thành Long</strong>. Một trải nghiệm bứt phá tư duy, đánh thức tiềm năng vô hạn và kiến tạo nền móng vững chắc cho thành công đột phá.
+          {language === 'vi' ? (
+            <>Ngày 11 tháng 06 năm 2026, tôi đã tham gia chương trình huấn luyện đặc biệt cùng diễn giả <strong className="text-white font-medium">Phạm Thành Long</strong>. Một trải nghiệm bứt phá tư duy, đánh thức tiềm năng vô hạn và kiến tạo nền móng vững chắc cho thành công đột phá.</>
+          ) : (
+            <>On June 11, 2026, I joined an exclusive training program led by speaker <strong className="text-white font-medium">Pham Thanh Long</strong> — a mindset-shifting experience that awakened limitless potential and laid a rock-solid foundation for breakthrough success.</>
+          )}
         </motion.p>
 
         {/* Masonry Gallery */}

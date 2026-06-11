@@ -1,14 +1,41 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
-const projects = [
+interface BilingualText {
+  vi: string;
+  en: string;
+}
+
+interface Project {
+  title: string;
+  category: string;
+  challenge: BilingualText;
+  solution: BilingualText;
+  result: BilingualText;
+  year: string;
+  link: string;
+  github: string;
+  image: string;
+}
+
+const projects: Project[] = [
   {
     title: "Promethium Modpack",
     category: "Minecraft Ecosystem",
-    challenge: "Hệ thống sụp đổ do xung đột logic chéo giữa hàng trăm bản mod, dẫn đến rò rỉ bộ nhớ nghiêm trọng.",
-    solution: "Bóc tách từng mã lỗi, tái cấu trúc toàn bộ tệp config và thiết lập lại điểm cân bằng tài nguyên.",
-    result: "Đạt 1,000+ lượt tải tự nhiên trên CurseForge, giải phóng 30% hiệu năng phần cứng.",
+    challenge: {
+      vi: "Hệ thống sụp đổ do xung đột logic chéo giữa hàng trăm bản mod, dẫn đến rò rỉ bộ nhớ nghiêm trọng.",
+      en: "The system kept collapsing under cross-mod logic conflicts across hundreds of mods, causing severe memory leaks."
+    },
+    solution: {
+      vi: "Bóc tách từng mã lỗi, tái cấu trúc toàn bộ tệp config và thiết lập lại điểm cân bằng tài nguyên.",
+      en: "Dissected every error trace, restructured the entire config stack, and re-established the resource equilibrium."
+    },
+    result: {
+      vi: "Đạt 1,000+ lượt tải tự nhiên trên CurseForge, giải phóng 30% hiệu năng phần cứng.",
+      en: "Reached 1,000+ organic downloads on CurseForge while freeing up 30% of hardware performance."
+    },
     year: "2023",
     link: "https://www.curseforge.com/minecraft/modpacks/promethium",
     github: "#",
@@ -17,9 +44,18 @@ const projects = [
   {
     title: "Yangdawn's Hub",
     category: "Game Dev & Modding",
-    challenge: "Cộng đồng thiếu các bộ modpack chất lượng cao được tối ưu hóa sẵn cho mọi cấu hình máy tính.",
-    solution: "Nghiên cứu, sàng lọc và đóng gói hàng loạt hệ thống modpack dựa trên nhu cầu thực chiến.",
-    result: "Xây dựng thương hiệu uy tín, loại bỏ hoàn toàn rào cản kỹ thuật cho hàng ngàn người chơi mới.",
+    challenge: {
+      vi: "Cộng đồng thiếu các bộ modpack chất lượng cao được tối ưu hóa sẵn cho mọi cấu hình máy tính.",
+      en: "The community lacked high-quality modpacks pre-optimized for every hardware configuration."
+    },
+    solution: {
+      vi: "Nghiên cứu, sàng lọc và đóng gói hàng loạt hệ thống modpack dựa trên nhu cầu thực chiến.",
+      en: "Researched, curated, and shipped a full line of modpack systems built around real-world player needs."
+    },
+    result: {
+      vi: "Xây dựng thương hiệu uy tín, loại bỏ hoàn toàn rào cản kỹ thuật cho hàng ngàn người chơi mới.",
+      en: "Built a trusted brand and removed every technical barrier for thousands of new players."
+    },
     year: "2022",
     link: "https://www.curseforge.com/members/yangdawn/projects",
     github: "#",
@@ -28,6 +64,7 @@ const projects = [
 ];
 
 export function Projects() {
+  const { language } = useLanguage();
   const targetRef = useRef<HTMLElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -55,10 +92,12 @@ export function Projects() {
                 Masterpiece<br />Projects
               </h2>
               <p className="text-white/50 text-lg md:text-xl max-w-lg leading-relaxed mb-12">
-                Không chỉ là sản phẩm, đây là các case study thực chứng cho tư duy giải quyết vấn đề bằng công nghệ lõi.
+                {language === 'vi'
+                  ? 'Không chỉ là sản phẩm, đây là các case study thực chứng cho tư duy giải quyết vấn đề bằng công nghệ lõi.'
+                  : 'More than products — these are proven case studies in solving problems with core technology.'}
               </p>
               <div className="flex items-center gap-4 text-white/30 text-sm font-mono uppercase tracking-widest">
-                <span>Cuộn để khám phá</span>
+                <span>{language === 'vi' ? 'Cuộn để khám phá' : 'Scroll to explore'}</span>
                 <ArrowRight size={16} className="animate-pulse" />
               </div>
             </div>
@@ -106,30 +145,30 @@ export function Projects() {
                     <div>
                       <h4 className="text-[10px] md:text-xs uppercase tracking-widest text-white/40 mb-2 font-mono">01. Challenge</h4>
                       <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                        {project.challenge}
+                        {project.challenge[language]}
                       </p>
                     </div>
                     <div className="w-full h-px bg-white/10" />
                     <div>
                       <h4 className="text-[10px] md:text-xs uppercase tracking-widest text-white/40 mb-2 font-mono">02. Solution</h4>
                       <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                        {project.solution}
+                        {project.solution[language]}
                       </p>
                     </div>
                     <div className="w-full h-px bg-white/10" />
                     <div>
                       <h4 className="text-[10px] md:text-xs uppercase tracking-widest text-primary mb-2 font-mono">03. Result</h4>
                       <p className="text-white/90 text-sm md:text-base leading-relaxed font-medium">
-                        {project.result}
+                        {project.result[language]}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex gap-4 mt-8 pt-6 border-t border-white/10">
-                    <a href={project.github} aria-label={`Mã nguồn GitHub của ${project.title}`} className="p-3 rounded-full border border-white/20 hover:border-white hover:bg-white text-white hover:text-black transition-all duration-300 flex items-center justify-center">
+                    <a href={project.github} aria-label={language === 'vi' ? `Mã nguồn GitHub của ${project.title}` : `GitHub source code for ${project.title}`} className="p-3 rounded-full border border-white/20 hover:border-white hover:bg-white text-white hover:text-black transition-all duration-300 flex items-center justify-center">
                       <Github size={18} />
                     </a>
-                    <a href={project.link} aria-label={`Xem chi tiết ${project.title}`} className="p-3 rounded-full border border-primary hover:bg-primary text-primary hover:text-white transition-all duration-300 flex items-center justify-center">
+                    <a href={project.link} aria-label={language === 'vi' ? `Xem chi tiết ${project.title}` : `View ${project.title} details`} className="p-3 rounded-full border border-primary hover:bg-primary text-primary hover:text-white transition-all duration-300 flex items-center justify-center">
                       <ExternalLink size={18} />
                     </a>
                   </div>

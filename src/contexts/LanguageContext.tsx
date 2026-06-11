@@ -105,6 +105,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     localStorage.setItem('donquaan-lang', language);
     document.documentElement.lang = language;
+    document.title = language === 'vi'
+      ? 'DonQuaan | Chuyên gia Data Science & AI'
+      : 'DonQuaan | Data Science & AI Expert';
   }, [language]);
 
   const t = (key: string) => {

@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Youtube } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export function LiveSubscriberCount() {
+  const { language } = useLanguage();
   const [subs, setSubs] = useState<number | null>(null);
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export function LiveSubscriberCount() {
       href="https://youtube.com/@sangtraan" 
       target="_blank" 
       rel="noreferrer"
-      aria-label="Kênh YouTube Sangtraan"
+      aria-label={language === 'vi' ? 'Kênh YouTube Sangtraan' : 'Sangtraan YouTube channel'}
       className="flex items-center gap-3 bg-[#0a0a0a] border border-white/10 rounded-full px-4 py-2 w-fit mt-3 shadow-[0_0_15px_rgba(255,0,0,0.15)] hover:border-red-500/50 hover:shadow-[0_0_20px_rgba(255,0,0,0.3)] transition-all duration-300 group cursor-pointer"
     >
       <Youtube className="text-red-600 group-hover:scale-110 transition-transform" size={18} />
