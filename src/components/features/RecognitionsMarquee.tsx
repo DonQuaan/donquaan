@@ -1,10 +1,11 @@
 import { useLanguage } from '../../contexts/LanguageContext';
-import { SiGoogle, SiMicrosoft, SiAmazon, SiMeta, SiNetflix, SiApple, SiSpotify, SiTesla } from 'react-icons/si';
+import { SiGoogle, SiMeta, SiNetflix, SiApple, SiSpotify, SiTesla } from 'react-icons/si';
+import { FaMicrosoft, FaAmazon } from 'react-icons/fa';
 
 const partners = [
   { name: "Google", icon: SiGoogle },
-  { name: "Microsoft", icon: SiMicrosoft },
-  { name: "Amazon", icon: SiAmazon },
+  { name: "Microsoft", icon: FaMicrosoft },
+  { name: "Amazon", icon: FaAmazon },
   { name: "Meta", icon: SiMeta },
   { name: "Netflix", icon: SiNetflix },
   { name: "Apple", icon: SiApple },
