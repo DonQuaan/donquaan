@@ -22,7 +22,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,mp3,jpg,jpeg,gif}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,mp3,jpg,jpeg,gif,pdf}'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
