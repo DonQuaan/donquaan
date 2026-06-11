@@ -103,7 +103,7 @@ export function AboutSection() {
                     <p className="text-white/50 text-xs leading-relaxed hidden md:block">
                       A Google Certified Gemini Faculty member can articulate and demonstrate foundational knowledge of generative AI concepts and the core features and capabilities of Gemini within the educational context.
                     </p>
-                    <a href="/assets/certificates/Gemini_Certified_Faculty.pdf" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-primary hover:text-white transition-colors mt-2">
+                    <a href={`${import.meta.env.BASE_URL}assets/certificates/Gemini_Certified_Faculty.pdf`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-primary hover:text-white transition-colors mt-2">
                       <span>Xem Bản PDF</span>
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                     </a>
