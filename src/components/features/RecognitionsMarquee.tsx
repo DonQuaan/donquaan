@@ -1,14 +1,14 @@
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const partners = [
-  { name: "Google", icon: "G" },
-  { name: "Microsoft", icon: "M" },
-  { name: "Amazon", icon: "A" },
-  { name: "Meta", icon: "M" },
-  { name: "Netflix", icon: "N" },
-  { name: "Apple", icon: "A" },
-  { name: "Spotify", icon: "S" },
-  { name: "Tesla", icon: "T" }
+  { name: "Google", iconSlug: "google" },
+  { name: "Microsoft", iconSlug: "microsoft" },
+  { name: "Amazon", iconSlug: "amazon" },
+  { name: "Meta", iconSlug: "meta" },
+  { name: "Netflix", iconSlug: "netflix" },
+  { name: "Apple", iconSlug: "apple" },
+  { name: "Spotify", iconSlug: "spotify" },
+  { name: "Tesla", iconSlug: "tesla" }
 ];
 
 export function RecognitionsMarquee() {
@@ -31,8 +31,8 @@ export function RecognitionsMarquee() {
               key={i} 
               className="mx-8 md:mx-16 flex items-center gap-3 filter grayscale hover:grayscale-0 transition-all duration-500 cursor-default"
             >
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-display text-xl font-bold">
-                {partner.icon}
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                <img src={`https://cdn.simpleicons.org/${partner.iconSlug}/white`} alt={partner.name} className="w-5 h-5 md:w-6 md:h-6 object-contain opacity-80" />
               </div>
               <span className="text-xl md:text-2xl font-display font-medium text-white/80 tracking-tight">
                 {partner.name}

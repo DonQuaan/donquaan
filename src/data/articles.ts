@@ -140,7 +140,7 @@ Generative AI is not a temporary hype. It is the greatest Architectural Shift si
     date: "28 May 2026",
     readTime: "30 min read",
     excerpt: "Nghiên cứu về kiến trúc ELT thế hệ mới sử dụng dbt, Snowflake và Airflow để giảm 60% thời gian xử lý dữ liệu.",
-    image: "./assets/images/courses/course-8.webp",
+    image: "./assets/images/courses/data-engineering.webp",
     content: {
       vi: `
 # Tối ưu hóa Data Pipeline với Modern Data Stack: Từ Nút thắt cổ chai đến Tốc độ ánh sáng

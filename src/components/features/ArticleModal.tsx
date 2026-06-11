@@ -48,8 +48,9 @@ export function ArticleModal({ article, isOpen, onClose }: ArticleModalProps) {
             exit={{ y: "100%", opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-[101] flex items-center justify-center p-4 md:p-6"
+            data-lenis-prevent="true"
           >
-            <div className="bg-[#0a0a0a] border border-white/10 w-full max-w-4xl h-full max-h-[90vh] rounded-2xl md:rounded-3xl overflow-hidden flex flex-col relative shadow-2xl">
+            <div className="bg-[#0a0a0a] border border-white/10 w-full max-w-5xl h-full max-h-[90vh] rounded-2xl md:rounded-3xl overflow-hidden flex flex-col relative shadow-2xl overscroll-contain">
               {/* Header Image */}
               <div className="relative h-64 md:h-80 shrink-0">
                 <img 
@@ -82,7 +83,7 @@ export function ArticleModal({ article, isOpen, onClose }: ArticleModalProps) {
                     {article.title}
                   </h1>
 
-                  <div className="prose prose-invert prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-4xl prose-h2:text-2xl prose-h3:text-xl prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-p:text-[#A3A3A3] prose-p:leading-relaxed prose-li:text-[#A3A3A3] prose-strong:text-white">
+                  <div className="prose prose-invert prose-xl max-w-none prose-headings:font-display prose-headings:font-bold prose-h1:text-5xl prose-h2:text-3xl prose-h3:text-2xl prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-p:text-[#A3A3A3] prose-p:leading-relaxed prose-li:text-[#A3A3A3] prose-strong:text-white">
                     <ReactMarkdown>
                       {article.content[language]}
                     </ReactMarkdown>

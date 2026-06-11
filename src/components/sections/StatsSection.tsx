@@ -38,6 +38,20 @@ const AnimatedCounter = ({ from, to, duration = 2, suffix = "", prefix = "" }: {
 export function StatsSection() {
   const { t } = useLanguage();
 
+  const [discordMembers, setDiscordMembers] = useState<number>(61704);
+  const fbMembers = 130000;
+
+  useEffect(() => {
+    fetch('https://discord.com/api/v9/invites/sangtraan?with_counts=true')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.approximate_member_count) {
+          setDiscordMembers(data.approximate_member_count);
+        }
+      })
+      .catch(console.error);
+  }, []);
+
   const stats = [
     {
       label: "YouTube Subscribers (Live)",
@@ -47,14 +61,13 @@ export function StatsSection() {
     },
     {
       label: "Discord Members (Live)",
-      url: "https://livecounts.xyz/embed/dark/discord-live-member-count/sangtraan",
+      value: discordMembers,
       description: "Vai trò: Senior Chief Executive Officer, Systems Tester & Developer, Community Administrator",
-      type: "iframe"
+      type: "counter"
     },
     {
-      label: "Facebook Followers",
-      value: 130000,
-      suffix: "+",
+      label: "Facebook Followers (Live)",
+      value: fbMembers,
       description: "Quản trị Fanpage tích xanh Coach Nguyễn Tú Oanh",
       type: "counter"
     },
@@ -73,12 +86,10 @@ export function StatsSection() {
       type: "counter"
     },
     {
-      label: t('stats.revenue'),
-      value: 1,
-      prefix: "+$",
-      suffix: "M",
-      description: "Doanh thu mang lại cho đối tác",
-      type: "counter"
+      label: "Doanh Thu",
+      valueText: "$999 - $8999",
+      description: "Doanh thu trên 1 đơn hàng cao cấp",
+      type: "text"
     }
   ];
 
@@ -99,7 +110,11 @@ export function StatsSection() {
             >
               {stat.type === 'counter' ? (
                 <div className="text-5xl lg:text-7xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40 mb-4 transition-transform duration-500 group-hover:scale-110">
-                  <AnimatedCounter from={0} to={(stat as any).value ?? 0} duration={2.5} prefix={(stat as any).prefix ?? ""} suffix={stat.suffix ?? ""} />
+                  <AnimatedCounter from={0} to={(stat as any).value ?? 0} duration={2.5} prefix={(stat as any).prefix ?? ""} suffix={(stat as any).suffix ?? ""} />
+                </div>
+              ) : stat.type === 'text' ? (
+                <div className="text-4xl lg:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40 mb-4 transition-transform duration-500 group-hover:scale-110">
+                  {(stat as any).valueText}
                 </div>
               ) : (
                 <div className="mb-4 w-full flex justify-center h-[120px] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500 rounded-xl">
