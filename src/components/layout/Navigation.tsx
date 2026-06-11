@@ -7,6 +7,7 @@ import { soundManager } from '../../utils/sound';
 import { Magnetic } from '../ui/Magnetic';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useMusic } from '../../contexts/MusicContext';
+import { LanguageToggle } from '../ui/LanguageToggle';
 
 export function Navigation() {
   const [isMuted, setIsMuted] = useState(true);
@@ -84,6 +85,7 @@ export function Navigation() {
         transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         className="pointer-events-auto flex items-center gap-4 xl:gap-6 justify-self-end"
       >
+        <LanguageToggle />
         <button 
           onClick={togglePlayer}
           className="text-white/70 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 shrink-0"
@@ -103,6 +105,7 @@ export function Navigation() {
           onMouseEnter={() => soundManager.playHover()}
           className="hidden md:block text-sm font-medium text-white/70 hover:text-white transition-colors shrink-0"
         >
+          {/* using hardcoded 'Connect' here but you can use t('nav.contact') if desired */}
           Connect
         </a>
         <Magnetic>

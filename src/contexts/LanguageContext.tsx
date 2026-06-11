@@ -1,0 +1,112 @@
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+
+type Language = 'vi' | 'en';
+
+type Dictionary = {
+  [key: string]: string;
+};
+
+const dictionaries: Record<Language, Dictionary> = {
+  vi: {
+    'nav.about': 'Giới Thiệu',
+    'nav.projects': 'Dự Án',
+    'nav.services': 'Dịch Vụ',
+    'nav.insights': 'Góc Nhìn',
+    'nav.contact': 'Liên Hệ',
+    
+    'hero.role': 'Chuyên gia Dữ liệu & Học máy',
+    'hero.cta': 'Khám phá Hành trình',
+    
+    'about.title': 'Bắt đầu từ Đam mê',
+    'about.desc': 'Tôi là một chuyên gia dữ liệu luôn khao khát biến những con số vô tri thành câu chuyện có ý nghĩa.',
+    
+    'stats.experience': 'Năm Kinh Nghiệm',
+    'stats.clients': 'Khách Hàng',
+    'stats.revenue': 'Doanh Thu Tạo Ra',
+    
+    'insights.title': 'Góc Nhìn Chuyên Gia',
+    'insights.subtitle': 'Thought Leadership',
+    'insights.desc': 'Những bài viết, phân tích và case-study chuyên sâu về Data Science, AI và xu hướng công nghệ tương lai.',
+    
+    'contact.title': 'Đặt Lịch Tư Vấn VIP',
+    'contact.subtitle': 'Premium Booking',
+    'contact.desc': 'Bắt đầu dự án đột phá tiếp theo của bạn cùng tôi. Vui lòng để lại thông tin để thiết lập cuộc hẹn tư vấn chuyên sâu 1-1.',
+    'contact.form.name': 'Tên của bạn',
+    'contact.form.email': 'Email làm việc',
+    'contact.form.message': 'Dự án hoặc vấn đề bạn đang gặp phải...',
+    'contact.form.submit': 'Gửi Yêu Cầu Chuyên Gia',
+    
+    'recognitions.title': 'Đối Tác & Vinh Danh',
+    'recognitions.subtitle': 'As Seen On'
+  },
+  en: {
+    'nav.about': 'About',
+    'nav.projects': 'Projects',
+    'nav.services': 'Services',
+    'nav.insights': 'Insights',
+    'nav.contact': 'Contact',
+    
+    'hero.role': 'Data Science & ML Expert',
+    'hero.cta': 'Explore Journey',
+    
+    'about.title': 'Driven by Passion',
+    'about.desc': 'I am a data expert passionate about turning meaningless numbers into meaningful stories.',
+    
+    'stats.experience': 'Years Experience',
+    'stats.clients': 'Clients Worldwide',
+    'stats.revenue': 'Revenue Generated',
+    
+    'insights.title': 'Expert Insights',
+    'insights.subtitle': 'Thought Leadership',
+    'insights.desc': 'In-depth articles, analyses, and case studies on Data Science, AI, and future technology trends.',
+    
+    'contact.title': 'VIP Consultation',
+    'contact.subtitle': 'Premium Booking',
+    'contact.desc': 'Start your next breakthrough project with me. Leave your information to set up an in-depth 1-on-1 consultation.',
+    'contact.form.name': 'Your Name',
+    'contact.form.email': 'Work Email',
+    'contact.form.message': 'Your project or challenge...',
+    'contact.form.submit': 'Send Expert Request',
+    
+    'recognitions.title': 'Partners & Recognitions',
+    'recognitions.subtitle': 'As Seen On'
+  }
+};
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = localStorage.getItem('donquaan-lang');
+    return (saved === 'en' || saved === 'vi') ? saved : 'vi';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('donquaan-lang', language);
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const t = (key: string) => {
+    return dictionaries[language][key] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+}

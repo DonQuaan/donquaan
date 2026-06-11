@@ -11,7 +11,9 @@ import { Projects } from '../features/Projects';
 import { PricingSection } from '../sections/PricingSection';
 import { TestimonialCarousel } from '../features/TestimonialCarousel';
 import { FAQSection } from '../sections/FAQSection';
-import { PartnerCTASection } from '../sections/PartnerCTASection';
+import { ContactSection } from '../sections/ContactSection';
+import { InsightsSection } from '../sections/InsightsSection';
+import { RecognitionsMarquee } from '../features/RecognitionsMarquee';
 import { BottomNav } from '../layout/BottomNav';
 import { MorphingDivider } from '../ui/MorphingDivider';
 import { Navigation } from '../layout/Navigation';
@@ -34,6 +36,8 @@ export function HomePage() {
           <MorphingDivider />
           <AboutSection />
           
+          <RecognitionsMarquee />
+          
           <StatsSection />
           <ExperienceSection />
           
@@ -48,8 +52,11 @@ export function HomePage() {
           
           <PricingSection />
           <TestimonialCarousel />
+          
+          <InsightsSection />
+          
           <FAQSection />
-          <PartnerCTASection />
+          <ContactSection />
         </DeferredRender>
       </main>
       

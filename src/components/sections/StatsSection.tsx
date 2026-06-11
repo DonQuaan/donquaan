@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useLanguage } from '../../contexts/LanguageContext';
 
-const AnimatedCounter = ({ from, to, duration = 2, suffix = "" }: { from: number, to: number, duration?: number, suffix?: string }) => {
+const AnimatedCounter = ({ from, to, duration = 2, suffix = "", prefix = "" }: { from: number, to: number, duration?: number, suffix?: string, prefix?: string }) => {
   const [count, setCount] = useState(from);
   const nodeRef = useRef<HTMLSpanElement>(null);
   const inView = useInView(nodeRef, { once: true, margin: "-50px" });
@@ -29,12 +30,14 @@ const AnimatedCounter = ({ from, to, duration = 2, suffix = "" }: { from: number
 
   return (
     <span ref={nodeRef} className="tabular-nums">
-      {count.toLocaleString()}{suffix}
+      {prefix}{count.toLocaleString()}{suffix}
     </span>
   );
 };
 
 export function StatsSection() {
+  const { t } = useLanguage();
+
   const stats = [
     {
       label: "YouTube Subscribers (Live)",
@@ -54,6 +57,28 @@ export function StatsSection() {
       suffix: "+",
       description: "Quản trị Fanpage tích xanh Coach Nguyễn Tú Oanh",
       type: "counter"
+    },
+    {
+      label: t('stats.experience'),
+      value: 10,
+      prefix: "+",
+      description: "Năm kinh nghiệm thực chiến",
+      type: "counter"
+    },
+    {
+      label: t('stats.clients'),
+      value: 500,
+      prefix: "+",
+      description: "Khách hàng trên toàn cầu",
+      type: "counter"
+    },
+    {
+      label: t('stats.revenue'),
+      value: 1,
+      prefix: "+$",
+      suffix: "M",
+      description: "Doanh thu mang lại cho đối tác",
+      type: "counter"
     }
   ];
 
@@ -62,19 +87,19 @@ export function StatsSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/5 via-black to-black opacity-50" />
       
       <div className="relative z-10 container mx-auto px-6 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 gap-y-16 border-t border-white/10 pt-16">
           {stats.map((stat, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.8, delay: i * 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center text-center pt-8 md:pt-0 px-4 group"
+              transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col items-center text-center px-4 group"
             >
               {stat.type === 'counter' ? (
                 <div className="text-5xl lg:text-7xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40 mb-4 transition-transform duration-500 group-hover:scale-110">
-                  <AnimatedCounter from={0} to={(stat as any).value ?? 0} duration={2.5} suffix={stat.suffix ?? ""} />
+                  <AnimatedCounter from={0} to={(stat as any).value ?? 0} duration={2.5} prefix={(stat as any).prefix ?? ""} suffix={stat.suffix ?? ""} />
                 </div>
               ) : (
                 <div className="mb-4 w-full flex justify-center h-[120px] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500 rounded-xl">

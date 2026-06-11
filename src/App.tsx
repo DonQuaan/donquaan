@@ -6,6 +6,7 @@ import { Preloader } from './components/ui/Preloader';
 import { TerminalEasterEgg } from './components/features/TerminalEasterEgg';
 import { MusicProvider } from './contexts/MusicContext';
 import { MusicPlayer } from './components/features/MusicPlayer';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 import { HomePage } from './components/pages/HomePage';
 const LegalLayout = lazy(() => import('./components/pages/LegalLayout').then(module => ({ default: module.LegalLayout })));
@@ -37,26 +38,28 @@ function App() {
   }, []);
 
   return (
-    <MusicProvider>
-      <HashRouter>
-        <div className="relative min-h-screen w-full bg-background overflow-x-clip flex flex-col font-body text-foreground">
-          <CustomCursor />
-          <Preloader />
-          <TerminalEasterEgg />
-          <MusicPlayer />
-          
-          <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center"><div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/privacy-policy" element={<LegalLayout getHtmlContent={getPrivacyHtml} />} />
-              <Route path="/terms-of-service" element={<LegalLayout getHtmlContent={getTermsHtml} />} />
-              <Route path="/cookies-policy" element={<LegalLayout getHtmlContent={getCookiesHtml} />} />
-              <Route path="/disclaimer" element={<LegalLayout getHtmlContent={getDisclaimerHtml} />} />
-            </Routes>
-          </Suspense>
-        </div>
-      </HashRouter>
-    </MusicProvider>
+    <LanguageProvider>
+      <MusicProvider>
+        <HashRouter>
+          <div className="relative min-h-screen w-full bg-background overflow-x-clip flex flex-col font-body text-foreground">
+            <CustomCursor />
+            <Preloader />
+            <TerminalEasterEgg />
+            <MusicPlayer />
+            
+            <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center"><div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/privacy-policy" element={<LegalLayout getHtmlContent={getPrivacyHtml} />} />
+                <Route path="/terms-of-service" element={<LegalLayout getHtmlContent={getTermsHtml} />} />
+                <Route path="/cookies-policy" element={<LegalLayout getHtmlContent={getCookiesHtml} />} />
+                <Route path="/disclaimer" element={<LegalLayout getHtmlContent={getDisclaimerHtml} />} />
+              </Routes>
+            </Suspense>
+          </div>
+        </HashRouter>
+      </MusicProvider>
+    </LanguageProvider>
   );
 }
 
