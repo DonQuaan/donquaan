@@ -39,7 +39,8 @@ export function StatsSection() {
   const { t } = useLanguage();
 
   const [discordMembers, setDiscordMembers] = useState<number>(61704);
-  const [fbMembers, setFbMembers] = useState<number>(130000);
+  const [youtubeSubs, setYoutubeSubs] = useState<number>(443000);
+  const fbMembers = 130000;
 
   useEffect(() => {
     // Lấy số liệu Discord
@@ -52,12 +53,13 @@ export function StatsSection() {
       })
       .catch(console.error);
 
-    // Lấy số liệu Facebook từ Vercel Serverless Function
-    fetch('/api/facebook')
+    // Lấy số liệu YouTube
+    fetch('https://mixerno.space/api/youtube-channel-counter/user/UC3NPuQGUQ8HDPL2LtWPlHeA')
       .then(res => res.json())
       .then(data => {
-        if (data && data.followers) {
-          setFbMembers(data.followers);
+        const subCount = data?.counts?.find((c: any) => c.value === 'subscribers')?.count;
+        if (subCount) {
+          setYoutubeSubs(subCount);
         }
       })
       .catch(console.error);
@@ -66,9 +68,9 @@ export function StatsSection() {
   const stats = [
     {
       label: "YouTube Subscribers (Live)",
-      url: "https://mixerno.space/embed-count/youtube-channel-counter/UC3NPuQGUQ8HDPL2LtWPlHeA",
+      value: youtubeSubs,
       description: "Cựu CEO Server Discord hỗ trợ trực tiếp cộng đồng của kênh Sangtraan",
-      type: "iframe"
+      type: "counter"
     },
     {
       label: "Discord Members (Live)",
@@ -127,17 +129,7 @@ export function StatsSection() {
                 <div className="text-4xl lg:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40 mb-4 transition-transform duration-500 group-hover:scale-110">
                   {(stat as any).valueText}
                 </div>
-              ) : (
-                <div className="mb-4 w-full flex justify-center h-[120px] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500 rounded-xl">
-                  <iframe 
-                    title={stat.label}
-                    src={stat.url} 
-                    className="w-full max-w-[320px] h-full border-none pointer-events-none rounded-xl"
-                    style={stat.url?.includes('mixerno') ? { filter: 'invert(1) hue-rotate(180deg)' } : {}}
-                    scrolling="no" 
-                  />
-                </div>
-              )}
+              ) : null}
               
               <h3 className="text-xl font-medium text-white/90 mb-2 tracking-wide uppercase text-sm lg:text-base mt-4">
                 {stat.label}
