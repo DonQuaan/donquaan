@@ -6,21 +6,21 @@ const testimonials = [
   {
     text: "Tư duy hệ thống sắc bén, giải quyết triệt để rào cản kỹ thuật từ những bước đầu tiên. Một đối tác đáng tin cậy.",
     name: "Marcus Anderson",
-    role: "CEO",
+    role: "Giám Đốc Điều Hành",
     company: "Data.storage",
     avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150"
   },
   {
-    text: "DonQuaan led the creation of our best architectural framework to date! Khả năng tối ưu mã nguồn thật sự ấn tượng.",
+    text: "DonQuaan đã dẫn dắt việc xây dựng nên nền tảng kiến trúc phần mềm tốt nhất của chúng tôi cho đến nay! Khả năng tối ưu mã nguồn thật sự ấn tượng.",
     name: "Alex Wu",
-    role: "Founder",
+    role: "Nhà Sáng Lập",
     company: "Nexgate",
     avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150"
   },
   {
-    text: "Working with this studio transformed our product vision. Sự tỉ mỉ trong từng pixel và logic flow cực kỳ hoàn hảo.",
+    text: "Hợp tác với DonQuaan đã biến đổi hoàn toàn tầm nhìn sản phẩm của chúng tôi. Sự tỉ mỉ trong từng pixel và luồng logic cực kỳ hoàn hảo.",
     name: "James Mitchell",
-    role: "VP Product",
+    role: "Giám Đốc Sản Phẩm",
     company: "LaunchPad",
     avatar: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=150"
   }
