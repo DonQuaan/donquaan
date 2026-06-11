@@ -4,6 +4,8 @@ import { AboutSection } from '../sections/AboutSection';
 import { FeaturedVideoSection } from '../sections/FeaturedVideoSection';
 import { PhilosophySection } from '../sections/PhilosophySection';
 import { CourseSection } from '../sections/CourseSection';
+import { ExperienceSection } from '../sections/ExperienceSection';
+import { StatsSection } from '../sections/StatsSection';
 import { ServicesSection } from '../sections/ServicesSection';
 import { Projects } from '../features/Projects';
 import { PricingSection } from '../sections/PricingSection';
@@ -31,6 +33,9 @@ export function HomePage() {
           
           <MorphingDivider />
           <AboutSection />
+          
+          <StatsSection />
+          <ExperienceSection />
           
           <MorphingDivider />
           <FeaturedVideoSection />
